@@ -16,17 +16,17 @@ module.exports = {
       {
         spotId: 1,
         url: 'googoogaga.abcd',
-        preview: false
+        preview: true
       },
       {
         spotId: 2,
         url: 'somethingelse.xyza',
-        preview: false
+        preview: true
       },
       {
         spotId: 3,
         url: 'thefinalurl.plswork',
-        preview: false
+        preview: true
       }
     ], {})
   },

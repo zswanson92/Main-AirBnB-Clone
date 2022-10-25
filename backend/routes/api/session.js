@@ -63,11 +63,16 @@ router.post(
     }
   );
 
-  router.get('/', requireAuth, async (req, res) => {
-    const user = await User.findAll()
+  // router.get('/', (req, res) => {
+  //   return res.json('hello world')
+  // })
 
-    res.json(user)
-  })
+
+  // router.get('/', requireAuth, async (req, res) => {
+  //   const user = await User.findAll()
+
+  //   res.json(user)
+  // })
 
 
 module.exports = router;
