@@ -38,16 +38,35 @@ router.get('/', async (req, res) => {
 })
 
 // get all spots owned by current user
-router.get('/current', restoreUser, async (req, res) => {
+router.get('/current', restoreUser, requireAuth, async (req, res) => {
     const { user } = req
     const userId = user.toSafeObject().id
     const specificSpot = await Spot.findByPk(userId)
+
+    let spot = specificSpot.toJSON()
+
+    let avgStarRating = await Review.findAll({
+        raw: true,
+        where: { spotId: specificSpot.id},
+        attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+    })
+
+    let spotImage = await SpotImage.findAll({
+        raw: true,
+        where: { spotId: specificSpot.id },
+        attributes: { exclude: ['createdAt', 'updatedAt']}
+    })
+
+
+    if(avgStarRating[0].avgRating) spot.avgStarRating = avgStarRating[0].avgRating
+    if(spotImage[0]) spot.previewImage = spotImage[0].url
     if (user) {
         return res.json(
-          specificSpot
+          spot
         );
-      } else return res.json('There is no current user.'); // working on local it seems
+      } else return res.json('There is no current user.');
 })
+// need to add avg rating and previewimg url
 
 // get details of a spot from spotId
 router.get('/:spotId', async (req, res) => {
@@ -116,19 +135,16 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
     const { user } = req
     const ownerId = user.toSafeObject().id
 
-    if(theSpot.ownerId === ownerId){
+    // if(theSpot.ownerId === ownerId){
         if(theSpot){
             const image = await SpotImage.create({
             spotId,
             url,
             preview
-    })
-
+            })
             await image.validate()
-
             res.json({id: spotId, url: url, preview: preview})
-        }
-    }   else {
+        } else {
         res.status(404)
         res.json({
             "message": "Spot couldn't be found",
