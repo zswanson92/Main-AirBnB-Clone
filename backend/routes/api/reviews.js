@@ -71,43 +71,35 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
 
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const { reviewId } = req.params
-    let theRevieww = await Review.findByPk(reviewId)
-    const theSpot = await Spot.findByPk(theRevieww.spotId)
+    let theReview = await Review.findByPk(reviewId)
+    const theSpot = await Spot.findByPk(theReview.spotId)
     const { url } = req.body
     const { user } = req
     const userId = user.toSafeObject().id
-    let theReview = await Review.findAll({
-        where: {  spotId: theSpot.dataValues.id, userId: userId }
-    })
-
-    console.log(theReview)
-    // theReview = theReview.toJSON()
-    // console.log(theReview)
-    // if(theReview.userId !== userId){
-    //     return res.json("Review must belong to the current user")
-    // }
 
     if(theReview){
-        const theEdit = await ReviewImage.create({
+        const newReviewImage = await ReviewImage.create({
+            reviewId,
             url
         })
-
-        if(theReview.length > 10){
+        let abc = await ReviewImage.findAll({
+            where: { reviewId: reviewId}
+        })
+        console.log(abc)
+        if(abc.length > 10){
             res.status(403)
-            return res.json({
-                "message": "Maximum number of images for this resource was reached",
-                "statusCode": 403
-            })
+            res.json("Maximum number of images for this resource was reached")
         }
-
-        return res.json({"id": theEdit.id, "url": url})
-    } else{
+        await newReviewImage.validate()
+        res.json({"id": newReviewImage.id, "url": url})
+    } else {
         res.status(404)
-        return res.json({
-            "message": "Review couldn't be found",
+        res.json({
+            "message": "Spot couldn't be found",
             "statusCode": 404
         })
     }
+
 }) // needs proper error for > 10 images
 
 router.put('/:reviewId', requireAuth, async (req, res) => {
