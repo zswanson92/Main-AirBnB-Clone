@@ -138,13 +138,51 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
            })
     }
 
-    if(theReview.dataValues.userId !== userId){
+    if(theReview.dataValues.userId === userId){
+        theReview.set({
+            "id": theReview.id,
+            "userId": userId,
+            "spotId": theReview.spotId,
+            "review": review,
+            "stars": stars
+        })
+        await theReview.save()
+        return res.json(theReview)
+    } else {
         return res.json("Review must belong to the current user.")
     }
 
 
-})
+}) // think this is working on local, keep an eye on the value of "id" and if that
+// is being represented properly
 
+
+// delete a review
+router.delete('/:reviewId', requireAuth, async (req, res) => {
+    const { reviewId } = req.params
+    const theReview = await Review.findByPk(reviewId)
+    const { user } = req
+    const userId = user.toSafeObject().id
+
+    console.log(theReview)
+    if(theReview.dataValues.userId === userId){
+        if(theReview){
+            await theReview.destroy()
+            res.json({
+                "message": 'Successfully deleted',
+                "statusCode": 200
+            })
+        } else {
+            res.status(404)
+            res.json({
+                "message": "Review couldn't be found",
+                "statusCode": 404
+            })
+        }
+    } else {
+        return res.json("Review must belong to the current user.")
+    }
+}) // working on LOCAL
 
 
 
