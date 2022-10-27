@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { Spot, SpotImage, Review, Sequelize, User, ReviewImage } = require('../../db/models');
+const { Spot, SpotImage, Review, Sequelize, User, ReviewImage, Booking } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth')
@@ -10,7 +10,22 @@ const router = express.Router();
 
 // get all spots
 router.get('/', async (req, res) => {
-    let aSpot = await Spot.findAll()
+    const { page, size } = req.query
+    if(!page){
+        page = 1
+    }
+    if(!size){
+        size = 20
+    }
+
+    let pagination = {}
+    if(parseInt(page) >= 1 && parseInt(size) >= 1){
+        pagination.limit = size
+        pagination.offset = size * (page - 1)
+    }
+    let aSpot = await Spot.findAll({
+        ...pagination
+    })
 
     let Spots = []
     for(let i = 0; i < aSpot.length; i++){
@@ -35,8 +50,10 @@ router.get('/', async (req, res) => {
         if(previewImage[0]) spot.previewImage = previewImage[0].url
         Spots.push(spot)
     }
-
-    return res.json({Spots})   // seems to be working on local
+    let spotss = {Spots}
+    spotss.page = page
+    spotss.size = size
+    return res.json(spotss)   // seems to be working on local
 })
 
 // get all spots owned by current user
@@ -309,8 +326,8 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
     if(spotToBeDeleted){
         await spotToBeDeleted.destroy()
         res.json({
-            message: 'Successfully deleted',
-            statusCode: 200
+            "message": 'Successfully deleted',
+            "statusCode": 200
         })
     } else {
         res.status(404)
@@ -451,7 +468,146 @@ router.get('/:spotId/reviews', async (req, res) => {
     res.json({"Reviews": emptyArr})
 }) // seems to be working on local
 
+// create a booking from a spot based on spot id
 
+router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+    const { spotId } = req.params
+    const theSpot = await Spot.findByPk(spotId)
+    const { user } = req
+    const userId = user.toSafeObject().id
+    const { startDate, endDate } = req.body
+    // console.log(theSpot)
+
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let dateTime = date+' '+time;
+
+    if(!theSpot){
+        res.status(404)
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+
+    if(theSpot.dataValues.ownerId === userId){
+        return res.json("Spot cannot belong to current user")
+    }
+
+
+
+    let inputStartDate = new Date(startDate)
+    let inputEndDate = new Date(endDate)
+    let inputStartDateToDateString = inputStartDate.toDateString()
+    let inputEndDateToDateString = inputEndDate.toDateString()
+    let realStartDate = new Date(inputStartDateToDateString)
+    let realEndDate = new Date(inputEndDateToDateString)
+    let realStartNum = realStartDate.getTime()
+    let realEndNum = realEndDate.getTime()
+
+     // console.log(realStartDate.getTime())
+    // console.log(realEndDate.getTime())
+    let aaa = await Booking.findAll({
+        where: { spotId: spotId}
+    })
+    console.log(aaa)
+
+    for(let i = 0; i < aaa.length; i++){
+        let theSpecificBooking = aaa[i]
+
+        let abc = new Date(theSpecificBooking.dataValues.startDate)
+        let xyz = new Date(theSpecificBooking.dataValues.endDate)
+        let abcToDS = abc.toDateString()
+        let xyzToDS = xyz.toDateString()
+        let currentStateDate = new Date(abcToDS)
+        let currentEndDate = new Date(xyzToDS)
+        let currentStartNum = currentStateDate.getTime()
+        let currentEndNum = currentEndDate.getTime()
+        if(realStartNum === currentStartNum || (realStartNum > currentStartNum && realStartNum < currentEndNum) ||
+        realStartNum === currentEndNum){
+            res.status(403)
+            res.json({
+            "message": "Sorry, this spot is already booked for the specified dates",
+            "statusCode": 403,
+            "errors": {
+            "startDate": "Start date conflicts with an existing booking"
+        }})
+        }
+        if(realEndNum === currentEndNum || (realEndNum < currentEndNum && realEndNum > currentStartNum) ||
+        realEndNum === currentStartNum){
+            res.status(403)
+            res.json({
+            "message": "Sorry, this spot is already booked for the specified dates",
+            "statusCode": 403,
+            "errors": {
+            "endDate": "End date conflicts with an existing booking"
+        }})
+        }
+
+    }
+    if(realEndDate.getTime() < realStartDate.getTime()){
+        res.status(400)
+        res.json({
+            "message": "Validation error",
+            "statusCode": 400,
+            "errors": {
+              "endDate": "endDate cannot be on or before startDate"
+            }
+        })
+    }
+
+    const newBooking = await Booking.create({
+        spotId,
+        userId,
+        startDate,
+        endDate
+    })
+    await newBooking.validate()
+    res.json({"id": newBooking.id, "spotId": spotId, "userId": userId, "startDate": startDate,
+    "endDate": endDate, createdAt: dateTime, updatedAt: dateTime})
+
+
+})
+
+// get all bookings for a spot based on the spot's id
+router.get('/:spotId/bookings', requireAuth, async (req, res) =>{
+    const { spotId } = req.params
+    const theSpot = await Spot.findByPk(spotId)
+    const { user } = req
+    const userId = user.toSafeObject().id
+
+
+    if(theSpot){
+    if(theSpot.ownerId !== userId){
+        const theBookings = await Booking.findAll({
+            where: { spotId: spotId},
+            attributes: { exclude: ['id', 'userId', 'createdAt', 'updatedAt']}
+        })
+        return res.json({"Bookings": theBookings})
+    } else {
+        const theBookings = await Booking.findAll({
+            where: { spotId: spotId }
+        })
+
+        let owner = await User.findAll({
+            raw: true,
+            where: { id: theSpot.ownerId },
+            attributes: { exclude: ['username']}
+        })
+        // console.log(theBookings[0])
+        theBookings[0].User = owner[0]
+
+        return res.json({"Bookings": theBookings})
+    }
+    } else {
+        res.status(404)
+        res.json({
+            "message": "spot doesn't exist"
+        })
+    }
+
+})
 
 
 module.exports = router;
