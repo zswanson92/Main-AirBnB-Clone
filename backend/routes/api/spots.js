@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
         let avgRating = await Review.findAll({
             raw: true,
             where: { spotId: aSpot[i].id},
-            attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+            attributes: [[Sequelize.fn('AVG', Sequelize.col('stars'),2), 'avgRating']]
         })
 
         let previewImage = await SpotImage.findAll({
@@ -71,7 +71,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
     let avgRating = await Review.findAll({
         raw: true,
         where: { spotId: specificSpot[i].id},
-        attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+        attributes: [[Sequelize.fn('AVG', Sequelize.col('stars'), 2), 'avgRating']]
     })
 
     let spotImage = await SpotImage.findAll({
@@ -107,7 +107,7 @@ router.get('/:spotId', async (req, res) => {
         let avgRating = await Review.findAll({
             raw: true,
             where: { spotId: theSpot.id},
-            attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+            attributes: [[Sequelize.fn('AVG', Sequelize.col('stars'),2), 'avgRating']]
         })
 
         let numReviews = await Review.findAll({
