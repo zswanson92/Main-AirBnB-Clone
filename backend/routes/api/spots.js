@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
         let avgRating = await Review.findAll({
             raw: true,
             where: { spotId: aSpot[i].id},
-            attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+            attributes: [[Sequelize.fn('ROUND', Sequelize.fn('AVG', Sequelize.col('stars')), 2), 'avgRating']]
         })
 
         let previewImage = await SpotImage.findAll({
