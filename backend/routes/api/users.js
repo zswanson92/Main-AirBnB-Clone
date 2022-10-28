@@ -32,12 +32,12 @@ router.post(
     '/',
     // validateSignup,
     async (req, res) => {
-      const { currUser } = req
+      const { user } = req
       const { email, password, username, firstName, lastName } = req.body;
-      const user = await User.signup({ email, username, password, firstName, lastName });
 
-      if(currUser){
-        if(currUser.email === email){
+      console.log(user)
+      if(user){
+        if(user.email === email){
           res.status(403)
           return res.json({
           "message": "User already exists",
@@ -49,11 +49,12 @@ router.post(
         }
       }
 
+      const abcuser = await User.signup({ email, username, password, firstName, lastName });
 
-      await setTokenCookie(res, user);
+      await setTokenCookie(res, abcuser);
 
       return res.json({
-        "id": user.id,
+        "id": abcuser.id,
         "firstName": firstName,
         "lastName": lastName,
         "email": email,
