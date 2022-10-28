@@ -68,7 +68,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
     for(let i = 0; i < specificSpot.length; i++){
     let spot = specificSpot[i].toJSON()
 
-    let avgStarRating = await Review.findAll({
+    let avgRating = await Review.findAll({
         raw: true,
         where: { spotId: specificSpot[i].id},
         attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
@@ -81,9 +81,9 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
     })
 
 
-    if(avgStarRating[0].avgRating){
-        spot.avgStarRating = avgStarRating[0].avgRating
-    } else spot.avgStarRating = 0
+    if(avgRating[0].avgRating){
+        spot.avgRating = avgRating[0].avgRating
+    } else spot.avgRating = 0
     if(spotImage[0]){
         spot.previewImage = spotImage[0].url
     } else spot.previewImage = 'no preview image url available'
@@ -104,7 +104,7 @@ router.get('/:spotId', async (req, res) => {
     if(theSpot){
         let spot = theSpot.toJSON()
 
-        let avgStarRating = await Review.findAll({
+        let avgRating = await Review.findAll({
             raw: true,
             where: { spotId: theSpot.id},
             attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
@@ -132,9 +132,9 @@ router.get('/:spotId', async (req, res) => {
         if(numReviews[0].numReviews){
             spot.numReviews = numReviews[0].numReviews
         } else spot.numReviews = 0
-        if(avgStarRating[0].avgRating){
-            spot.avgStarRating = avgStarRating[0].avgRating
-        } else spot.avgStarRating = 0
+        if(avgRating[0].avgRating){
+            spot.avgRating = avgRating[0].avgRating
+        } else spot.avgRating = 0
         if(spotImage[0]) spot.SpotImages = spotImage
 
     return res.json(spot)
