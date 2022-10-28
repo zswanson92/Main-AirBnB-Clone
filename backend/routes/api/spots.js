@@ -119,7 +119,7 @@ router.get('/:spotId', async (req, res) => {
         let spotImage = await SpotImage.findAll({
             raw: true,
             where: { spotId: theSpot.id },
-            attributes: { exclude: ['createdAt', 'updatedAt']}
+            attributes: { exclude: ['createdAt', 'updatedAt', 'spotId']}
         })
 
         let owner = await User.findAll({
@@ -322,22 +322,22 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
     const { user } = req
     const ownerId = user.toSafeObject().id
 
-    if(spotToBeDeleted.ownerId === ownerId){
     if(spotToBeDeleted){
+    if(spotToBeDeleted.ownerId === ownerId){
         await spotToBeDeleted.destroy()
         res.json({
             "message": 'Successfully deleted',
             "statusCode": 200
         })
     } else {
-        res.status(404)
-        res.json({
-            message: `Spot couldn't be found`,
-            statusCode: 404
-        })
+        res.json('Spot must belong to current user to delete.')
     }
     } else{
-        res.json('Spot must belong to current user to delete.')
+        res.status(404)
+        res.json({
+            "message": `Spot couldn't be found`,
+            "statusCode": 404
+        })
     }
 }) // seems to be working on local , not heroku
 
@@ -449,7 +449,7 @@ router.get('/:spotId/reviews', async (req, res) => {
         let reviewImage = await ReviewImage.findAll({
             raw: true,
             where: { id: theReviews[i].id },
-            attributes: { exclude: ['createdAt', 'updatedAt']}
+            attributes: { exclude: ['createdAt', 'updatedAt', 'reviewId']}
         })
 
         if(user){
@@ -603,7 +603,8 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) =>{
     } else {
         res.status(404)
         res.json({
-            "message": "spot doesn't exist"
+            "message": "Spot couldn't be found",
+            "statusCode": 404
         })
     }
 

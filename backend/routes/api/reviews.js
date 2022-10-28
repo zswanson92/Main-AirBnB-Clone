@@ -36,7 +36,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
         let reviewImage = await ReviewImage.findAll({
             raw: true,
             where: { id: theReviews[i].id },
-            attributes: { exclude: ['createdAt', 'updatedAt']}
+            attributes: { exclude: ['createdAt', 'updatedAt', 'reviewId']}
         })
 
         let spotImage = await SpotImage.findAll({
@@ -72,10 +72,18 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const { reviewId } = req.params
     let theReview = await Review.findByPk(reviewId)
-    const theSpot = await Spot.findByPk(theReview.spotId)
+    // const theSpot = await Spot.findByPk(theReview.spotId)
     const { url } = req.body
     const { user } = req
     const userId = user.toSafeObject().id
+
+    if(!theReview){
+        res.status(404)
+        res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+        })
+    }
 
     if(theReview){
         const newReviewImage = await ReviewImage.create({
@@ -92,13 +100,14 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         }
         await newReviewImage.validate()
         res.json({"id": newReviewImage.id, "url": url})
-    } else {
-        res.status(404)
-        res.json({
-            "message": "Spot couldn't be found",
-            "statusCode": 404
-        })
     }
+    // else {
+    //     res.status(404)
+    //     res.json({
+    //         "message": "Spot couldn't be found",
+    //         "statusCode": 404
+    //     })
+    // }
 
 }) // needs proper error for > 10 images
 
@@ -130,7 +139,7 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
            })
     }
 
-    if(theReview.dataValues.userId === userId){
+    if(theReview.userId === userId){
         theReview.set({
             "id": theReview.id,
             "userId": userId,
@@ -157,7 +166,7 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
     const userId = user.toSafeObject().id
 
     console.log(theReview)
-    if(theReview.dataValues.userId === userId){
+    if(theReview.userId === userId){
         if(theReview){
             await theReview.destroy()
             res.json({
