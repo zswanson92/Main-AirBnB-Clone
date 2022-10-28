@@ -118,7 +118,13 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
     const { user } = req
     const userId = user.toSafeObject().id
 
-
+    if(!theReview){
+        res.status(404)
+        return res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+        })
+    }
     // console.log(theReview)
 
     if(!review){
@@ -166,20 +172,21 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
     const userId = user.toSafeObject().id
 
     console.log(theReview)
+    if(!theReview){
+        res.status(404)
+        res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+        })
+    }
+
+
     if(theReview.userId === userId){
-        if(theReview){
             await theReview.destroy()
             res.json({
                 "message": 'Successfully deleted',
                 "statusCode": 200
             })
-        } else {
-            res.status(404)
-            res.json({
-                "message": "Review couldn't be found",
-                "statusCode": 404
-            })
-        }
     } else {
         return res.json("Review must belong to the current user.")
     }

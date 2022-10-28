@@ -10,7 +10,7 @@ const router = express.Router();
 
 // get all spots
 router.get('/', async (req, res) => {
-    const { page, size } = req.query
+    let { page, size } = req.query
     if(!page){
         page = 1
     }
