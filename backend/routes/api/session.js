@@ -60,12 +60,12 @@ router.post(
 
   router.get(
     '/',
-    restoreUser,
+    // restoreUser,
     (req, res) => {
 
       const { user } = req;
-      console.log(user.toSafeObject())
-      console.log(user)
+      // console.log(user.toSafeObject())
+      // console.log(user)
       if (user) {
         return res.json({
           // user: user.toSafeObject()
@@ -75,7 +75,7 @@ router.post(
           "email": user.email,
           "username": user.username
         });
-      } else return res.json({});
+      } else return res.json(null);
     }
   );
 
