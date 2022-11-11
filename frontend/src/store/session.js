@@ -19,8 +19,8 @@ export const removeSessionUser = () => {
     }
 }
 
-// thunk
-export const resSetUser = (user) => async dispatch => {
+// thunks
+export const login = (user) => async dispatch => {
     const { credential, password } = user
     const response = await csrfFetch('/api/session', {
         method: 'POST',
@@ -35,6 +35,13 @@ export const resSetUser = (user) => async dispatch => {
         return response
     // }
 }
+
+export const restoreUser = () => async dispatch => {
+    const response = await csrfFetch('/api/session');
+    const data = await response.json();
+    dispatch(setSessionUser(data));
+    return response;
+  };
 
 
 let initialState = {
