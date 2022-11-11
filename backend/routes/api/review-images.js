@@ -23,8 +23,8 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
         })
     }
     const theReview = await Review.findByPk(reviewImages.reviewId)
-    console.log(theReview.dataValues.userId)
-    console.log(userId)
+    // console.log(theReview.dataValues.userId)
+    // console.log(userId)
     if(theReview.dataValues.userId === userId){
         await reviewImages.destroy()
         return res.json({

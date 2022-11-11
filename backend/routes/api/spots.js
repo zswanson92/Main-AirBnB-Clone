@@ -354,7 +354,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
         where: { spotId: spotId}
     })
     // reviews[0] = reviews[0].toJSON()
-        console.log(reviews)
+        // console.log(reviews)
 
     // if(reviews[0].userId === userId){
 
@@ -511,7 +511,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     let aaa = await Booking.findAll({
         where: { spotId: spotId}
     })
-    console.log(aaa)
+    // console.log(aaa)
 
     for(let i = 0; i < aaa.length; i++){
         let theSpecificBooking = aaa[i]

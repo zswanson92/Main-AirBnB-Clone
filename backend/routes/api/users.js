@@ -35,7 +35,7 @@ router.post(
       const { user } = req
       const { email, password, username, firstName, lastName } = req.body;
 
-      console.log(user)
+      // console.log(user)
       if(user){
         if(user.email === email){
           res.status(403)

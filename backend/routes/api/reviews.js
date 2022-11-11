@@ -93,7 +93,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         let abc = await ReviewImage.findAll({
             where: { reviewId: reviewId}
         })
-        console.log(abc)
+        // console.log(abc)
         if(abc.length > 10){
             res.status(403)
             res.json("Maximum number of images for this resource was reached")
@@ -171,7 +171,7 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
     const { user } = req
     const userId = user.toSafeObject().id
 
-    console.log(theReview)
+    // console.log(theReview)
     if(!theReview){
         res.status(404)
         res.json({
