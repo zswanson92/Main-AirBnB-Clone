@@ -2,13 +2,17 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express-validator": "^6.14.2",
-    "pg": "^8.8.0"
+    "js-cookie": "^3.0.1",
+    "pg": "^8.8.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^5.3.4",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.2"
   },
   "name": "authenticate-me",
   "description": "## Database Schema Design",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "npm --prefix backend install backend",
@@ -27,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/zswanson92/API-project/issues"
   },
-  "homepage": "https://github.com/zswanson92/API-project#readme"
+  "homepage": "https://github.com/zswanson92/API-project#readme",
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
+  }
 }
