@@ -69,10 +69,6 @@ export const restoreUser = () => async dispatch => {
     return response;
   };
 
-
-
-
-
 let initialState = {
     user: null
 }
