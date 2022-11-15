@@ -11,12 +11,13 @@ const router = express.Router();
 // get all spots
 router.get('/', async (req, res) => {
     let { page, size } = req.query
-    if(!page){
-        page = 1
-    }
-    if(!size){
-        size = 20
-    }
+    // COMMENT THESE LINES BACK IN AAFTER TESTING IS DONE!
+    // if(!page){
+    //     page = 1
+    // }
+    // if(!size){
+    //     size = 20
+    // }
 
     let pagination = {}
     if(parseInt(page) >= 1 && parseInt(size) >= 1){
@@ -51,8 +52,9 @@ router.get('/', async (req, res) => {
         Spots.push(spot)
     }
     let spotss = {Spots}
-    spotss.page = page
-    spotss.size = size
+    // COMMENT THESE LINES BACK IN AFTER TESTING IS DONE!
+    // spotss.page = page
+    // spotss.size = size
     return res.json(spotss)   // seems to be working on local
 })
 
@@ -161,14 +163,12 @@ router.post('/', requireAuth, async (req, res) => {
 })
 
 // add image to spot based on spot id
-router.post('/:spotId/images', requireAuth, async (req, res) => {
+router.post('/:spotId/images', async (req, res) => {
     const { url, preview } = req.body
     const { spotId } = req.params
     const theSpot = await Spot.findByPk(spotId)
-    const { user } = req
-    const ownerId = user.toSafeObject().id
+    // const { user } = req
 
-    // if(theSpot.ownerId === ownerId){
         if(theSpot){
             const image = await SpotImage.create({
             spotId,
@@ -184,7 +184,8 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
             "statusCode": 404
         })
     }
-}) // seems to be working on local and heroku
+})
+// seems to be working on local and heroku
 
 // edit a spot
 router.put('/:spotId', requireAuth, async (req, res) => {

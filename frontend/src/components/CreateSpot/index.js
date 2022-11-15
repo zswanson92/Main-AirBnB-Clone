@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as spotActions from '../../store/spots'
-
+// import { Redirect, useHistory } from "react-router-dom";
 
 function CreateSpotButton (){
+    // const history = useHistory()
     const dispatch = useDispatch();
 
     const [name, setName] = useState("")
@@ -17,16 +18,25 @@ function CreateSpotButton (){
     const [price, setPrice] = useState("")
     const [url, setUrl] = useState("")
     const [preview, setPreview] = useState("")
-
+    const [showForm, setShowForm] = useState(false)
 
     const createNewSpot = (e) => {
         e.preventDefault();
 
-        return dispatch(spotActions.createSpot({ name, description, address, city, country, state, lat, lng, price, url, preview }))
+        const createdSpot = {
+            name, description, address, city, country, state, lat, lng, price, url, preview
+        }
+
+        dispatch(spotActions.createSpot(createdSpot))
+
+        dispatch(spotActions.getAllSpots())
+
       }
 
-
     return (
+        <>
+        {
+            showForm ?
         <form onSubmit={createNewSpot}>
           <label>
             <input
@@ -116,8 +126,11 @@ function CreateSpotButton (){
             required/>
             Preview Img
           </label>
-          <button type="submit">Create Spot</button>
-        </form>
+          <button type="submit">Create location</button>
+          <button onClick={() => setShowForm(false)}>Discard</button>
+        </form> : (<button onClick={() => setShowForm(true)}> Become a Host</button>
+        )}
+        </>
       )
 }
 

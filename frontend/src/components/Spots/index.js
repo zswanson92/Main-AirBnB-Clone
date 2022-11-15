@@ -14,26 +14,18 @@ const Spots = () => {
         return state.spots
     })
 
-    console.log("THIS IS USE SELECTOR SPOT", aSpot)
-
     useEffect(() => {
         dispatch(getAllSpots())
       }, [dispatch])
 
 
-    if(!aSpot){
+    if(!aSpot.length){
         return null
     }
 
     return (
         <div>
-            {/* {abcArr} */}
-             {/* <h1>The spot names are {aSpot.map((obj) => {
-                return (
-                    <p>{obj.name}</p>
-                )
-             })}</h1> */}
-             {/* <h2>{aSpot.map((obj) => {
+             <h2>{aSpot.map((obj) => {
                 return(
                 <div>
                 <Link style={{textDecoration: 'none'}} to={`/spots/${obj.id}`}>
@@ -43,11 +35,11 @@ const Spots = () => {
                     src={`${obj.previewImage}`}/>
                 <p>{obj.name}</p>
                 <p>{obj.avgRating}</p>
-                <p>${obj.price} night</p>
+                <p>${obj.price} / night</p>
                 </Link>
                 </div>
                 )
-            })}</h2> */}
+            })}</h2>
         </div>
     )
 }

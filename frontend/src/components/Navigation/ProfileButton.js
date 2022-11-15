@@ -39,7 +39,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
         <i className="fas fa-user-circle" />
 
       </button>
-      <CreateSpotButton />
+      {user ? <CreateSpotButton /> : null}
       {showMenu && ( user ?
         (<ul className="profile-dropdown">
           <li>{user.username}</li>
