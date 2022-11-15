@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import  { useDispatch } from 'react-redux';
 import { getAllSpots } from '../../store/spots';
 // import { loadAllSpots } from '../../store/spots';
+import { Link } from 'react-router-dom';
+import './Spots.css'
 
 const Spots = () => {
     const dispatch = useDispatch()
@@ -19,14 +21,33 @@ const Spots = () => {
       }, [dispatch])
 
 
+    if(!aSpot){
+        return null
+    }
+
     return (
         <div>
             {/* {abcArr} */}
-            {/* <h1>The spot names are {aSpot.map((obj) => {
+             {/* <h1>The spot names are {aSpot.map((obj) => {
                 return (
-                    <div>{obj.name}</div>
+                    <p>{obj.name}</p>
                 )
-            })}</h1> */}
+             })}</h1> */}
+             {/* <h2>{aSpot.map((obj) => {
+                return(
+                <div>
+                <Link style={{textDecoration: 'none'}} to={`/spots/${obj.id}`}>
+                <img
+                    className="item-image"
+                    alt={obj.previewImage}
+                    src={`${obj.previewImage}`}/>
+                <p>{obj.name}</p>
+                <p>{obj.avgRating}</p>
+                <p>${obj.price} night</p>
+                </Link>
+                </div>
+                )
+            })}</h2> */}
         </div>
     )
 }
