@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as spotActions from '../../store/spots'
 // import { Redirect, useHistory } from "react-router-dom";
-import './CreateSpot.css'
+import './EditSpot.css'
+import { useParams, useHistory } from 'react-router-dom';
 // import { Modal } from '../../context/Modal'
 
 
-function CreateSpotButton (){
-    // const history = useHistory()
+function EditSpotButton ({ user }){
+    const history = useHistory()
     const dispatch = useDispatch();
+    const { spotId } = useParams()
+
 
     // const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState("")
@@ -20,30 +23,35 @@ function CreateSpotButton (){
     const [lat, setLat] = useState("")
     const [lng, setLng] = useState("")
     const [price, setPrice] = useState("")
-    const [url, setUrl] = useState("")
+    // const [url, setUrl] = useState("")
     // const [preview, setPreview] = useState("")
     const [showForm, setShowForm] = useState(false)
+    const [submit, setSubmit] = useState(true)
 
-    const createNewSpot = async (e) => {
+    const editCurrentSpot = async (e) => {
         e.preventDefault();
 
-        const createdSpot = {
-            name, description, address, city, country, state, lat, lng, price, url, preview: true
+        const editedSpot = {
+            name, description, address, city, country, state, lat, lng, price
         }
 
-        await dispatch(spotActions.createSpot(createdSpot))
+        // const aEditedSpot =
+        await dispatch(spotActions.editSpot(spotId, editedSpot))
 
-        await dispatch(spotActions.getAllSpots())
+        // setSubmit(false)
+        // if(aEditedSpot){
+        await dispatch(spotActions.getSpotById(spotId))
+        // }
 
-        // dispatch(spotActions.getAllSpots())
-
+        // return history.push(`/spots/${spotId}`)
       }
+
 
     return (
         <>
         {
             showForm ?
-        <form onSubmit={createNewSpot} className="newspot-form">
+        <form onSubmit={editCurrentSpot} className="editspot-form">
           <label>
             <input
             type="text"
@@ -116,14 +124,14 @@ function CreateSpotButton (){
             required/>
             Price Per Night
           </label>
-          <label>
+          {/* <label>
           <input
             type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             required/>
             Image Url
-          </label>
+          </label> */}
         {/* <label> */}
           {/* <input
             type="text"
@@ -132,12 +140,12 @@ function CreateSpotButton (){
             required/>
             Preview Img
           </label> */}
-          <button type="submit" className="creatlocation-button">Create location</button>
-          <button onClick={() => setShowForm(false)} className='discardlocation-button'>Close</button>
-        </form> : (<button onClick={() => setShowForm(true)} className='host-button'> Become a Host</button>
+          <button type="submit" className="confirmedit-button">Confirm Edit</button>
+          <button onClick={() => setShowForm(false)} className='closeedit-button'>Close</button>
+        </form> : (<button onClick={() => setShowForm(true)} className='editlocation-button'> Edit Location</button>
         )}
         </>
       )
 }
 
-export default CreateSpotButton
+export default EditSpotButton

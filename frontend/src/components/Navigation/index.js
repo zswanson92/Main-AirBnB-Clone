@@ -9,6 +9,8 @@ import SignupFormPage from '../SignUpFormPage';
 import LoginForm from '../LoginFormModal/LoginForm';
 import { Modal } from '../../context/Modal'
 import CreateSpotButton from '../CreateSpot';
+import EditSpotButton from '../EditSpot';
+import SpotsDetails from '../SpotsDetails';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -18,7 +20,9 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <ProfileButton user={sessionUser} />,
+      <EditSpotButton user={sessionUser} />,
+      <SpotsDetails user={sessionUser} />
     );
   } else {
     sessionLinks = (
@@ -37,6 +41,8 @@ function Navigation({ isLoaded }){
         {isLoaded && (<ProfileButton user={sessionUser}
         setLogin={setLogin}
         setShowModal={setShowModal} />)}
+
+        <SpotsDetails user={sessionUser} />
 
         {showModal && <Modal onClose={() => setShowModal(false)}>
         {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal}/> }

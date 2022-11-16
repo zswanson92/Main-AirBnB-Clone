@@ -11,6 +11,7 @@ const Spots = () => {
     const dispatch = useDispatch()
 
     const aSpotObj = useSelector(state => {
+        // console.log("this is aSpotObj", state)
         return state.spots.allSpots
     })
 

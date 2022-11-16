@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './Navigation.css';
 import CreateSpotButton from "../CreateSpot";
-import { Modal } from '../../context/Modal';
+// import { Modal } from '../../context/Modal';
 
 
 function ProfileButton({ user, setLogin, setShowModal }) {
