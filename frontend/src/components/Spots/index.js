@@ -10,9 +10,12 @@ import './Spots.css'
 const Spots = () => {
     const dispatch = useDispatch()
 
-    const aSpot = useSelector(state => {
-        return state.spots
+    const aSpotObj = useSelector(state => {
+        return state.spots.allSpots
     })
+
+    const aSpot = Object.values(aSpotObj)
+
 
     useEffect(() => {
         dispatch(getAllSpots())

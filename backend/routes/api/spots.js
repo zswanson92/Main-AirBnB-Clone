@@ -165,6 +165,7 @@ router.post('/', requireAuth, async (req, res) => {
 // add image to spot based on spot id
 router.post('/:spotId/images', async (req, res) => {
     const { url, preview } = req.body
+    console.log('this is the preview', preview)
     const { spotId } = req.params
     const theSpot = await Spot.findByPk(spotId)
     // const { user } = req
@@ -316,7 +317,7 @@ router.put('/:spotId', requireAuth, async (req, res) => {
 
 }) // seems to be working on local and heroku
 
-router.delete('/:spotId', requireAuth, async (req, res) => {
+router.delete('/:spotId', async (req, res) => {
     const { spotId } = req.params
     const spotToBeDeleted = await Spot.findByPk(spotId)
 
@@ -340,7 +341,8 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
             "statusCode": 404
         })
     }
-}) // seems to be working on local , not heroku
+})
+// seems to be working on local , not heroku
 
 
 // create a review for a spot based on spot's id

@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 export const LOAD_SPOTS = 'spots/LOAD'
 export const ADD_SPOT = 'spots/ADD'
+export const DELETE_SPOT = 'spots/DELETE'
 // export const ADD_IMAGE = 'spotsImage/ADD'
 
 const load = (spots) => ({
@@ -14,13 +15,18 @@ const add = (spot) => ({
     spot
 })
 
+const deleteASpot = (id) => ({
+    type: DELETE_SPOT,
+    id
+})
+
 // const addImage = (spot) => ({
 //     type: ADD_IMAGE,
 //     spot
 // })
 
 export const getAllSpots = () => async dispatch => {
-    const response = await fetch(`/api/spots`)
+    const response = await csrfFetch(`/api/spots`)
 
     if(response.ok){
         const spots = await response.json()
@@ -63,41 +69,34 @@ export const createSpot = (payload) => async dispatch => {
     }
 }
 
-// export const createSpotImage = (payload) => async dispatch => {
-//     const { url, preview, spotId } = payload
-//     const response = await csrfFetch(`api/${spotId}/images`, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({ url, preview })
-//     })
+export const deleteSpot = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    })
 
-//     if(response.ok){
-//         const spotImage = await response.json()
-//         dispatch(addImage(spotImage))
-//     }
-// }
+    if(response.ok){
+        const deletedSpot = await response.json()
+        dispatch(deleteASpot(deletedSpot))
+    }
+}
 
-
-
-
-const initialState = {}
-
-const spotsReducer = (state = initialState, action) => {
-    const editState = { ...state}
+const spotsReducer = (state = { spot: {}, allSpots: {} }, action) => {
+    let editState = { ...state }
     switch(action.type){
         case LOAD_SPOTS:
-            const newState = []
+            const newState = {spot: {}, allSpots: {}}
             action.spots.forEach(spot => {
-                newState.push(spot)
+                newState.allSpots[spot.id] = spot
             })
             return newState
 
         case ADD_SPOT:
             return {
-                ...state,
-                    ...state.Spots,
+                ...editState,
+                    ...editState.Spots,
                     [action.spotId]: {
                         id: action.spotId,
                         name: action.name,
@@ -113,14 +112,11 @@ const spotsReducer = (state = initialState, action) => {
                         preview: action.preview
                 }
             }
-        // case ADD_IMAGE:
-        //     return {
-        //             ...state.Spots,
-        //             [action.spotId]: {
-        //                 url: action.url,
-        //                 preview: action.preview
-        //             }
-        //     }
+        case DELETE_SPOT:
+            editState = { ...editState }
+            delete editState[action.spotId]
+            return editState
+
     default:
         return state;
     }

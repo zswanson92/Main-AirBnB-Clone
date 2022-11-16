@@ -2,41 +2,52 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 // import { NavLink, Route, useParams } from 'react-router-dom';
 import  { useDispatch } from 'react-redux';
-import { getAllSpots } from '../../store/spots';
+import { getAllSpots, deleteSpot } from '../../store/spots';
 // import { loadAllSpots } from '../../store/spots';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import './SpotsDetails.css'
 
 const SpotsDetails = () => {
+    const history = useHistory()
     const dispatch = useDispatch()
     const { spotId } = useParams()
 
-    const spotDetails = useSelector(state => {
-        return state.spots
+    const spotDetailsObj = useSelector(state => {
+        return state.spots.allSpots
     })
 
-    console.log("THIS IS USE SELECTOR SPOTDETAILS", spotDetails)
+    // const spotDetails = Object.values(spotDetailsObj)
+
+    const deleteASpot = (e) => {
+        e.preventDefault();
+
+        dispatch(deleteSpot(spotId))
+
+        return history.push('/')
+      }
+
 
     useEffect(() => {
         dispatch(getAllSpots())
       }, [dispatch])
 
 
-    if(!spotDetails){
+    if(!spotDetailsObj){
         return null
     }
 
     return (
         <div className='center'>
-            <h1 className='test'>{spotDetails[spotId - 1].name}</h1>
-            <p>{spotDetails[spotId - 1].address}, {spotDetails[spotId - 1].city}, {spotDetails[spotId - 1].state}, {spotDetails[spotId - 1].country}</p>
+            <h1 className='test'>{spotDetailsObj[spotId]?.name}</h1>
+            <p>{spotDetailsObj[spotId]?.address}, {spotDetailsObj[spotId]?.city}, {spotDetailsObj[spotId]?.state}, {spotDetailsObj[spotId]?.country}</p>
             <img
-            src={`${spotDetails[spotId - 1].previewImage}`}
+            src={`${spotDetailsObj[spotId]?.previewImage}`}
             alt=''/>
-            <p>Average Rating: {spotDetails[spotId - 1].avgRating} stars</p>
-            <p>Price: ${spotDetails[spotId - 1].price}</p>
-            <p>Latitude: {spotDetails[spotId - 1].lat}</p>
-            <p>Longitude: {spotDetails[spotId - 1].lng}</p>
+            <p>Average Rating: {spotDetailsObj[spotId]?.avgRating} stars</p>
+            <p>Price: ${spotDetailsObj[spotId]?.price}</p>
+            <p>Latitude: {spotDetailsObj[spotId]?.lat}</p>
+            <p>Longitude: {spotDetailsObj[spotId]?.lng}</p>
+            <button onClick={deleteASpot}> Delete Location </button>
         </div>
     )
 }

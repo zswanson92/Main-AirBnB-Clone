@@ -37,3 +37,13 @@
     height: 50px;
     width: 50px;
 } */
+
+.two-buttons {
+    position: absolute;
+    top: 40px;
+    left: 1760px;
+}
+
+li {
+    list-style-type: none;
+}

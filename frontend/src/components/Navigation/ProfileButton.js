@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './Navigation.css';
 import CreateSpotButton from "../CreateSpot";
+import { Modal } from '../../context/Modal';
 
 
 function ProfileButton({ user, setLogin, setShowModal }) {
@@ -39,6 +40,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
         <i className="fas fa-user-circle" />
 
       </button>
+
       {user ? <CreateSpotButton /> : null}
       {showMenu && ( user ?
         (<ul className="profile-dropdown">
@@ -48,16 +50,18 @@ function ProfileButton({ user, setLogin, setShowModal }) {
             <button onClick={logout}>Log Out</button>
           </li>
         </ul>) :
-        (<ul>
-          <li><button onClick={() => {
+        (
+        <ul className='two-buttons'>
+          <button onClick={() => {
             setLogin(true)
             setShowModal(true)
-          }}>Log In</button></li>
-          <li><button onClick={() => {
+          }}>Log In</button>
+          <button onClick={() => {
             setLogin(false)
             setShowModal(true)
-          }}>Sign Up</button></li>
-        </ul>)
+          }}>Sign Up</button>
+        </ul>
+        )
       )}
     </>
   );

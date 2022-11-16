@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as spotActions from '../../store/spots'
 // import { Redirect, useHistory } from "react-router-dom";
+import './CreateSpot.css'
+// import { Modal } from '../../context/Modal'
+
 
 function CreateSpotButton (){
     // const history = useHistory()
     const dispatch = useDispatch();
 
+    // const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [address, setAddress] = useState("")
@@ -17,14 +21,14 @@ function CreateSpotButton (){
     const [lng, setLng] = useState("")
     const [price, setPrice] = useState("")
     const [url, setUrl] = useState("")
-    const [preview, setPreview] = useState("")
+    // const [preview, setPreview] = useState("")
     const [showForm, setShowForm] = useState(false)
 
     const createNewSpot = (e) => {
         e.preventDefault();
 
         const createdSpot = {
-            name, description, address, city, country, state, lat, lng, price, url, preview
+            name, description, address, city, country, state, lat, lng, price, url, preview: true
         }
 
         dispatch(spotActions.createSpot(createdSpot))
@@ -37,7 +41,7 @@ function CreateSpotButton (){
         <>
         {
             showForm ?
-        <form onSubmit={createNewSpot}>
+        <form onSubmit={createNewSpot} className="newspot-form">
           <label>
             <input
             type="text"
@@ -73,18 +77,18 @@ function CreateSpotButton (){
           <label>
           <input
             type="text"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            required/>
-            Country
-          </label>
-          <label>
-          <input
-            type="text"
             value={state}
             onChange={(e) => setState(e.target.value)}
             required/>
             State
+          </label>
+          <label>
+          <input
+            type="text"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            required/>
+            Country
           </label>
           <label>
           <input
@@ -118,17 +122,17 @@ function CreateSpotButton (){
             required/>
             Image Url
           </label>
-        <label>
-          <input
+        {/* <label> */}
+          {/* <input
             type="text"
             value={preview}
             onChange={(e) => setPreview(e.target.value)}
             required/>
             Preview Img
-          </label>
-          <button type="submit">Create location</button>
-          <button onClick={() => setShowForm(false)}>Discard</button>
-        </form> : (<button onClick={() => setShowForm(true)}> Become a Host</button>
+          </label> */}
+          <button type="submit" className="creatlocation-button">Create location</button>
+          <button onClick={() => setShowForm(false)} className='discardlocation-button'>Discard</button>
+        </form> : (<button onClick={() => setShowForm(true)} className='host-button'> Become a Host</button>
         )}
         </>
       )
