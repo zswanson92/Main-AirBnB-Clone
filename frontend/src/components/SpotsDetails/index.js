@@ -8,17 +8,20 @@ import { useParams, useHistory } from 'react-router-dom';
 import './SpotsDetails.css'
 import EditSpotButton from '../EditSpot';
 
-const SpotsDetails = ({ user }) => {
+const SpotsDetails = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const { spotId } = useParams()
+
+    const sessionUser = useSelector(state => state.session.user);
+    // console.log("THIS IS SESSIONUSER", sessionUser.id)
 
     const spotDetailsObj = useSelector(state => {
         // console.log("this is spotDetailsObj", state.spots.spot[59])
         return state.spots.spot[spotId]
     })
 
-    console.log("THIS IS USER", user)
+
 
     const deleteASpot = (e) => {
         e.preventDefault();
@@ -40,15 +43,17 @@ const SpotsDetails = ({ user }) => {
             <h1 className='test'>{spotDetailsObj?.name}</h1>
             <p>{spotDetailsObj?.address}, {spotDetailsObj?.city}, {spotDetailsObj?.state}, {spotDetailsObj?.country}</p>
             <img
-            src={`${spotDetailsObj?.SpotImages[0].url}`}
+            src={spotDetailsObj?.SpotImages ? `${spotDetailsObj?.SpotImages[0].url}` : null}
             alt=''/>
             <p>Average Rating: {spotDetailsObj?.avgRating} stars</p>
             <p>Price: ${spotDetailsObj?.price}</p>
             <p>Latitude: {spotDetailsObj?.lat}</p>
             <p>Longitude: {spotDetailsObj?.lng}</p>
-            <button onClick={deleteASpot} className='delete-button'> Delete Location </button>
+            {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <button onClick={deleteASpot} className='delete-button'> Delete Location </button> : null)}
+
             {/* <button className='edit-spot-button'>Edit Location Details</button> */}
-            {user ? <EditSpotButton /> : null}
+            {/* {user ? <EditSpotButton /> : null} */}
+            {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <EditSpotButton /> : null)}
         </div>
     )
 }

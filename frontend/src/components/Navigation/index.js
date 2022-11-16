@@ -20,9 +20,9 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />,
-      <EditSpotButton user={sessionUser} />,
-      <SpotsDetails user={sessionUser} />
+      <ProfileButton user={sessionUser} />
+      // <EditSpotButton user={sessionUser} />
+      // <SpotsDetails user={sessionUser} />
     );
   } else {
     sessionLinks = (
@@ -42,7 +42,7 @@ function Navigation({ isLoaded }){
         setLogin={setLogin}
         setShowModal={setShowModal} />)}
 
-        <SpotsDetails user={sessionUser} />
+        {/* <SpotsDetails user={sessionUser} /> */}
 
         {showModal && <Modal onClose={() => setShowModal(false)}>
         {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal}/> }
