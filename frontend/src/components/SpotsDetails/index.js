@@ -7,6 +7,7 @@ import { getAllSpots, deleteSpot, getSpotById } from '../../store/spots';
 import { useParams, useHistory } from 'react-router-dom';
 import './SpotsDetails.css'
 import EditSpotButton from '../EditSpot';
+import { getAllReviews } from '../../store/reviews';
 
 const SpotsDetails = () => {
     const history = useHistory()
@@ -21,6 +22,10 @@ const SpotsDetails = () => {
         return state.spots.spot[spotId]
     })
 
+    const reviewDetailsObj = useSelector(state => {
+        console.log("THIS IS REVIEWDETAILSOBJ", state.reviews)
+        return state.reviews
+    })
 
 
     const deleteASpot = (e) => {
@@ -31,6 +36,7 @@ const SpotsDetails = () => {
 
     useEffect(() => {
         dispatch(getSpotById(spotId))
+        dispatch(getAllReviews(spotId))
       }, [dispatch])
 
 
@@ -49,11 +55,13 @@ const SpotsDetails = () => {
             <p>Price: ${spotDetailsObj?.price}</p>
             <p>Latitude: {spotDetailsObj?.lat}</p>
             <p>Longitude: {spotDetailsObj?.lng}</p>
+
             {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <button onClick={deleteASpot} className='delete-button'> Delete Location </button> : null)}
 
             {/* <button className='edit-spot-button'>Edit Location Details</button> */}
             {/* {user ? <EditSpotButton /> : null} */}
             {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <EditSpotButton /> : null)}
+            {{reviewDetailsObj} && (reviewDetailsObj.spot[spotId]) ? (<p>Review: {reviewDetailsObj?.spot[spotId].review}</p>) : (<p>There are no reviews</p>)}
         </div>
     )
 }
