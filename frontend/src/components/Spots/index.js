@@ -28,7 +28,7 @@ const Spots = () => {
     }
 
     return (
-        <div>
+        <div className='homepage'>
              <h2>{aSpot.map((obj) => {
                 return(
                 <div>

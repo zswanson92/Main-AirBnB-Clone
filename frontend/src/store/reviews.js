@@ -76,7 +76,7 @@ const reviewsReducer = (state = initialState, action) => {
             // console.log("THIS IS LOAD REVIEWS", reviews.Reviews[0])
             // console.log("THIS IS NEWSTATE.SPOT", newState.spot)
             // console.log(action.reviews.Reviews[0].spotId)
-            reviews.Reviews.map(review => newState[action.reviews.Reviews[0].id] = review)
+            reviews.Reviews.map(review => newState[action.reviews.Reviews[action.reviews.Reviews.length - 1].id] = review)
 
             return newState
 

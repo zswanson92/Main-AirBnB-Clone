@@ -24,11 +24,15 @@ const SpotsDetails = () => {
     })
 
     const reviewDetailsObj = useSelector(state => {
-        console.log("THIS IS REVIEWDETAILSOBJ", state.reviews)
+        // console.log("THIS IS REVIEWDETAILSOBJ", state.reviews)
         return state.reviews
     })
     const reviewArr = Object.values(reviewDetailsObj)
+    // console.log("this is review array", reviewArr)
 
+    const filteredReviewArr = reviewArr.filter(review => review.spotId == spotId)
+
+    // console.log("this is filtered review", filteredReviewArr)
 
 
     const deleteASpot = (e) => {
@@ -75,8 +79,10 @@ const SpotsDetails = () => {
             {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <EditSpotButton /> : null)}
             {/* {{reviewDetailsObj}  ? (<p>Review: {reviewDetailsObj[spotId]?.review}</p>) : (<p>There are no reviews</p>)} */}
             <ul>
-                {reviewArr.map(review => (<>
-                    <p>Reviews: {review?.review}</p>
+                {filteredReviewArr.map(review => (<>
+                    {/* {console.log("this is a REVIEW from my MAP method", review)} */}
+                    {/* {review.spotId === spotId ? <p>Reviews: {review?.review}</p> : null} */}
+                    <li>Reviews: {review?.review}</li>
                     {/* {console.log(review)} */}
                     {sessionUser && (sessionUser?.id === review?.User?.id ? <button id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
                 </>))}
