@@ -38,7 +38,7 @@ const Spots = () => {
                     alt={obj.previewImage}
                     src={`${obj.previewImage}`}/>
                 <p>{obj.name}</p>
-                <p>{obj.avgRating}</p>
+                <p>{obj.avgRating} stars</p>
                 <p>${obj.price} / night</p>
                 </Link>
                 </div>

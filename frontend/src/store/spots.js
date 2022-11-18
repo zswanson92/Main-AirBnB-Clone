@@ -142,7 +142,7 @@ const spotsReducer = (state = { spot: {}, allSpots: {} }, action) => {
         case LOAD_SPOT:
             const newStateTwo = { ...state }
             newStateTwo.spot[action.spot.id] = action.spot
-            console.log("this is editState", newStateTwo)
+            // console.log("this is editState", newStateTwo)
             return newStateTwo
 
         case ADD_SPOT:

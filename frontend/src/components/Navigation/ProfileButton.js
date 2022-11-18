@@ -4,7 +4,7 @@ import * as sessionActions from '../../store/session';
 import './Navigation.css';
 import CreateSpotButton from "../CreateSpot";
 // import { Modal } from '../../context/Modal';
-import EditSpotButton from "../EditSpot";
+// import EditSpotButton from "../EditSpot";
 
 function ProfileButton({ user, setLogin, setShowModal }) {
   const dispatch = useDispatch();
@@ -36,9 +36,8 @@ function ProfileButton({ user, setLogin, setShowModal }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button onClick={openMenu} className='random-button'>
         <i className="fas fa-user-circle" />
-
       </button>
 
       {user ? <CreateSpotButton /> : null}

@@ -2,12 +2,13 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 // import { NavLink, Route, useParams } from 'react-router-dom';
 import  { useDispatch } from 'react-redux';
-import { getAllSpots, deleteSpot, getSpotById } from '../../store/spots';
+import { deleteSpot, getSpotById } from '../../store/spots';
 // import { loadAllSpots } from '../../store/spots';
 import { useParams, useHistory } from 'react-router-dom';
 import './SpotsDetails.css'
 import EditSpotButton from '../EditSpot';
-import { getAllReviews } from '../../store/reviews';
+import { getAllReviews, deleteReview } from '../../store/reviews';
+import CreateReviewButton from '../CreateReview';
 
 const SpotsDetails = () => {
     const history = useHistory()
@@ -18,7 +19,7 @@ const SpotsDetails = () => {
     // console.log("THIS IS SESSIONUSER", sessionUser.id)
 
     const spotDetailsObj = useSelector(state => {
-        // console.log("this is spotDetailsObj", state.spots.spot[59])
+        // console.log("this is spotDetailsObj", state.spots.spot[76])
         return state.spots.spot[spotId]
     })
 
@@ -26,6 +27,8 @@ const SpotsDetails = () => {
         console.log("THIS IS REVIEWDETAILSOBJ", state.reviews)
         return state.reviews
     })
+    const reviewArr = Object.values(reviewDetailsObj)
+
 
 
     const deleteASpot = (e) => {
@@ -34,11 +37,19 @@ const SpotsDetails = () => {
         return history.push('/')
       }
 
+    const deleteAReview = (e) => {
+        e.preventDefault();
+        dispatch(deleteReview(e.target.id))
+
+        dispatch(getSpotById(spotId))
+        // return history.push(`/`)
+    }
+
     useEffect(() => {
         dispatch(getSpotById(spotId))
         dispatch(getAllReviews(spotId))
-      }, [dispatch])
-
+      }, [dispatch, spotId])
+      // if something breaks I added spotId to dependency
 
     if(!spotDetailsObj){
         return null
@@ -55,15 +66,23 @@ const SpotsDetails = () => {
             <p>Price: ${spotDetailsObj?.price}</p>
             <p>Latitude: {spotDetailsObj?.lat}</p>
             <p>Longitude: {spotDetailsObj?.lng}</p>
-
+            {sessionUser && (<CreateReviewButton />)}
             {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <button onClick={deleteASpot} className='delete-button'> Delete Location </button> : null)}
+            {/* {sessionUser && (<CreateReviewButton />)} */}
 
             {/* <button className='edit-spot-button'>Edit Location Details</button> */}
             {/* {user ? <EditSpotButton /> : null} */}
             {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <EditSpotButton /> : null)}
-            {{reviewDetailsObj} && (reviewDetailsObj.spot[spotId]) ? (<p>Review: {reviewDetailsObj?.spot[spotId].review}</p>) : (<p>There are no reviews</p>)}
+            {/* {{reviewDetailsObj}  ? (<p>Review: {reviewDetailsObj[spotId]?.review}</p>) : (<p>There are no reviews</p>)} */}
+            <ul>
+                {reviewArr.map(review => (<>
+                    <p>Reviews: {review?.review}</p>
+                    {/* {console.log(review)} */}
+                    {sessionUser && (sessionUser?.id === review?.User?.id ? <button id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
+                </>))}
+            </ul>
         </div>
     )
 }
-
+// && (reviewDetailsObj.spot[spotId])
 export default SpotsDetails

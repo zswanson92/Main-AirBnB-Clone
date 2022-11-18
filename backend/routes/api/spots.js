@@ -388,14 +388,14 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
            })
         }
 
-    if(stars !== 1 && stars !== 2 && stars !== 3 && stars !== 4 && stars !== 5){
-        res.status(400)
-        return res.json({
-            "message": "Validation error",
-            "statusCode": 400,
-            "errors": { 'stars': 'Stars must be an integer from 1 to 5'}
-           })
-    }
+    // if(stars !== 1 && stars !== 2 && stars !== 3 && stars !== 4 && stars !== 5){
+    //     res.status(400)
+    //     return res.json({
+    //         "message": "Validation error",
+    //         "statusCode": 400,
+    //         "errors": { 'stars': 'Stars must be an integer from 1 to 5'}
+    //        })
+    // }
 
         if(theSpot){
             const newReview = await Review.create({
