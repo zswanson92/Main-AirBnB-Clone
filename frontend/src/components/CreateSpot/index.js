@@ -44,86 +44,66 @@ function CreateSpotButton (){
         {
             showForm ?
         <form onSubmit={createNewSpot} className="newspot-form">
-          <label>
             <input
+            placeholder="Location Name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required/>
-            Name
-          </label>
-          <label>
-          <input
+          <textarea
+            placeholder="Description"
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required/>
-            Description
-          </label>
-          <label>
           <input
+            placeholder="Address"
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required/>
-            Address
-          </label>
-          <label>
           <input
+            placeholder="City"
             type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             required/>
-            City
-          </label>
-          <label>
           <input
+            placeholder="State"
             type="text"
             value={state}
             onChange={(e) => setState(e.target.value)}
             required/>
-            State
-          </label>
-          <label>
           <input
+            placeholder="Country"
             type="text"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             required/>
-            Country
-          </label>
-          <label>
           <input
+            placeholder="Latitude"
             type="text"
             value={lat}
             onChange={(e) => setLat(e.target.value)}
             required/>
-            Latitude
-          </label>
-          <label>
           <input
+            placeholder="Longitude"
             type="text"
             value={lng}
             onChange={(e) => setLng(e.target.value)}
             required/>
-            Longitude
-          </label>
-          <label>
           <input
+            placeholder="Price Per Night"
             type="text"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required/>
-            Price Per Night
-          </label>
-          <label>
           <input
-            type="text"
+            placeholder="Image Url"
+            type="url"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             required/>
-            Image Url
-          </label>
         {/* <label> */}
           {/* <input
             type="text"

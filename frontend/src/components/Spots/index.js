@@ -31,15 +31,15 @@ const Spots = () => {
         <div className='homepage'>
              <h2>{aSpot.map((obj) => {
                 return(
-                <div>
+                <div className='inner-homepage'>
                 <Link style={{textDecoration: 'none'}} to={`/spots/${obj.id}`}>
                 <img
                     className="item-image"
                     alt={obj.previewImage}
                     src={`${obj.previewImage}`}/>
-                <p>{obj.name}</p>
-                <p>{obj.avgRating} stars</p>
-                <p>${obj.price} / night</p>
+                <p className='topline-text'>{obj.name} ★{obj.avgRating} </p>
+                {/* <p>{obj.avgRating} stars</p> */}
+                <p className='bottomline-text'>${obj.price} / night</p>
                 </Link>
                 </div>
                 )

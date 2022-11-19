@@ -11,12 +11,35 @@ img {
         height: 200px;
         object-fit: cover;
         /*  */
+        display: flex;
 }
 
 div {
     display: inline-block;
+    padding: 10px;
+    margin-left: 33px;
+}
+
+.topline-text {
+    font-size: 18px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.bottomline-text {
+    font-size: 18px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+/* .homepage {
+    display: grid;
     padding: 20px;
-  }
+} */
+
+/* .inner-homepage {
+    display: grid;
+} */
+
+
 
 a {
     color: rgb(2, 2, 2);

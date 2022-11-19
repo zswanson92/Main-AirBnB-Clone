@@ -1,57 +1,101 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* width: 97%; */
+    border-bottom: 1px solid grey;
+}
+
+
 .home-button {
     /* font-size: 100px; */
     /* margin: 20px; */
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    display: flex;
+    /* align-items: flex-end;/ */
+    /* top: 20px;
+    left: 20px; */
 }
 
 .abcd {
+    display: flex;
+    align-items: center;
     object-fit: contain;
+    /* justify-content: center; */
+    /* height: 300px; */
+    /* width: 300px; */
     height: 60px;
-    width: 60px;
 }
 
-.signup-button {
-    position: absolute;
-    left: 1700px;
-}
-
-.fas {
-    position: absolute;
-    left: 1800px;
-    top: 20px;
-    height: 50px;
+.two-buttons{
+    /* position: absolute;
+    left: 1200px; */
+    /* display: flex; */
+    position: fixed;
+    left: 1790px;
+    top: 50px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 2px rgb(209, 201, 201);
     width: 50px;
+    height: 50px;
 }
 
 .profile-dropdown {
+    /* display: flex; */
     position: absolute;
-    left: 1720px;
-    top: 50px;
-    /* height: 50px;
-    width: 50px; */
-}
-/* .fa-user-circle {
-    position: absolute;
-    left: 1800px;
-    height: 50px;
-    width: 50px;
-} */
-
-.two-buttons {
-    position: absolute;
-    top: 40px;
-    left: 1760px;
+    left: 1700px;
+    top: 60px;
+    /* border: solid;
+    border-color: gray; */
+    border-radius: 30px;
+    box-shadow: 0 0 2px 2px rgb(209, 202, 202);
 }
 
 li {
     list-style-type: none;
 }
 
-/* .random-button {
-    display: none;
-    visibility: hidden;
-    position: absolute;
-    left: 1500px;
-} */
+.random-button {
+    /* display: none; */
+    /* visibility: hidden; */
+    /* position: absolute; */
+    display: flex;
+    align-items: center;
+    /* left: 1700px; */
+    /* align-items: right; */
+
+    height: 5px;
+    background: white;
+    /* border-color: gray; */
+    border: none;
+}
+
+.fa-bars {
+    height: 10px;
+    display: flex;
+    align-items: center;
+    /* border-color: white; */
+    padding-right: 40px;
+}
+
+.initial-login-button{
+    background-color: transparent;
+    border: none;
+    /* margin-right: 300px;
+     */
+     position: relative;
+     right: 20px;
+     width: 50px;
+     padding-bottom: 10px;
+}
+
+.initial-signup-button{
+    background-color: transparent;
+    border: none;
+    position: relative;
+    right: 35px;
+    width: 80px;
+}

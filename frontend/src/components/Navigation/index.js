@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
-import icon from '../../randomimages/favicon-32x32.png'
+import icon from '../../randomimages/logo-no-background.png'
 import SignupFormPage from '../SignUpFormPage';
 import LoginForm from '../LoginFormModal/LoginForm';
 import { Modal } from '../../context/Modal'
@@ -33,10 +33,10 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
+    <ul className='header'>
 
         <NavLink exact to="/" className='home-button'><a href='logo.png' className='logo'><img className='abcd' src={icon} alt=""/></a></NavLink>
-
+        {/* <CreateSpotButton /> */}
         {isLoaded && (<ProfileButton user={sessionUser}
         setLogin={setLogin}
         setShowModal={setShowModal} />)}

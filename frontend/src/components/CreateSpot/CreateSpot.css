@@ -1,27 +1,42 @@
 .host-button {
-    position: absolute;
-    left: 1680px;
-    top: 15px;
+    /* position: absolute; */
+    /* left: 1680px; */
+    /* top: 15px; */
+    /* display: flex;
+    align-items: flex-end;
+    justify-content: flex-end; */
+    /* align-self: flex-end; */
+    position: fixed;
+    left: 1660px;
+    background-color: white;
+    padding: 0;
+    border: none;
+    background: none;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .newspot-form {
-    height: 412px;
-    width: 178px;
-    background-color: rgb(12, 221, 12);
+    margin-top: 100px;
+    height: 300px;
+    width: 200px;
+    background-color: white;
     position: absolute;
     top: 25%;
     right: 45%;
     box-shadow: 0 0 10px 10px rgb(112, 105, 105);
+    border-radius: 30px;
 }
 
 input, label {
     display:block;
+
 }
 
 input {
     border-radius: 30px;
-
-  box-shadow:0 0 15px 4px rgba(0, 0, 0, 0);
+margin-left: 18px;
+    box-shadow:0 0 15px 4px rgba(0, 0, 0, 0);
 }
 
 .discardlocation-button {

@@ -36,30 +36,31 @@ function ProfileButton({ user, setLogin, setShowModal }) {
 
   return (
     <>
+      {user ? <CreateSpotButton /> : null}
       <button onClick={openMenu} className='random-button'>
-        <i className="fas fa-user-circle" />
+        <i className="fas fa-bars fa-2x" />
       </button>
 
-      {user ? <CreateSpotButton /> : null}
+
       {/* {user ? <EditSpotButton /> : null} */}
       {showMenu && ( user ?
         (<ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
+          <li>Username: {user.username}</li>
+          <li>User email: {user.email}</li>
           <li>
             <button onClick={logout}>Log Out</button>
           </li>
         </ul>) :
         (
         <ul className='two-buttons'>
-          <button onClick={() => {
+          <button className="initial-login-button" onClick={() => {
             setLogin(true)
             setShowModal(true)
-          }}>Log In</button>
-          <button onClick={() => {
+          }}>Log in</button>
+          <button className="initial-signup-button" onClick={() => {
             setLogin(false)
             setShowModal(true)
-          }}>Sign Up</button>
+          }}>Sign up</button>
         </ul>
         )
       )}

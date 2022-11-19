@@ -33,65 +33,61 @@ function SignupFormPage({ setShowModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='signup-popout' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
-        Email
+          <p className="signup-popout-bannertext">Sign up</p>
+          <p className='corny-pr-line'>Join the Ultimate ZnB family</p>
         <input
+          placeholder="Email"
+          className="email-input"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Username
         <input
+          placeholder="Username"
+          className="signup-username-input"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-      </label>
-      <label>
-        First name
         <input
+        placeholder="First Name"
+        className="firstname-input"
         type="text"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         required
         />
-      </label>
-      <label>
-        Last name
         <input
+        placeholder="Last Name"
+        className="lastname-input"
         type="text"
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
         required
         />
-      </label>
-      <label>
-        Password
         <input
+          placeholder="Password"
+          className='signup-password-input'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Confirm Password
         <input
+          placeholder="Confirm Password"
+          className="signup-confirm-password-input"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Sign Up</button>
+      <button className='signup-form-button' type="submit">Sign Up</button>
     </form>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import './LoginFormModal.css'
 
 function LoginForm({ setShowModal }) {
   const dispatch = useDispatch();
@@ -22,31 +23,39 @@ function LoginForm({ setShowModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='login-popout'>
+
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
-        Username or Email
+      {/* <div className='login-popout-bannertext'>Login</div> */}
+      <p className="login-popout-bannertext">Login</p>
+      <p className="goofy-welcome">Welcome back to Ultimate ZnB</p>
+      {/* <label className="username-label">
+        Username or Email */}
         <input
+          className="username-input"
           type="text"
           value={credential}
+          placeholder="Username or Email"
           onChange={(e) => setCredential(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Password
+      {/* </label> */}
+      {/* <label className="password-label">
+        Password */}
         <input
+          className='password-input'
           type="password"
           value={password}
+          placeholder='Password'
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Log In</button>
+      {/* </label> */}
+      <button type="submit" className="login-continue-button">Continue</button>
     </form>
   );
 }

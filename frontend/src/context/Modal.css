@@ -16,9 +16,16 @@
     left: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #modal-content {
     position: absolute;
     background-color:white;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
