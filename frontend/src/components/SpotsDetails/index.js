@@ -9,6 +9,7 @@ import './SpotsDetails.css'
 import EditSpotButton from '../EditSpot';
 import { getAllReviews, deleteReview } from '../../store/reviews';
 import CreateReviewButton from '../CreateReview';
+import CreateSpotButton from '../CreateSpot';
 
 const SpotsDetails = () => {
     const history = useHistory()
@@ -60,17 +61,27 @@ const SpotsDetails = () => {
     }
 
     return (
-        <div className='center'>
+        <div className='main-details-page'>
+            {sessionUser ? <CreateSpotButton /> : null}
+            <div className='name-address-details-div'>
             <h1 className='test'>{spotDetailsObj?.name}</h1>
-            <p>{spotDetailsObj?.address}, {spotDetailsObj?.city}, {spotDetailsObj?.state}, {spotDetailsObj?.country}</p>
+            <p className='add-city-state-country'> Average Rating: {spotDetailsObj?.avgRating} ★ · {spotDetailsObj?.address}, {spotDetailsObj?.city}, {spotDetailsObj?.state}, {spotDetailsObj?.country} · Latitude: {spotDetailsObj?.lat} Longitude: {spotDetailsObj?.lng}
+            </p>
+            </div>
+            <div className='spot-details-img'>
             <img
+
             src={spotDetailsObj?.SpotImages ? `${spotDetailsObj?.SpotImages[0].url}` : null}
-            alt=''/>
-            <p>Average Rating: {spotDetailsObj?.avgRating} stars</p>
-            <p>Price: ${spotDetailsObj?.price}</p>
-            <p>Latitude: {spotDetailsObj?.lat}</p>
-            <p>Longitude: {spotDetailsObj?.lng}</p>
-            {sessionUser && (<CreateReviewButton />)}
+
+            alt=''
+            className='actual-details-image'
+             />
+            </div>
+            {/* <p className='avg-rating'>Average Rating: {spotDetailsObj?.avgRating} ★</p> */}
+            <p className='price-detail'>Price Per Night: ${spotDetailsObj?.price}</p>
+            {/* <p className='latitude-detail'>Latitude: {spotDetailsObj?.lat}</p>
+            <p className='longitude-detail'>Longitude: {spotDetailsObj?.lng}</p> */}
+            {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <CreateReviewButton /> : null)}
             {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <button onClick={deleteASpot} className='delete-button'> Delete Location </button> : null)}
             {/* {sessionUser && (<CreateReviewButton />)} */}
 
@@ -78,15 +89,19 @@ const SpotsDetails = () => {
             {/* {user ? <EditSpotButton /> : null} */}
             {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <EditSpotButton /> : null)}
             {/* {{reviewDetailsObj}  ? (<p>Review: {reviewDetailsObj[spotId]?.review}</p>) : (<p>There are no reviews</p>)} */}
-            <ul>
+            <div className='reviews-ul-div'>
+            <p>Reviews: </p>
+            <ul className='reviews-ul'>
                 {filteredReviewArr.map(review => (<>
                     {/* {console.log("this is a REVIEW from my MAP method", review)} */}
                     {/* {review.spotId === spotId ? <p>Reviews: {review?.review}</p> : null} */}
-                    <li>Reviews: {review?.review}</li>
+
+                    <li className='reviews-li'>"{review?.review}"</li>
                     {/* {console.log(review)} */}
-                    {sessionUser && (sessionUser?.id === review?.User?.id ? <button id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
+                    {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
                 </>))}
             </ul>
+            </div>
         </div>
     )
 }

@@ -1,10 +1,178 @@
-.center {
+/* .center {
     position: absolute;
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
-  }
+  } */
 
-.test {
+
+
+/* .test {
     font-size: 60px;
+} */
+
+html,body{ margin:0; padding:0; height:100%; width:100%; }
+
+/* .main-details-page{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+} */
+
+.main-details-page{
+  /* background: red; */
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin-left: 10px;
 }
+
+.test{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.add-city-state-country{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  font-size: 15px;
+}
+
+.actual-details-image{
+  height: 500px;
+  width: 800px;
+  image-resolution: from-image;
+}
+
+
+.spot-details-img{
+  display: flex;
+  justify-content: center;
+  /* height: 200px; */
+}
+
+.avg-rating{
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+.price-detail{
+  display: flex;
+  /* align-items: center; */
+  padding-top: 50px;
+  justify-content: center;
+  /* border: 1px solid; */
+  /* border-radius: 5px; */
+  /* width: 200px; */
+  font-weight: bold;
+  /* border: solid; */
+}
+
+.latitude-detail{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.longitude-detail{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.delete-button{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.reviews-ul{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.remove-review-button{
+  margin-left: 80px;
+  margin-top: 35px;
+  width: 110px;
+  height: 40px;
+  background-color: transparent;
+  /* border: none; */
+  border-radius: 5px;
+  font-style: italic;
+  /* display: flex; */
+  position: sticky;
+}
+
+.editlocation-button{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.reviews-li {
+  /* display: flex;
+  flex-direction: row; */
+  position: relative;
+  left: 100px;
+  /* justify-content: left; */
+  /* align-self: left; */
+  margin: 40px;
+}
+
+.header{
+  border-bottom-color: transparent;
+  background-color: white;
+}
+
+.fas {
+  position: absolute;
+  left: 1840px;
+}
+
+.name-address-details-div {
+  margin-top: 70px;
+  margin-left: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.reviews-ul-div{
+  margin-top: 20px;
+  display: flex;
+  border: 1px solid;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  margin-right: 33px;
+}
+
+/* .newspot-form {
+  margin-top: 200px;
+  height: 500px;
+  width: 350px;
+  background-color: white;
+  position: absolute;
+  top: 25%;
+  right: 39%;
+  box-shadow: 0 0 10px 10px rgb(112, 105, 105);
+  border-radius: 30px;
+} */
+
+/* .host-button {
+  visibility: hide;
+} */

@@ -29,6 +29,9 @@ function App() {
           <Route path='/spots/:spotId'>
             <SpotsDetails />
           </Route>
+          {/* <Route path='/spots/create'>
+            <CreateSpotButton />
+          </Route> */}
           {/* <Route path='/'>
 
           </Route> */}

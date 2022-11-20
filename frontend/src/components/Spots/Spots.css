@@ -7,8 +7,8 @@
 
 img {
         /* float: left; */
-        width:  200px;
-        height: 200px;
+        width:  250px;
+        height: 250px;
         object-fit: cover;
         /*  */
         display: flex;
@@ -21,12 +21,13 @@ div {
 }
 
 .topline-text {
-    font-size: 18px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    font-size: 16px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* width: 200px; */
 }
 
 .bottomline-text {
-    font-size: 18px;
+    font-size: 14px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 

@@ -52,6 +52,8 @@
     border-color: gray; */
     border-radius: 30px;
     box-shadow: 0 0 2px 2px rgb(209, 202, 202);
+    background-color: white;
+    /* border: solid; */
 }
 
 li {
@@ -75,10 +77,12 @@ li {
 
 .fa-bars {
     height: 10px;
-    display: flex;
-    align-items: center;
+    /* display: flex; */
+    /* align-items: center; */
     /* border-color: white; */
+    position: sticky;
     padding-right: 40px;
+    margin-top: -25px;
 }
 
 .initial-login-button{

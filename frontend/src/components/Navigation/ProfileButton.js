@@ -5,6 +5,7 @@ import './Navigation.css';
 import CreateSpotButton from "../CreateSpot";
 // import { Modal } from '../../context/Modal';
 // import EditSpotButton from "../EditSpot";
+import { useLocation } from 'react-router-dom'
 
 function ProfileButton({ user, setLogin, setShowModal }) {
   const dispatch = useDispatch();
@@ -33,10 +34,16 @@ function ProfileButton({ user, setLogin, setShowModal }) {
     dispatch(sessionActions.logout());
   };
 
+  const location = useLocation();
+  console.log('hash', location.hash);
+  console.log('pathname', location.pathname);
+  console.log('search', location.search);
+  const abcde = location.pathname
+
 
   return (
     <>
-      {user ? <CreateSpotButton /> : null}
+      {user && (abcde === '/' ? <CreateSpotButton /> : null)}
       <button onClick={openMenu} className='random-button'>
         <i className="fas fa-bars fa-2x" />
       </button>

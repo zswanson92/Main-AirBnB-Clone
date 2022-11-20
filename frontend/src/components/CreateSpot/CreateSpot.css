@@ -6,24 +6,27 @@
     align-items: flex-end;
     justify-content: flex-end; */
     /* align-self: flex-end; */
-    position: fixed;
+    position: sticky;
     left: 1660px;
+    /* bottom: 100px; */
+    /* top: -100px; */
     background-color: white;
     padding: 0;
     border: none;
     background: none;
     font-weight: bold;
     font-size: 20px;
+    /* margin-top: 12px; */
 }
 
 .newspot-form {
-    margin-top: 100px;
-    height: 300px;
-    width: 200px;
+    margin-top: 200px;
+    height: 500px;
+    width: 350px;
     background-color: white;
     position: absolute;
-    top: 25%;
-    right: 45%;
+    top: 10%;
+    right: 39%;
     box-shadow: 0 0 10px 10px rgb(112, 105, 105);
     border-radius: 30px;
 }
@@ -34,12 +37,109 @@ input, label {
 }
 
 input {
-    border-radius: 30px;
-margin-left: 18px;
+    border-radius: 3px;
+    margin-left: 24px;
     box-shadow:0 0 15px 4px rgba(0, 0, 0, 0);
+    /* margin-top: 5px; */
+    /* border-bottom-color: transparent; */
+    border-width: 1px;
+}
+
+.location-name-input{
+    width: 300px;
+    border-bottom-color: transparent;
+    height: 30px;
+    margin-top: 20px;
+}
+
+.address-input{
+    border-bottom-color: transparent;
+    width: 300px;
+    height: 30px;
+
+}
+
+.city-input{
+    border-bottom-color: transparent;
+    width: 300px;
+    height: 30px;
+
+}
+
+.state-input{
+    border-bottom-color: transparent;
+    width: 300px;
+    height: 30px;
+
+}
+
+.country-input{
+    border-bottom-color: transparent;
+    width: 300px;
+    height: 30px;
+
+}
+
+.latitude-input{
+    border-bottom-color: transparent;
+    width: 300px;
+    height: 30px;
+
+}
+
+.longitude-input{
+    border-bottom-color: transparent;
+    width: 300px;
+    height: 30px;
+
+}
+
+.price-input{
+    border-bottom-color: transparent;
+    width: 300px;
+    height: 30px;
+
+}
+
+.url-input{
+    /* border-bottom-color: transparent; */
+    width: 300px;
+    height: 30px;
+
+
+}
+
+textarea{
+    border-radius: 10px;
+    margin-left: 24px;
+    box-shadow:0 0 15px 4px rgba(0, 0, 0, 0);
+    margin-top: 5px;
+    resize: none;
+    width: 300px;
+    height: 50px;
+
 }
 
 .discardlocation-button {
-    position: absolute;
-    left: 115px;
+    /* position: absolute; */
+    /* left: 115px; */
+    width: 300px;
+    margin-left: 24px;
+    border: none;
+    background: linear-gradient(90deg,#e41e4e,#d60565);
+    border-radius: 10px;
+    height: 30px;
+
+}
+
+.creatlocation-button{
+    background: linear-gradient(90deg,#e41e4e,#d60565);
+    width: 300px;
+    margin-left: 24px;
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+
 }
