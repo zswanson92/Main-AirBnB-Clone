@@ -32,7 +32,23 @@ module.exports = {
         spotId: 4,
         url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnwtif9N2UKkmjYIqGXwmaNYqjglLfqX1Ng&usqp=CAU',
         preview: true
-      }
+      },
+      {
+        spotId: 5,
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuOVSidnCvxgH9evgZQd_LMbLwABSNCShXqQ&usqp=CAU',
+        preview: true
+      },
+      {
+        spotId: 6,
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe-4UWZD5nr_QmV2eZrUtcvBuw1Zp05d20SQ&usqp=CAU',
+        preview: true
+      },
+      {
+        spotId: 7,
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxquQIJQWpyj4rCzhF1kvRBYfhadrYkF0ohxyby2IubGOEgUQiQ8C9v_8E3o158NB9CZ8&usqp=CAU',
+        preview: true
+      },
+
     ], {})
   },
 
@@ -46,7 +62,8 @@ module.exports = {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('SpotImages', {
       url: { [Op.in]: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGyaVbl0nsuh8EaWC8BV8uO9lt4STwrhxNmOrApzvguTrUNKi1VBM8t0Qfs9WsyQ3bZnI&usqp=CAU', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGyaVbl0nsuh8EaWC8BV8uO9lt4STwrhxNmOrApzvguTrUNKi1VBM8t0Qfs9WsyQ3bZnI&usqp=CAU', 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8&w=1000&q=80',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnwtif9N2UKkmjYIqGXwmaNYqjglLfqX1Ng&usqp=CAU']}
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnnwtif9N2UKkmjYIqGXwmaNYqjglLfqX1Ng&usqp=CAU', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuOVSidnCvxgH9evgZQd_LMbLwABSNCShXqQ&usqp=CAU',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe-4UWZD5nr_QmV2eZrUtcvBuw1Zp05d20SQ&usqp=CAU', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxquQIJQWpyj4rCzhF1kvRBYfhadrYkF0ohxyby2IubGOEgUQiQ8C9v_8E3o158NB9CZ8&usqp=CAU']}
     }, {})
   }
 };

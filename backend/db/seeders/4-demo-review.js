@@ -36,6 +36,24 @@ module.exports = {
         userId: 1,
         review: 'man this place is sort of ok',
         stars: 4
+      },
+      {
+        spotId: 5,
+        userId: 1,
+        review: 'WOW BEST PLACE IVE EVER STAYED',
+        stars: 5
+      },
+      {
+        spotId: 6,
+        userId: 2,
+        review: 'WOW WORST PLACE IVE EVER STAYED',
+        stars: 1
+      },
+      {
+        spotId: 7,
+        userId: 3,
+        review: 'WOW MOST MID PLACE IVE EVER STAYED',
+        stars: 3
       }
     ], {})
   },
@@ -49,7 +67,7 @@ module.exports = {
      */
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Reviews', {
-      review: { [Op.in]: ['man this place rules', 'man this place sucks', 'man this place is mid', 'man this place is sort of ok']}
+      review: { [Op.in]: ['man this place rules', 'man this place sucks', 'man this place is mid', 'man this place is sort of ok', 'WOW BEST PLACE IVE EVER STAYED', 'WOW WORST PLACE IVE EVER STAYED', 'WOW MOST MID PLACE IVE EVER STAYED']}
     }, {})
   }
 };
