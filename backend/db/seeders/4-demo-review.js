@@ -54,6 +54,30 @@ module.exports = {
         userId: 3,
         review: 'WOW MOST MID PLACE IVE EVER STAYED',
         stars: 3
+      },
+      {
+        spotId: 8,
+        userId: 3,
+        review: 'absolutely beautiful villa, marble floors really nice touch',
+        stars: 2
+      },
+      {
+        spotId: 9,
+        userId: 1,
+        review: 'insane views, cant wait to return so I can try the microwave',
+        stars: 4
+      },
+      {
+        spotId: 10,
+        userId: 3,
+        review: 'gorgeous scenery, really wanna visit the local zoo next time',
+        stars: 5
+      },
+      {
+        spotId: 11,
+        userId: 3,
+        review: 'would not reccommend this place to stay, kinda gross',
+        stars: 1
       }
     ], {})
   },
@@ -67,7 +91,9 @@ module.exports = {
      */
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Reviews', {
-      review: { [Op.in]: ['man this place rules', 'man this place sucks', 'man this place is mid', 'man this place is sort of ok', 'WOW BEST PLACE IVE EVER STAYED', 'WOW WORST PLACE IVE EVER STAYED', 'WOW MOST MID PLACE IVE EVER STAYED']}
+      review: { [Op.in]: ['man this place rules', 'man this place sucks', 'man this place is mid', 'man this place is sort of ok', 'WOW BEST PLACE IVE EVER STAYED', 'WOW WORST PLACE IVE EVER STAYED', 'WOW MOST MID PLACE IVE EVER STAYED',
+      'absolutely beautiful villa, marble floors really nice touch', 'insane views, cant wait to return so I can try the microwave', 'gorgeous scenery, really wanna visit the local zoo next time',
+      'would not reccommend this place to stay, kinda gross']}
     }, {})
   }
 };

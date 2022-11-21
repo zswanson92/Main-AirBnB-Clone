@@ -129,7 +129,7 @@ textarea{
     background: linear-gradient(90deg,#e41e4e,#d60565);
     border-radius: 10px;
     height: 30px;
-
+    color: white;
 }
 
 .creatlocation-button{
@@ -141,5 +141,5 @@ textarea{
     height: 30px;
     margin-bottom: 15px;
     margin-top: 10px;
-
+    color: white;
 }

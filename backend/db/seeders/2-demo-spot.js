@@ -98,6 +98,54 @@ module.exports = {
         description: 'wow so much literature',
         price: 502.75
       },
+      {
+        ownerId: 2,
+        address: '77091 awesome sauce plaza',
+        city: 'Gator City',
+        state: 'Florida',
+        country: 'United States',
+        lat: 77.23,
+        lng: 88.51,
+        name: 'some place in florida',
+        description: 'watch out for gators',
+        price: 905.75
+      },
+      {
+        ownerId: 3,
+        address: '9992 snowsville lane',
+        city: 'Anchorage',
+        state: 'Alaska',
+        country: 'United States',
+        lat: 62.23,
+        lng: 29.51,
+        name: 'the icky igloo',
+        description: 'BRR this is ALASKA',
+        price: 27.99
+      },
+      {
+        ownerId: 1,
+        address: '100 nowhere st',
+        city: 'Desolation',
+        state: 'Indiana',
+        country: 'United States',
+        lat: 15.23,
+        lng: 39.51,
+        name: 'the chill farm',
+        description: 'great place to watch grass grow',
+        price: 100.12
+      },
+      {
+        ownerId: 1,
+        address: '56 amazon pod back alley',
+        city: 'Seattle',
+        state: 'Washington',
+        country: 'United States',
+        lat: 99.23,
+        lng: 78.51,
+        name: 'failed dev den',
+        description: 'you can work at amazon and live here!',
+        price: 55.12
+      }
 
     ], {})
   },
@@ -111,7 +159,8 @@ module.exports = {
      */
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Spots', {
-      name: { [Op.in]: ['casa de banana', 'the nerd palace', 'super cool place to stay', 'the deferral dome', 'not a chill spot', 'poppin palace', 'book burning bungalow']}
+      name: { [Op.in]: ['casa de banana', 'the nerd palace', 'super cool place to stay', 'the deferral dome', 'not a chill spot', 'poppin palace', 'book burning bungalow',
+      'some place in florida', 'the icky igloo', 'the chill farm', 'failed dev den']}
     }, {})
   }
 };

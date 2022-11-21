@@ -76,9 +76,11 @@ const SpotsDetails = () => {
             alt=''
             className='actual-details-image'
              />
+
             </div>
+            <div className='description-div'>Description: {spotDetailsObj?.description}</div>
             {/* <p className='avg-rating'>Average Rating: {spotDetailsObj?.avgRating} ★</p> */}
-            <p className='price-detail'>Price Per Night: ${spotDetailsObj?.price}</p>
+            <div className='price-detail'>Price Per Night: ${spotDetailsObj?.price}</div>
             {/* <p className='latitude-detail'>Latitude: {spotDetailsObj?.lat}</p>
             <p className='longitude-detail'>Longitude: {spotDetailsObj?.lng}</p> */}
             {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <CreateReviewButton /> : null)}
