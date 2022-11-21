@@ -1,10 +1,10 @@
 .editlocation-button{
     background: linear-gradient(90deg,#e41e4e,#d60565);
     border-radius: 5px;
-    height: 50px;
-    width: 200px;
-    font-size: 20px;
-    padding-top: 12px;
+    height: 30px;
+    width: 130px;
+    font-size: 14px;
+    padding-top: 6px;
     color: white;
     border: none;
 }

@@ -1,9 +1,12 @@
 .header {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: ; */
     align-items: center;
     position: sticky;
     top: 0;
+    /* padding-right: 100px; */
+    /* width: 100px; */
+    /* right: 100px; */
     z-index: 100;
     /* width: 97%; */
     border-bottom: 1px solid grey;
@@ -81,6 +84,7 @@ li {
     background: white;
     /* border-color: gray; */
     border: none;
+    margin-right: 1000px;
 }
 
 .fa-bars {
@@ -88,12 +92,46 @@ li {
     /* display: flex; */
     /* align-items: center; */
     /* border-color: white; */
-    position: sticky;
+    position: absolute;
+    right: 200px;
     /* display: flex; */
     /* position: absolute; */
     /* left: 100px; */
-    padding-right: 40px;
+    /* padding-right: 400px; */
     margin-top: -25px;
+    /* margin-right: 500px; */
+}
+
+i{
+    /* position: absolute;
+    right: 200px; */
+    /* float: left; */
+    /* margin-right: 12px !important; */
+    /* color: red; */
+    /* align-self: center; */
+
+    /* top: 200px; */
+    /* right: 200px; */
+
+    /* justify-content: flex-start; */
+}
+
+.test-bars-div{
+    /* position: relative; */
+    /* left: -600px; */
+    /* display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center; */
+    /* position: ;
+    right: 520px;
+    top: 3px; */
+    /* display: grid; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* position: absolute;
+    left: -300px; */
+    display: flex;
 }
 
 .initial-login-button{

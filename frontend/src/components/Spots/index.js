@@ -39,7 +39,7 @@ const Spots = () => {
                     className="item-image"
                     alt={obj.previewImage}
                     src={`${obj.previewImage}`}/>
-                <p className='topline-text'>{obj.name} &nbsp; &nbsp; ★{obj.avgRating} </p>
+                <p className='topline-text'>{obj.name} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ★{obj.avgRating} </p>
                 {/* <p>{obj.avgRating} stars</p> */}
                 <p className='bottomline-text'>${obj.price} / night</p>
                 </Link>

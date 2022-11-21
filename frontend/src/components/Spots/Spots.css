@@ -7,8 +7,8 @@
 
 img {
         /* float: left; */
-        width:  250px;
-        height: 250px;
+        width:  290px;
+        height: 260px;
         object-fit: cover;
         /*  */
         display: flex;
@@ -17,7 +17,9 @@ img {
 div {
     display: inline-block;
     padding: 10px;
-    margin-left: 33px;
+    /* margin-left: 33px; */
+    margin: auto;
+    /* margin-right: 0; */
 }
 
 .topline-text {
