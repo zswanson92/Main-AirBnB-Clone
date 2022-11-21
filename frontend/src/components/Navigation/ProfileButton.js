@@ -38,20 +38,6 @@ function ProfileButton({ user, setLogin, setShowModal }) {
 
   const abcde = location.pathname
 
-  const handleSubmit = (e) => {
-    const credential = 'teamramrod'
-    const password = 'password'
-    e.preventDefault();
-    // setErrors([]);
-    return dispatch(sessionActions.login({ credential, password }))
-    .then(() => setShowModal(false))
-    // .catch(
-    //   async (res) => {
-    //     const data = await res.json();
-    //     if (data && data.errors) setErrors(data.errors);
-    //   }
-    // );
-  };
 
 
   return (
@@ -65,10 +51,10 @@ function ProfileButton({ user, setLogin, setShowModal }) {
       {/* {user ? <EditSpotButton /> : null} */}
       {showMenu && ( user ?
         (<ul className="profile-dropdown">
-          <li>Username: {user.username}</li>
-          <li>User email: {user.email}</li>
+          <li className="username-li">Username: {user.username}</li>
+          <li className="email-li">User email: {user.email}</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button className="the-logout-button" onClick={logout}>Log Out</button>
           </li>
         </ul>) :
         (

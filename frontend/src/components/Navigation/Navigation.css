@@ -45,9 +45,12 @@
 
 
 .profile-dropdown {
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: space-between; */
     position: absolute;
-    left: 1700px;
+    left: 1600px;
     top: 60px;
     /* border: solid;
     border-color: gray; */
@@ -55,6 +58,9 @@
     box-shadow: 0 0 2px 2px rgb(209, 202, 202);
     background-color: white;
     /* border: solid; */
+    width: 250px;
+    height: 80px;
+    padding-left: 15px;
 }
 
 li {
@@ -67,6 +73,7 @@ li {
     /* position: absolute; */
     display: flex;
     align-items: center;
+    justify-content: center;
     /* left: 1700px; */
     /* align-items: right; */
 
@@ -82,6 +89,9 @@ li {
     /* align-items: center; */
     /* border-color: white; */
     position: sticky;
+    /* display: flex; */
+    /* position: absolute; */
+    /* left: 100px; */
     padding-right: 40px;
     margin-top: -25px;
 }
@@ -105,3 +115,28 @@ li {
     width: 80px;
     /* padding-bottom: 10px; */
 }
+
+.the-logout-button{
+    background: linear-gradient(90deg,#e41e4e,#d60565);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 70px;
+    width: 100px;
+}
+
+.username-li{
+    margin-left: 38px;
+    margin-bottom: 3px;
+}
+
+.email-li{
+    margin-bottom: 5px;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+/* i {
+    position: absolute;
+    left: 100px;
+} */
