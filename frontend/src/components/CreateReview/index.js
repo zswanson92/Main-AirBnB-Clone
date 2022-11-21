@@ -39,7 +39,7 @@ function CreateReviewButton (){
         {
             showReviewForm ?
         <form onSubmit={createNewReview} className="newreview-form">
-          <label>
+          <label className="stars-label">
             <input
             type="number"
             min="1"
@@ -50,15 +50,17 @@ function CreateReviewButton (){
             Stars (1-5)
           </label>
           <label>
-          <input
+          Review
+          <textarea
+            className="review-textarea"
             type="text"
             value={review}
             onChange={(e) => setReview(e.target.value)}
             required/>
-            Review
+
           </label>
           <button type="submit" className="submitreview-button">Submit Review</button>
-          <button onClick={() => setReviewForm(false)} className='discardreviewform-button'>Close</button>
+          <button onClick={() => setReviewForm(false)} className='discardreviewform-button'>Close Form</button>
         </form> : (<button onClick={() => setReviewForm(true)} className='createreview-button'> Leave a Review</button>
         )}
         </>

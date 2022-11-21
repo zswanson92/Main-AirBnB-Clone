@@ -98,3 +98,18 @@ li {
     font-size: 20px;
     /* border-bottom: solid; */
 }
+
+.another-demo-user{
+    background: linear-gradient(90deg,#e41e4e,#d60565);
+    /* display: flex; */
+    /* justify-content: center;
+     */
+     /* align-items: center; */
+
+    position: absolute;
+    right: 165px;
+    border: none;
+    top: 260px;
+    border-radius: 20px;
+    color: white;
+}

@@ -22,6 +22,15 @@ function LoginForm({ setShowModal }) {
     );
   };
 
+  function firstSet(){
+    return setCredential('teamramrod')
+  }
+
+  function comboSet(){
+    firstSet()
+    setPassword('password')
+  }
+
   return (
     <form onSubmit={handleSubmit} className='login-popout'>
 
@@ -56,6 +65,8 @@ function LoginForm({ setShowModal }) {
         />
       {/* </label> */}
       <button type="submit" className="login-continue-button">Continue</button>
+      <button type='submit' className="another-demo-user"
+      onClick={comboSet}>Log In as Demo User</button>
     </form>
   );
 }

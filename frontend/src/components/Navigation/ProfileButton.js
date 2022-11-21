@@ -35,10 +35,23 @@ function ProfileButton({ user, setLogin, setShowModal }) {
   };
 
   const location = useLocation();
-  console.log('hash', location.hash);
-  console.log('pathname', location.pathname);
-  console.log('search', location.search);
+
   const abcde = location.pathname
+
+  const handleSubmit = (e) => {
+    const credential = 'teamramrod'
+    const password = 'password'
+    e.preventDefault();
+    // setErrors([]);
+    return dispatch(sessionActions.login({ credential, password }))
+    .then(() => setShowModal(false))
+    // .catch(
+    //   async (res) => {
+    //     const data = await res.json();
+    //     if (data && data.errors) setErrors(data.errors);
+    //   }
+    // );
+  };
 
 
   return (

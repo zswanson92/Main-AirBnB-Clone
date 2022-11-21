@@ -82,18 +82,20 @@ const SpotsDetails = () => {
             {/* <p className='latitude-detail'>Latitude: {spotDetailsObj?.lat}</p>
             <p className='longitude-detail'>Longitude: {spotDetailsObj?.lng}</p> */}
             {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <CreateReviewButton /> : null)}
+            <div className='delete-edit-buttons-div'>
             {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <button onClick={deleteASpot} className='delete-button'> Delete Location </button> : null)}
             {/* {sessionUser && (<CreateReviewButton />)} */}
 
             {/* <button className='edit-spot-button'>Edit Location Details</button> */}
             {/* {user ? <EditSpotButton /> : null} */}
             {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <EditSpotButton /> : null)}
+            </div>
             {/* {{reviewDetailsObj}  ? (<p>Review: {reviewDetailsObj[spotId]?.review}</p>) : (<p>There are no reviews</p>)} */}
             <div className='reviews-ul-div'>
             <p>Reviews: </p>
             <ul className='reviews-ul'>
                 {filteredReviewArr.map(review => (<>
-                    {/* {console.log("this is a REVIEW from my MAP method", review)} */}
+                    {/* {console.log("this is a REVIEW from my MAP method", sessionUser)} */}
                     {/* {review.spotId === spotId ? <p>Reviews: {review?.review}</p> : null} */}
 
                     <li className='reviews-li'>"{review?.review}"</li>
