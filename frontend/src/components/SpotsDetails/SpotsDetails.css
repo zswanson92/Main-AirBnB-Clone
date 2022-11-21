@@ -157,8 +157,8 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 }
 
 .fas {
-  position: absolute;
-  left: 1840px;
+  /* position: absolute;
+  left: 1840px; */
 }
 
 .name-address-details-div {
