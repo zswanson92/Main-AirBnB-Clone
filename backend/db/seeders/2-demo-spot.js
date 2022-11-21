@@ -49,7 +49,19 @@ module.exports = {
         name: 'super cool place to stay',
         description: 'making seed data is hard',
         price: 1556.99
-      }
+      },
+      {
+        ownerId: 1,
+        address: '56778 dummy seed data dr',
+        city: 'Phoenix',
+        state: 'Arizona',
+        country: 'United States',
+        lat: 45.23,
+        lng: 21.51,
+        name: 'the deferral dome',
+        description: 'just horrible',
+        price: 3301.02
+      },
     ], {})
   },
 
@@ -62,7 +74,7 @@ module.exports = {
      */
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Spots', {
-      name: { [Op.in]: ['casa de banana', 'the nerd palace', 'super cool place to stay']}
+      name: { [Op.in]: ['casa de banana', 'the nerd palace', 'super cool place to stay', 'the deferral dome']}
     }, {})
   }
 };
