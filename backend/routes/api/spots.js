@@ -365,13 +365,13 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
         let eachObj = reviews[i]
         eachObj = eachObj.toJSON()
 
-        if(eachObj.userId === userId){
-        res.status(403)
-        return res.json({
-            "message": "User already has a review for this spot",
-            "statusCode": 403
-        })
-      }
+    //     if(eachObj.userId === userId){
+    //     res.status(403)
+    //     return res.json({
+    //         "message": "User already has a review for this spot",
+    //         "statusCode": 403
+    //     })
+    //   }
     }
 
     let today = new Date();

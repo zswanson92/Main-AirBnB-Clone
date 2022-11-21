@@ -30,7 +30,7 @@ function CreateReviewButton (){
         await dispatch(spotActions.getSpotById(spotId))
 
         // dispatch(spotActions.getAllSpots())
-
+        setReviewForm(false)
       }
 
     return (

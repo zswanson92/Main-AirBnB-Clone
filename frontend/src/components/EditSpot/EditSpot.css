@@ -8,3 +8,24 @@
     color: white;
     border: none;
 }
+
+.confirmedit-button{
+    background: linear-gradient(90deg,#e41e4e,#d60565);
+    border-radius: 5px;
+    border: none;
+    color: white;
+    margin-top: 10px;
+    margin-left: 23px;
+    height: 60px;
+    width: 90px;
+    margin-right: 20px;
+}
+
+.closeedit-button{
+    background: linear-gradient(90deg,#e41e4e,#d60565);
+    border-radius: 5px;
+    border: none;
+    color: white;
+    height: 60px;
+    width: 90px;
+}
