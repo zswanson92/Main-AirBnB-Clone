@@ -16,8 +16,11 @@ function LoginForm({ setShowModal }) {
     .then(() => setShowModal(false))
     .catch(
       async (res) => {
+
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
+        // console.log("this is data", data)
+        if (data && data.errors) setErrors([data]);
+        // console.log('this is errors', errors)
       }
     );
   };
@@ -31,17 +34,22 @@ function LoginForm({ setShowModal }) {
     setPassword('password')
   }
 
+  // console.log("this is errors", errors)
+
   return (
     <form onSubmit={handleSubmit} className='login-popout'>
-
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      {/* <div className='login-popout-bannertext'>Login</div> */}
       <p className="login-popout-bannertext">Login</p>
       <p className="goofy-welcome">Welcome back to Ultimate ZnB</p>
+      {/* <ul className="last-second-error"> */}
+      {/* {console.log("this is errors", errors)} */}
+        {errors.map((error, idx) => (
+          <li className="invalid-cred" key={idx}> • {error.message}</li>
+        ))}
+      {/* {errors.length > 0 ? <p>{errors[0]}</p> : null} */}
+      {/* {  console.log("this is errors", errors)} */}
+      {/* </ul> */}
+      {/* <div className='login-popout-bannertext'>Login</div> */}
+
       {/* <label className="username-label">
         Username or Email */}
         <input

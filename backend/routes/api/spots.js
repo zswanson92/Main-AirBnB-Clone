@@ -165,7 +165,7 @@ router.post('/', requireAuth, async (req, res) => {
 // add image to spot based on spot id
 router.post('/:spotId/images', async (req, res) => {
     const { url, preview } = req.body
-    console.log('this is the preview', preview)
+    // console.log('this is the preview', preview)
     const { spotId } = req.params
     const theSpot = await Spot.findByPk(spotId)
     // const { user } = req

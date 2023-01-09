@@ -1,5 +1,10 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -12,7 +17,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    return queryInterface.bulkInsert('Reviews', [
+    options.tableName = 'Reviews';
+    return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
         userId: 1,
@@ -89,8 +95,9 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    options.tableName = 'Reviews';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete('Reviews', {
+    return queryInterface.bulkDelete(options, {
       review: { [Op.in]: ['man this place rules', 'man this place sucks', 'man this place is mid', 'man this place is sort of ok', 'WOW BEST PLACE IVE EVER STAYED', 'WOW WORST PLACE IVE EVER STAYED', 'WOW MOST MID PLACE IVE EVER STAYED',
       'absolutely beautiful villa, marble floors really nice touch', 'insane views, cant wait to return so I can try the microwave', 'gorgeous scenery, really wanna visit the local zoo next time',
       'would not reccommend this place to stay, kinda gross']}

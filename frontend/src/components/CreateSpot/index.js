@@ -36,7 +36,7 @@ function CreateSpotButton (){
         await dispatch(spotActions.getAllSpots())
 
         // dispatch(spotActions.getAllSpots())
-        setShowForm(false)
+        // setShowForm(false)
       }
 
     return (

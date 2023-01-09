@@ -74,7 +74,7 @@ li {
     /* display: flex;
     justify-content: center;
     align-items: center; */
-    height: 360px;
+    height: 380px;
     width: 450px;
     /* padding: 0; */
     /* margin: 0 */
@@ -112,4 +112,15 @@ li {
     top: 260px;
     border-radius: 20px;
     color: white;
+    margin-top: 20px;
+}
+
+/* .last-second-error{
+  position: absolute;
+  left: 100px;
+} */
+
+.invalid-cred{
+    display: flex;
+    justify-content: center;
 }

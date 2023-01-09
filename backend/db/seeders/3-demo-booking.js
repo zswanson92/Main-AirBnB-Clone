@@ -1,5 +1,11 @@
 'use strict';
 
+
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -12,7 +18,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    return queryInterface.bulkInsert('Bookings', [
+    options.tableName = 'Bookings';
+    return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
         userId: 1,
@@ -41,8 +48,9 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    options.tableName = 'Bookings';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete('Bookings', {
+    return queryInterface.bulkDelete(options, {
       startDate: { [Op.in]: [10/30/22, 11/30/22, 12/30/22]}
     }, {})
   }

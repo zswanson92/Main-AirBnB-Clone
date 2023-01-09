@@ -41,7 +41,7 @@ export const createReview = (payload, spotId) => async dispatch => {
     // console.log("this is the response body", response.body)
     if(response.ok){
         const review = await response.json()
-        console.log("this is the response body", review)
+        // console.log("this is the response body", review)
         dispatch(reviewAdd(review))
     }
 }
@@ -56,7 +56,7 @@ export const deleteReview = (reviewId) => async dispatch => {
 
     if(response.ok){
         const deletedReview = await response.json()
-        console.log("this is deleted review", deletedReview)
+        // console.log("this is deleted review", deletedReview)
         dispatch(reviewDelete(reviewId))
         // return deletedReview
     }

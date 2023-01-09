@@ -118,7 +118,7 @@ export const editSpot = (spotId, payload) => async dispatch => {
 
     if(response.ok){
         const editedSpot = await response.json()
-        console.log("this is edited spot from thunk", editedSpot)
+        // console.log("this is edited spot from thunk", editedSpot)
         dispatch(edit(editedSpot))
         return editedSpot
     }

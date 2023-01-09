@@ -1,6 +1,12 @@
 'use strict';
 // const bcrypt = require("bcryptjs");
 // const { query } = require("express");
+
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -13,7 +19,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    return queryInterface.bulkInsert('Spots', [
+    options.tableName = 'Spots';
+    return queryInterface.bulkInsert(options, [
       {
         ownerId: 1,
         address: '1234 banana ave',
@@ -157,8 +164,9 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    options.tableName = 'Spots';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete('Spots', {
+    return queryInterface.bulkDelete(options, {
       name: { [Op.in]: ['casa de banana', 'the nerd palace', 'super cool place to stay', 'the deferral dome', 'not a chill spot', 'poppin palace', 'book burning bungalow',
       'some place in florida', 'the icky igloo', 'the chill farm', 'failed dev den']}
     }, {})

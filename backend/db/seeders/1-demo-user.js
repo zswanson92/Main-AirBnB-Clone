@@ -1,4 +1,10 @@
 'use strict';
+
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 const bcrypt = require("bcryptjs");
 const { query } = require("express");
 /** @type {import('sequelize-cli').Migration} */
@@ -13,7 +19,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   return queryInterface.bulkInsert('Users', [
+   options.tableName = 'Users';
+   return queryInterface.bulkInsert(options, [
     {
       email: 'bang@fake.govee',
       username: 'teamramrod',
@@ -46,7 +53,8 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete('Users', {
+    options.tableName = 'Users';
+    return queryInterface.bulkDelete(options, {
       username: { [Op.in]: ['teamramrod', 'smileyface', 'dalearnheart']}
     }, {})
   }

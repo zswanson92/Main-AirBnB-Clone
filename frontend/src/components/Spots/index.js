@@ -32,6 +32,7 @@ const Spots = () => {
         <div className='homepage'>
             {/* <CreateSpotButton /> */}
              <h2>{aSpot.map((obj) => {
+                // console.log("this is obj", obj)
                 return(
                 <div className='inner-homepage'>
                 <Link style={{textDecoration: 'none'}} to={`/spots/${obj.id}`}>
@@ -39,6 +40,7 @@ const Spots = () => {
                     className="item-image"
                     alt={obj.previewImage}
                     src={`${obj.previewImage}`}/>
+                {/* <p className='top-topline-text'>{obj.city}, {obj.state}, {obj.country}</p> */}
                 <p className='topline-text'>{obj.name} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ★{obj.avgRating} </p>
                 {/* <p>{obj.avgRating} stars</p> */}
                 <p className='bottomline-text'>${obj.price} / night</p>
