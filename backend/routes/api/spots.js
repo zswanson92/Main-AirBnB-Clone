@@ -320,7 +320,7 @@ router.put('/:spotId', requireAuth, async (req, res) => {
 router.delete('/:spotId', async (req, res) => {
     const { spotId } = req.params
     const spotToBeDeleted = await Spot.findByPk(spotId)
-
+    console.log("@@@@@@@@", spotToBeDeleted)
     const { user } = req
     const ownerId = user.toSafeObject().id
 
