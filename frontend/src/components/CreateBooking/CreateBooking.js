@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom'
 import * as bookingActions from '../../store/bookings'
 import * as spotActions from '../../store/spots'
+import { getBookingsThunk } from '../../store/bookings';
 
 
 
@@ -26,6 +27,7 @@ function CreateBookingButton (){
         await dispatch(bookingActions.createBookingThunk(createdBooking))
         // await dispatch(reviewActions.getAllReviews(spotId))
         await dispatch(spotActions.getSpotById(spotId))
+        await dispatch(getBookingsThunk(spotId))
         setReviewForm(false)
       }
 

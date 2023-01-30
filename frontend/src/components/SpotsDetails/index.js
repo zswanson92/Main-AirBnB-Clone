@@ -11,7 +11,7 @@ import { getAllReviews, deleteReview } from '../../store/reviews';
 import CreateReviewButton from '../CreateReview';
 import CreateSpotButton from '../CreateSpot';
 import CreateBookingButton from '../CreateBooking/CreateBooking';
-import { getBookingsThunk } from '../../store/bookings';
+import { getBookingsThunk, deleteBookingThunk } from '../../store/bookings';
 
 const SpotsDetails = () => {
     const history = useHistory()
@@ -38,18 +38,34 @@ const SpotsDetails = () => {
     console.log("This is booking details object", bookingDetailsObj)
 
 
+    let sortFunc = (arr) => {
+        let newArr = []
+
+        newArr.push(arr[1])
+        newArr.push(arr[2])
+        newArr.push(arr[0])
+
+        return newArr
+    }
+
+
     const reviewArr = Object.values(reviewDetailsObj)
-    // console.log("this is review array", reviewArr)
 
     const filteredReviewArr = reviewArr.filter(review => review.spotId == spotId)
-
-    // console.log("this is filtered review", filteredReviewArr)
 
 
     const deleteASpot = (e) => {
         e.preventDefault();
         dispatch(deleteSpot(spotId))
         return history.push('/')
+    }
+
+    const deleteABooking = (e, bookingId) => {
+        e.preventDefault();
+        dispatch(deleteBookingThunk(bookingId))
+        // dispatch(getSpotById(spotId))
+        dispatch(getBookingsThunk(spotId))
+        // return history.push(`/spots/${spotId}`)
     }
 
     const deleteAReview = (e) => {
@@ -113,10 +129,11 @@ const SpotsDetails = () => {
             </div>
             <div>
                 <div>Current Bookings for this location:</div>
-                {bookingDetailsObj.map((booking) => {
+                {bookingDetailsObj?.map((booking) => {
                     return <div key={booking.id}>
-                        {console.log(booking.startDate.slice(0, 10).split('-'))}
-                        <div>Start {booking.startDate.slice(0, 10)} - End {booking.endDate.slice(0, 10)}</div>
+                        {console.log(booking)}
+                        <div>Start {sortFunc(booking.startDate.slice(0, 10).split('-')).join('-')} - End {sortFunc(booking.endDate.slice(0, 10).split('-')).join('-')}</div>
+                        {sessionUser?.id === booking.userId ? <button onClick={(e) => deleteABooking(e, booking.id)}>Delete Booking</button> : ""}
                         {/* <p></p> */}
                         {/* <button>Delete book</button> */}
                     </div>

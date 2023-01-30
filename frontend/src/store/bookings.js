@@ -15,6 +15,26 @@ const bookingLoad = (booking) => ({
     payload: booking
 })
 
+const deleteBooking = (booking) => ({
+    type: DELETE_BOOKING,
+    payload: booking
+})
+
+
+export const deleteBookingThunk = (bookingId) => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(response.ok){
+        const deletedBooking = await response.json()
+        dispatch(deleteBooking(deletedBooking))
+    }
+}
+
 
 export const createBookingThunk = (payload) => async dispatch => {
     const { startDate, endDate, spotId } = payload
@@ -69,6 +89,12 @@ const bookingsReducer = (state = initialState, action) => {
             newState.allBookings = {}
             const bookings = (action.payload)
             newState.allBookings = bookings
+            return newState
+        }
+
+        case DELETE_BOOKING: {
+            const newState = { ...state }
+            delete newState[action.bookingId]
             return newState
         }
 
