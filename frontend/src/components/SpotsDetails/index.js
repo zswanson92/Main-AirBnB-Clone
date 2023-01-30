@@ -12,6 +12,8 @@ import CreateReviewButton from '../CreateReview';
 import CreateSpotButton from '../CreateSpot';
 import CreateBookingButton from '../CreateBooking/CreateBooking';
 import { getBookingsThunk, deleteBookingThunk } from '../../store/bookings';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const SpotsDetails = () => {
     const history = useHistory()
@@ -25,6 +27,7 @@ const SpotsDetails = () => {
         // console.log("this is spotDetailsObj", state.spots.spot[76])
         return state.spots.spot[spotId]
     })
+    console.log("!!!!!!", spotDetailsObj)
 
     const reviewDetailsObj = useSelector(state => {
         // console.log("THIS IS REVIEWDETAILSOBJ", state.reviews)
@@ -35,10 +38,13 @@ const SpotsDetails = () => {
         return state.bookings.allBookings?.Bookings
     })
 
-    const filteredBookingArr = bookingDetailsObj.filter((obj) => obj.spotId === +spotId)
+    const filteredBookingArr = bookingDetailsObj?.filter((obj) => obj.spotId === +spotId)
 
-    console.log("This is booking details object", bookingDetailsObj)
+
+    // console.log("This is booking details object", bookingDetailsObj)
     console.log("This is FILTERED booking details object", filteredBookingArr)
+
+
 
     let sortFunc = (arr) => {
         let newArr = []
@@ -78,7 +84,7 @@ const SpotsDetails = () => {
 
     useEffect(() => {
         dispatch(getSpotById(spotId))
-        dispatch(getAllReviews(spotId))
+        if (spotDetailsObj?.numReviews > 0) dispatch(getAllReviews(spotId))
         dispatch(getBookingsThunk(spotId))
     }, [dispatch, spotId])
     // if something breaks I added spotId to dependency
@@ -86,6 +92,17 @@ const SpotsDetails = () => {
     if (!spotDetailsObj) {
         return null
     }
+
+    let markedDay = {}
+
+    filteredBookingArr?.map((item) => {
+        console.log("THIS IS ITEM", item)
+        markedDay[item.startDate] = {
+            selected: true,
+            marked: true,
+            selectedColor: "purple",
+        };
+    });
 
     return (
         <div className='main-details-page'>
@@ -127,19 +144,24 @@ const SpotsDetails = () => {
                     </div>))}
                 </ul>
             </div>
-            <div>
+            <div className='current-bookings-div'>
                 <div>Current Bookings for this location:</div>
                 {filteredBookingArr?.map((booking) => {
-                    return <div key={booking.id}>
+                    return <div key={booking.id} className='current-bookings-div'>
                         {console.log(booking)}
-                        <div>Start {sortFunc(booking.startDate.slice(0, 10).split('-')).join('-')} - End {sortFunc(booking.endDate.slice(0, 10).split('-')).join('-')}</div>
+                        Start {sortFunc(booking.startDate.slice(0, 10).split('-')).join('-')} - End {sortFunc(booking.endDate.slice(0, 10).split('-')).join('-')}
+                        {<Calendar value={[new Date(booking.startDate.slice(0, 10).split('-')), new Date(booking.endDate.slice(0, 10).split('-'))]} />}
                         {sessionUser?.id === booking.userId ? <button onClick={(e) => deleteABooking(e, booking.id)}>Delete Booking</button> : ""}
                         {sessionUser?.id === booking.userId ? <Link to={`/bookings/${booking.id}`}><button>Edit Booking</button></Link> : ""}
 
-                    </div>
+                        </div>
                 })}
             </div>
+
         </div>
     )
 }
 export default SpotsDetails
+
+
+// activeStartDate={new Date(booking.startDate.slice(0, 10).split('-'))}
