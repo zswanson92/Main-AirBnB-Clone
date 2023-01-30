@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { deleteSpot, getSpotById } from '../../store/spots';
 // import { loadAllSpots } from '../../store/spots';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import './SpotsDetails.css'
 import EditSpotButton from '../EditSpot';
 import { getAllReviews, deleteReview } from '../../store/reviews';
@@ -35,8 +35,10 @@ const SpotsDetails = () => {
         return state.bookings.allBookings?.Bookings
     })
 
-    console.log("This is booking details object", bookingDetailsObj)
+    const filteredBookingArr = bookingDetailsObj.filter((obj) => obj.spotId === +spotId)
 
+    console.log("This is booking details object", bookingDetailsObj)
+    console.log("This is FILTERED booking details object", filteredBookingArr)
 
     let sortFunc = (arr) => {
         let newArr = []
@@ -63,9 +65,7 @@ const SpotsDetails = () => {
     const deleteABooking = (e, bookingId) => {
         e.preventDefault();
         dispatch(deleteBookingThunk(bookingId))
-        // dispatch(getSpotById(spotId))
         dispatch(getBookingsThunk(spotId))
-        // return history.push(`/spots/${spotId}`)
     }
 
     const deleteAReview = (e) => {
@@ -120,22 +120,22 @@ const SpotsDetails = () => {
             <div className='reviews-ul-div'>
                 <p>Reviews: </p>
                 <ul className='reviews-ul'>
-                    {filteredReviewArr.map(review => (<>
+                    {filteredReviewArr.map(review => (<div key={review.id}>
 
                         <li key={review.id} className='reviews-li'>"{review?.review}"</li>
                         {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
-                    </>))}
+                    </div>))}
                 </ul>
             </div>
             <div>
                 <div>Current Bookings for this location:</div>
-                {bookingDetailsObj?.map((booking) => {
+                {filteredBookingArr?.map((booking) => {
                     return <div key={booking.id}>
                         {console.log(booking)}
                         <div>Start {sortFunc(booking.startDate.slice(0, 10).split('-')).join('-')} - End {sortFunc(booking.endDate.slice(0, 10).split('-')).join('-')}</div>
                         {sessionUser?.id === booking.userId ? <button onClick={(e) => deleteABooking(e, booking.id)}>Delete Booking</button> : ""}
-                        {/* <p></p> */}
-                        {/* <button>Delete book</button> */}
+                        {sessionUser?.id === booking.userId ? <Link to={`/bookings/${booking.id}`}><button>Edit Booking</button></Link> : ""}
+
                     </div>
                 })}
             </div>

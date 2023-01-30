@@ -74,7 +74,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
     if(realEndNum < realStartNum){
         res.status(400)
-        res.json({
+        return res.json({
             "message": "Validation error",
             "statusCode": 400,
             "errors": {
@@ -104,7 +104,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     if(realEndNum === currentEndNum || (realEndNum < currentEndNum && realEndNum > currentStartNum) ||
     realEndNum === currentStartNum){
         res.status(403)
-        res.json({
+        return res.json({
         "message": "Sorry, this spot is already booked for the specified dates",
         "statusCode": 403,
         "errors": {

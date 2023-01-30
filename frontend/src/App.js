@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import Spots from './components/Spots'
 import SpotsDetails from "./components/SpotsDetails";
 import CreateSpotButton from "./components/CreateSpot";
+import EditBookingButton from "./components/EditBooking/EditBooking";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path='/spots/:spotId'>
             <SpotsDetails />
+          </Route>
+          <Route path='/bookings/:bookingId'>
+            <EditBookingButton />
           </Route>
           {/* <Route path='/spots/create'>
             <CreateSpotButton />

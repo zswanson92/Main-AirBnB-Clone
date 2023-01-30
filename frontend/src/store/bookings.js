@@ -20,6 +20,29 @@ const deleteBooking = (booking) => ({
     payload: booking
 })
 
+const editBooking = (booking) => ({
+    type: EDIT_BOOKING,
+    payload: booking
+})
+
+
+export const editBookingThunk = (bookingId, payload) => async dispatch => {
+    const { startDate, endDate } = payload
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ startDate, endDate })
+    })
+
+    if(response.ok){
+        const editedBooking = await response.json()
+        dispatch(editBooking(editedBooking))
+        return editedBooking
+    }
+}
+
 
 export const deleteBookingThunk = (bookingId) => async dispatch => {
     const response = await csrfFetch(`/api/bookings/${bookingId}`, {
@@ -95,6 +118,13 @@ const bookingsReducer = (state = initialState, action) => {
         case DELETE_BOOKING: {
             const newState = { ...state }
             delete newState[action.bookingId]
+            return newState
+        }
+
+        case EDIT_BOOKING: {
+            const newState = { ...state }
+            let updatedBooking = action.booking
+            newState[action.bookingId] = updatedBooking
             return newState
         }
 
