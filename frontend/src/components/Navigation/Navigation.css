@@ -1,41 +1,21 @@
-.header {
+.header-div {
     display: flex;
+    gap: 35em;
     /* justify-content: ; */
-    align-items: center;
-    position: sticky;
-    top: 0;
-    /* padding-right: 100px; */
-    /* width: 100px; */
-    /* right: 100px; */
-    z-index: 100;
-    /* width: 97%; */
-    border-bottom: 1px solid grey;
+    /* align-items: center; */
+    /* position: sticky;
+    top: 0; */
 }
 
-
-.home-button {
-    /* font-size: 100px; */
-    /* margin: 20px; */
-    display: flex;
-    /* align-items: flex-end;/ */
-    /* top: 20px;
-    left: 20px; */
-}
 
 .abcd {
     display: flex;
     align-items: center;
     object-fit: contain;
-    /* justify-content: center; */
-    /* height: 300px; */
-    /* width: 300px; */
     height: 60px;
 }
 
-.two-buttons{
-    /* position: absolute;
-    left: 1200px; */
-    /* display: flex; */
+/* .two-buttons{
     position: fixed;
     left: 1790px;
     top: 50px;
@@ -46,21 +26,15 @@
     height: 55px;
 }
 
-
 .profile-dropdown {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: space-between; */
     position: absolute;
     left: 1600px;
     top: 60px;
-    /* border: solid;
-    border-color: gray; */
     border-radius: 30px;
     box-shadow: 0 0 2px 2px rgb(209, 202, 202);
     background-color: white;
-    /* border: solid; */
     width: 250px;
     height: 80px;
     padding-left: 15px;
@@ -71,74 +45,30 @@ li {
 }
 
 .random-button {
-    /* display: none; */
-    /* visibility: hidden; */
-    /* position: absolute; */
     display: flex;
     align-items: center;
     justify-content: center;
-    /* left: 1700px; */
-    /* align-items: right; */
-
     height: 5px;
     background: white;
-    /* border-color: gray; */
     border: none;
     margin-right: 1000px;
 }
 
 .fa-bars {
     height: 10px;
-    /* display: flex; */
-    /* align-items: center; */
-    /* border-color: white; */
     position: absolute;
     right: 100px;
-    /* display: flex; */
-    /* position: absolute; */
-    /* left: 100px; */
-    /* padding-right: 400px; */
     margin-top: -25px;
-    /* margin-right: 500px; */
-}
 
-i{
-    /* position: absolute;
-    right: 200px; */
-    /* float: left; */
-    /* margin-right: 12px !important; */
-    /* color: red; */
-    /* align-self: center; */
-
-    /* top: 200px; */
-    /* right: 200px; */
-
-    /* justify-content: flex-start; */
 }
 
 .test-bars-div{
-    /* position: relative; */
-    /* left: -600px; */
-    /* display: flex;
-    align-self: center;
-    justify-content: center;
-    align-items: center; */
-    /* position: ;
-    right: 520px;
-    top: 3px; */
-    /* display: grid; */
-    /* display: flex; */
-    /* justify-content: center; */
-    /* position: absolute;
-    left: -300px; */
     display: flex;
 }
 
 .initial-login-button{
     background-color: transparent;
     border: none;
-    /* margin-right: 300px;
-     */
      position: relative;
      right: 20px;
      width: 50px;
@@ -151,7 +81,6 @@ i{
     position: relative;
     right: 35px;
     width: 80px;
-    /* padding-bottom: 10px; */
 }
 
 .the-logout-button{
@@ -172,9 +101,4 @@ i{
     margin-bottom: 5px;
     margin-right: 20px;
     margin-left: 10px;
-}
-
-/* i {
-    position: absolute;
-    left: 100px;
 } */

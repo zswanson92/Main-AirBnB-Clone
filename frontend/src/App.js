@@ -8,6 +8,7 @@ import Spots from './components/Spots'
 import SpotsDetails from "./components/SpotsDetails";
 import CreateSpotButton from "./components/CreateSpot";
 import EditBookingButton from "./components/EditBooking/EditBooking";
+import SearchResults from "./components/SearchResults/SearchResults";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path='/bookings/:bookingId'>
             <EditBookingButton />
+          </Route>
+          <Route path='/search'>
+          <SearchResults />
           </Route>
           {/* <Route path='/spots/create'>
             <CreateSpotButton />

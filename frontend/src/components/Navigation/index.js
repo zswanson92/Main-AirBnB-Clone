@@ -11,8 +11,10 @@ import { Modal } from '../../context/Modal'
 // import CreateSpotButton from '../CreateSpot';
 // import EditSpotButton from '../EditSpot';
 // import SpotsDetails from '../SpotsDetails';
+import SearchBar from '../SearchBar/SearchBar';
 
-function Navigation({ isLoaded }){
+
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const [showModal, setShowModal] = useState(false)
   const [login, setLogin] = useState(true)
@@ -33,20 +35,30 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul className='header'>
+    <div className='header-div'>
+      <div>
+        <NavLink exact to="/" className='home-button'><a href='logo.png' className='logo'><img className='abcd' src={icon} alt="" /></a></NavLink>
+      </div>
+      {/* <CreateSpotButton /> */}
 
-        <NavLink exact to="/" className='home-button'><a href='logo.png' className='logo'><img className='abcd' src={icon} alt=""/></a></NavLink>
-        {/* <CreateSpotButton /> */}
-        {isLoaded && (<ProfileButton user={sessionUser}
+      <div><SearchBar /></div>
+
+
+      <div>
+      {isLoaded && (<ProfileButton user={sessionUser}
         setLogin={setLogin}
         setShowModal={setShowModal} />)}
+      </div>
+      {/* <SpotsDetails user={sessionUser} /> */}
 
-        {/* <SpotsDetails user={sessionUser} /> */}
 
         {showModal && <Modal onClose={() => setShowModal(false)}>
-        {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal}/> }
+        <div>
+          {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal} />}
+          </div>
         </Modal>}
-    </ul>
+
+    </div>
   );
 }
 
