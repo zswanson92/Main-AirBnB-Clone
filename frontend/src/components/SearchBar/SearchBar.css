@@ -8,3 +8,23 @@
 .search-form{
     display: flex;
 }
+
+.searchbar-searchbutton{
+    background: linear-gradient(90deg,#e41e4e,#d60565);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    /* margin-top: 1em; */
+    width: 3em;
+}
+
+
+.search-bar{
+    width: 20em;
+    padding: .5em;
+    margin-right: 1em;
+}
+
+.queryParams{
+    margin-right: 1em;
+}

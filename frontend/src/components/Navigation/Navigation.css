@@ -22,6 +22,41 @@
     /* padding-top: 1em; */
 }
 
+
+.profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* top: 100px; */
+    right: 120px;
+    border-radius: 30px;
+    box-shadow: 0 0 2px 2px rgb(209, 202, 202);
+    background-color: white;
+    width: auto;
+    height: auto;
+    padding: 1em;
+}
+
+.parent-dropdown-container{
+    position: fixed;
+    top: 18px;
+}
+
+.random-button{
+    background: none;
+    border: none;
+}
+
+
+.the-logout-button{
+    background: linear-gradient(90deg,#e41e4e,#d60565);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 1em;
+    width: 5em;
+}
+
 /* .two-buttons{
     position: fixed;
     left: 1790px;
@@ -34,19 +69,7 @@
 }
 
 
-.profile-dropdown {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 1600px;
-    top: 60px;
-    border-radius: 30px;
-    box-shadow: 0 0 2px 2px rgb(209, 202, 202);
-    background-color: white;
-    width: 250px;
-    height: 80px;
-    padding-left: 15px;
-}
+
 
 li {
     list-style-type: none;

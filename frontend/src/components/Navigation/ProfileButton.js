@@ -41,39 +41,37 @@ function ProfileButton({ user, setLogin, setShowModal }) {
 
 
   return (
-    <>
+    <div className="parent-dropdown-container">
       {/* {user && (abcde === '/' ? <CreateSpotButton /> : null)} */}
-
-      <button onClick={openMenu} className='random-button'>
       <div className="test-bars-div">
-        <i className="fas fa-bars fa-2x" />
+        <button onClick={openMenu} className='random-button'>
+          <i className="fas fa-bars fa-2x" />
+        </button>
       </div>
-      </button>
-
 
       {/* {user ? <EditSpotButton /> : null} */}
-      {showMenu && ( user ?
-        (<ul className="profile-dropdown">
-          <li className="username-li">Username: {user.username}</li>
-          <li className="email-li">User email: {user.email}</li>
-          <li>
+      {showMenu && (user ?
+        (<div className="profile-dropdown">
+          <div className="username-li">Username: {user.username}</div>
+          <div className="email-li">User email: {user.email}</div>
+          <div>
             <button className="the-logout-button" onClick={logout}>Log Out</button>
-          </li>
-        </ul>) :
+          </div>
+        </div>) :
         (
-        <ul className='two-buttons'>
-          <button className="initial-login-button" onClick={() => {
-            setLogin(true)
-            setShowModal(true)
-          }}>Log in</button>
-          <button className="initial-signup-button" onClick={() => {
-            setLogin(false)
-            setShowModal(true)
-          }}>Sign up</button>
-        </ul>
+          <ul className='two-buttons'>
+            <button className="initial-login-button" onClick={() => {
+              setLogin(true)
+              setShowModal(true)
+            }}>Log in</button>
+            <button className="initial-signup-button" onClick={() => {
+              setLogin(false)
+              setShowModal(true)
+            }}>Sign up</button>
+          </ul>
         )
       )}
-    </>
+    </div>
   );
 }
 

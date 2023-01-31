@@ -11,39 +11,56 @@ const { route } = require('./session');
 const router = express.Router();
 
 router.get(`/`, async (req, res) => {
-    console.log("THIS IS REQ QUERY", req.query.spots.split('?')[0])
-
-    console.log("THIS IS A FILTER FIND", req.query.spots.split('='))
 
     let theSpot;
 
-
-    if(req.query.spots.split('=')[1] === 'name'){
+    if (req.query.spots.split('=')[1] === 'name') {
         theSpot = await Spot.findAll({
             where: {
-                name: {[Op.substring]: req.query.spots.split('?')[0]}
+                name: { [Op.substring]: req.query.spots.split('?')[0] }
             }
         })
     }
 
-    if(req.query.spots.split('=')[1] === 'city'){
+    if (req.query.spots.split('=')[1] === 'city') {
         theSpot = await Spot.findAll({
             where: {
-                city: {[Op.substring]: req.query.spots.split('?')[0]}
+                city: { [Op.substring]: req.query.spots.split('?')[0] }
             }
         })
     }
 
-    if(req.query.spots.split('=')[1] === 'address'){
+    if (req.query.spots.split('=')[1] === 'address') {
         theSpot = await Spot.findAll({
             where: {
-                address: {[Op.substring]: req.query.spots.split('?')[0]}
+                address: { [Op.substring]: req.query.spots.split('?')[0] }
             }
         })
     }
 
 
-    console.log("THIS IS THE SPOT!!!", theSpot)
+    if (theSpot.length > 0) {
+        // let spot = theSpot.toJSON()
+        // theSpot.map(async (el) => {
+        //     let spotImage = await SpotImage.findAll({
+        //         // raw: true,
+        //         where: {
+        //             spotId: el.id
+        //         }
+        //     })
+        //     el.img = spotImage
+        //     // return el
+        // })
+
+        for (let i = 0; i < theSpot.length; i++) {
+            theSpot[i].lat = await SpotImage.findAll({
+                where: {
+                    spotId: theSpot[i].id
+                }
+            })
+        }
+    }
+
 
     return res.json(theSpot)
 })

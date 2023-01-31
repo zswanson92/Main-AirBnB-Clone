@@ -43,7 +43,7 @@ const SearchBar = () => {
             <option value={"city"}>By City</option>
             <option value={"address"}>By Address</option>
           </select>
-        <button type="submit">Search</button>
+        <button type="submit" className="searchbar-searchbutton"><i class="fa fa-search" aria-hidden="true"></i></button>
       </form>
     </div>
   );

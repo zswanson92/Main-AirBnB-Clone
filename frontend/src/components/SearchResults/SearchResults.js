@@ -8,12 +8,12 @@ const SearchResults = () => {
         return state;
     });
 
-    console.log("THIS IS SEARCH OBJ", searchObj)
+    // console.log("THIS IS SEARCH OBJ", searchObj)
 
     const history = useHistory()
 
     const search = Object.values(searchObj?.search?.allResults);
-
+    // console.log("THIS IS SEARCH", search)
 
     if (search.length === 0) {
         return (
@@ -37,23 +37,22 @@ const SearchResults = () => {
         return (
             <div className='main-container'>
 
-                <div className='questions-div'>
-                    <div className='top-container'>
+                    {/* <div className='all-spots-corner'>
+                        <span className='all-spots-results'>Results: {search.length} Spots</span>
+                    </div> */}
 
-                        <div className='all-questions-and-button'>
-                            <span className='all-questions-header'>Results</span>
-                        </div>
-
-                        <span className='question-count'>{search.length} Spots</span>
-                    </div>
                     {search.map((obj) => {
                         return (
-                            <div key={obj.id} className="question-detail">
-
+                            <div key={obj.id} className="spot-links">
+                                <Link className='search-map-links' to={`/spots/${obj.id}`}>
+                                <img className='search-img' src={obj.lat[0].url}/>
+                                <div className='search-map-name-div'>{obj.name} - ${obj.price} / night</div>
+                                <div className='search-map-name-div'>{obj.address}, {obj.city} {obj.state}</div>
+                                </Link>
                             </div>
                         )
                     })}
-                </div>
+
             </div>
         )
     }
