@@ -42,7 +42,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
 
   return (
     <>
-      {user && (abcde === '/' ? <CreateSpotButton /> : null)}
+      {/* {user && (abcde === '/' ? <CreateSpotButton /> : null)} */}
 
       <button onClick={openMenu} className='random-button'>
       <div className="test-bars-div">

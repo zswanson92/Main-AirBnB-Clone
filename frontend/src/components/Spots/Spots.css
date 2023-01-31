@@ -1,3 +1,7 @@
+.homepage{
+    padding-top: 2em;
+}
+
 .item-image {
     /* display: block; */
     margin-left: auto;
@@ -14,11 +18,11 @@ img {
         display: flex;
 }
 
-div {
+.inner-homepage {
     display: inline-block;
     padding: 10px;
     /* margin-left: 33px; */
-    margin: auto;
+    /* margin: auto; */
     /* margin-right: 0; */
 }
 

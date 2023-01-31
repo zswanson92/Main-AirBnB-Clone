@@ -1,18 +1,25 @@
 .header-div {
     display: flex;
-    gap: 35em;
-    /* justify-content: ; */
-    /* align-items: center; */
-    /* position: sticky;
-    top: 0; */
+    justify-content: space-around;
+    /* gap: 20em; */
+    align-items: center;
+    /* padding-top: .5em; */
+    position: relative;
+    top: 0;
+    z-index: 1;
 }
 
+
+.home-button {
+    display: flex;
+}
 
 .abcd {
     display: flex;
     align-items: center;
     object-fit: contain;
     height: 60px;
+    /* padding-top: 1em; */
 }
 
 /* .two-buttons{
@@ -25,6 +32,7 @@
     width: 50px;
     height: 55px;
 }
+
 
 .profile-dropdown {
     display: flex;
@@ -61,6 +69,7 @@ li {
     margin-top: -25px;
 
 }
+
 
 .test-bars-div{
     display: flex;

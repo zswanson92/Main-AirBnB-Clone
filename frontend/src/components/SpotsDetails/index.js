@@ -106,7 +106,7 @@ const SpotsDetails = () => {
 
     return (
         <div className='main-details-page'>
-            {sessionUser ? <CreateSpotButton /> : null}
+            {/* {sessionUser ? <CreateSpotButton /> : null} */}
             <div className='name-address-details-div'>
                 <h1 className='test'>{spotDetailsObj?.name}</h1>
                 <p className='add-city-state-country'> Average Rating: {spotDetailsObj?.avgRating} ★ · {spotDetailsObj?.address}, {spotDetailsObj?.city}, {spotDetailsObj?.state}, {spotDetailsObj?.country} · Latitude: {spotDetailsObj?.lat} Longitude: {spotDetailsObj?.lng}

@@ -6,7 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Spots from './components/Spots'
 import SpotsDetails from "./components/SpotsDetails";
-import CreateSpotButton from "./components/CreateSpot";
+// import CreateSpotButton from "./components/CreateSpot";
 import EditBookingButton from "./components/EditBooking/EditBooking";
 import SearchResults from "./components/SearchResults/SearchResults";
 

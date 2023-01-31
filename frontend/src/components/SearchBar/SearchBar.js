@@ -7,21 +7,21 @@ import "./SearchBar.css";
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
-//   const [filter, setFilter] = useState("title");
+  const [filter, setFilter] = useState("name");
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const searchResults = await dispatch(getResultsThunk(searchInput));
+    const searchResults = await dispatch(getResultsThunk(searchInput, filter));
 
     if (searchResults) {
-      return history.push(`/search/?spot=${searchInput}`);
+      return history.push(`/search/?spot=${searchInput}?filter=${filter}`);
     }
   };
 
   return (
-    <div>
+    <div className="searchbar-div">
       <form onSubmit={handleSubmit} className="search-form">
         <input
           type="search"
@@ -31,9 +31,18 @@ const SearchBar = () => {
           required
           className="search-bar"
         />
-        <label className="search-filter">
-
-        </label>
+        <select
+            className="queryParams"
+            type="text"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            required
+          >
+            <option disabled>Filters:</option>
+            <option value={"name"}>By Name</option>
+            <option value={"city"}>By City</option>
+            <option value={"address"}>By Address</option>
+          </select>
         <button type="submit">Search</button>
       </form>
     </div>

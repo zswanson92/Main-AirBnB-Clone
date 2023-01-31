@@ -1,0 +1,10 @@
+.searchbar-div{
+    display: flex;
+    /* flex-direction: row; */
+    /* width: 15em; */
+
+}
+
+.search-form{
+    display: flex;
+}

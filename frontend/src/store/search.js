@@ -8,8 +8,8 @@ const getResults = (data) => {
 }
 
 
-export const getResultsThunk = (searchInput) => async (dispatch) => {
-  const response = await fetch(`/api/search?spots=${searchInput}`, {
+export const getResultsThunk = (searchInput, filter) => async (dispatch) => {
+  const response = await fetch(`/api/search?spots=${searchInput}?filter=${filter}`, {
     method: "GET",
   });
   if (response.ok) {
