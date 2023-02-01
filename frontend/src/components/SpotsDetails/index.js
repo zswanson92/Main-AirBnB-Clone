@@ -93,16 +93,6 @@ const SpotsDetails = () => {
         return null
     }
 
-    // let markedDay = {}
-
-    // filteredBookingArr?.map((item) => {
-    //     console.log("THIS IS ITEM", item)
-    //     markedDay[item.startDate] = {
-    //         selected: true,
-    //         marked: true,
-    //         selectedColor: "purple",
-    //     };
-    // });
 
     let dateArr = []
     filteredBookingArr.forEach((el) => {
@@ -110,13 +100,7 @@ const SpotsDetails = () => {
         dateArr.push(new Date(el.endDate).toDateString())
     })
 
-
-    // const arrFiller = () => {
-
-
-
-    // }
-    console.log("DATE ARRAY", dateArr)
+    // console.log("DATE ARRAY", dateArr)
 
     const shouldDateBeSelected = (date) => {
         // if(filteredBookingArr.includes(date))
@@ -135,6 +119,32 @@ const SpotsDetails = () => {
             }
         })
 
+        return false
+    }
+
+    Date.prototype.addDays = function(days) {
+        var date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+    }
+
+
+    const tileDisable = ({ activeStartDate, date, view }) => {
+        const today = new Date()
+        if(date.toDateString() === today.toDateString()){
+            return true
+        }
+
+        for (let bookId in bookingDetailsObj){
+            const start = new Date(bookingDetailsObj[bookId].startDate)
+            let end = new Date(bookingDetailsObj[bookId].endDate)
+            end = end.addDays(1)
+            date = new Date(date)
+
+            if(date > start && date < end){
+                return true
+            }
+        }
         return false
     }
 
@@ -180,22 +190,26 @@ const SpotsDetails = () => {
             </div>
             <div className='current-bookings-div'>
                 <div>Current Bookings for this location:</div>
-                <Calendar tileClassName={({ date }) => {
-                    {console.log("THIS IS DATE????", date.toDateString())}
-                    // if (shouldDateBeSelected(date.toDateString())) {
-                    if (dateArr.includes(date.toDateString())) {
-                        return 'react-calendar__tile--active';
-                    }
-                    return null;
-                }} />
+                <Calendar
+                // tileClassName={({ date }) => {
+                //     {console.log("THIS IS DATE????", date.toDateString())}
+                //     // if (shouldDateBeSelected(date.toDateString())) {
+                //     if (dateArr.includes(date.toDateString())) {
+                //         return 'react-calendar__tile--active';
+                //     }
+                //     return null;
+                // }}
+                tileDisabled={tileDisable}
+                />
                 {filteredBookingArr?.map((booking) => {
                     return <div key={booking.id} className='current-bookings-div'>
                         {/* {console.log(booking)} */}
                         Start {sortFunc(booking.startDate.slice(0, 10).split('-')).join('-')} - End {sortFunc(booking.endDate.slice(0, 10).split('-')).join('-')}
                         {/* {<Calendar value={[new Date(booking.startDate.slice(0, 10).split('-')), new Date(booking.endDate.slice(0, 10).split('-'))]} />} */}
-                        {sessionUser?.id === booking.userId ? <button onClick={(e) => deleteABooking(e, booking.id)}>Delete Booking</button> : ""}
-                        {sessionUser?.id === booking.userId ? <Link to={`/bookings/${booking.id}`}><button>Edit Booking</button></Link> : ""}
-
+                        <div>
+                        {sessionUser?.id === booking.userId ? <button className='delete-booking-button' onClick={(e) => deleteABooking(e, booking.id)}>Delete Booking</button> : ""}
+                        {sessionUser?.id === booking.userId ? <Link to={`/bookings/${booking.id}`}><button className='edit-booking-button'>Edit Booking</button></Link> : ""}
+                        </div>
                     </div>
                 })}
             </div>
