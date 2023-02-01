@@ -5,6 +5,15 @@ const { Spot, SpotImage, Review, Sequelize, User, ReviewImage, Booking } = requi
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth')
+
+const {
+    singleMulterUpload,
+    singlePublicFileUpload,
+    multipleMulterUpload,
+    multiplePublicFileUpload,
+  } = require("../../awsS3");
+
+
 const router = express.Router();
 
 
@@ -153,6 +162,7 @@ router.get('/:spotId', async (req, res) => {
 router.post('/', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
+
     const { user } = req
     const ownerId = user.toSafeObject().id
 
@@ -163,12 +173,16 @@ router.post('/', requireAuth, async (req, res) => {
 })
 
 // add image to spot based on spot id
-router.post('/:spotId/images', async (req, res) => {
-    const { url, preview } = req.body
+router.post('/:spotId/images', singleMulterUpload("url"), async (req, res) => {
+    const { preview } = req.body
     // console.log('this is the preview', preview)
     const { spotId } = req.params
     const theSpot = await Spot.findByPk(spotId)
     // const { user } = req
+    console.log("THIS IS REQ.FILE", req.file)
+    console.log("THIS IS REQ", req)
+    const url = await singlePublicFileUpload(req.file);
+    console.log("THIS IS MAYBE URL", url)
 
         if(theSpot){
             const image = await SpotImage.create({
@@ -177,7 +191,8 @@ router.post('/:spotId/images', async (req, res) => {
             preview
             })
             await image.validate()
-            res.json({id: spotId, url: url, preview: preview})
+            // res.json({id: spotId, url: url, preview: preview})
+            res.json(image)
         } else {
         res.status(404)
         res.json({
@@ -599,7 +614,10 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) =>{
             attributes: { exclude: ['username']}
         })
         // console.log(theBookings[0])
-        theBookings[0].User = owner[0]
+        if(theBookings.length > 0){
+            theBookings[0].User = owner[0]
+        }
+
 
         return res.json({"Bookings": theBookings})
     }

@@ -40,7 +40,7 @@ const loadASpot = (spot) => ({
 export const getSpotById = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`)
 
-    if(response.ok){
+    if (response.ok) {
         const spot = await response.json()
         // console.log('this is spot', spot)
         dispatch(loadASpot(spot))
@@ -51,7 +51,7 @@ export const getSpotById = (spotId) => async dispatch => {
 export const getAllSpots = () => async dispatch => {
     const response = await csrfFetch(`/api/spots`)
 
-    if(response.ok){
+    if (response.ok) {
         const spots = await response.json()
         // console.log("THIS IS SPOTS", spots.Spots)
         dispatch(load(spots.Spots))
@@ -64,29 +64,53 @@ export const getAllSpots = () => async dispatch => {
 
 export const createSpot = (payload) => async dispatch => {
     const { name, description, address, city, country, state, lat, lng, price, url, preview } = payload
+
+
+    // formData.append("name", name);
+    // formData.append("description", description);
+    // formData.append("address", address);
+    // formData.append("city", city);
+    // formData.append("country", country);
+    // formData.append("state", state);
+    // formData.append("lat", lat);
+    // formData.append("lng", lng);
+    // formData.append("price", price);
+    // formData.append("url", url);
+
+
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ name, description, address, city, country, state, lat, lng, price })
+        // body: formData
     })
 
-    if(response.ok){
+    if (response.ok) {
         const spot = await response.json()
+
+        const formData = new FormData();
+
+        formData.append("url", url);
 
         const imageRes = await csrfFetch(`/api/spots/${spot.id}/images`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "multipart/form-data",
             },
-            body: JSON.stringify({ url, preview })
+            // body: JSON.stringify({ url, preview })
+            body: formData
         })
 
-        if(imageRes.ok){
+
+        if (imageRes.ok) {
             const image = await imageRes.json()
             spot.url = image.url
-            spot.previewImage = image.preview
+            formData.append("url", url)
+            // formData.append("preview", image.preview)
+            // spot.previewImage = image.preview
+
             dispatch(add(spot))
         }
     }
@@ -95,12 +119,12 @@ export const createSpot = (payload) => async dispatch => {
 export const deleteSpot = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE',
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         }
     })
 
-    if(response.ok){
+    if (response.ok) {
         const deletedSpot = await response.json()
         dispatch(deleteASpot(deletedSpot))
     }
@@ -116,7 +140,7 @@ export const editSpot = (spotId, payload) => async dispatch => {
         body: JSON.stringify({ address, city, state, country, lat, lng, name, description, price })
     })
 
-    if(response.ok){
+    if (response.ok) {
         const editedSpot = await response.json()
         // console.log("this is edited spot from thunk", editedSpot)
         dispatch(edit(editedSpot))
@@ -129,11 +153,11 @@ export const editSpot = (spotId, payload) => async dispatch => {
 
 const spotsReducer = (state = { spot: {}, allSpots: {} }, action) => {
     let editState = { ...state }
-    switch(action.type){
+    switch (action.type) {
 
 
         case LOAD_SPOTS:
-            const newState = {spot: {}, allSpots: {}}
+            const newState = { spot: {}, allSpots: {} }
             action.spots.forEach(spot => {
                 newState.allSpots[spot.id] = spot
             })
@@ -148,20 +172,20 @@ const spotsReducer = (state = { spot: {}, allSpots: {} }, action) => {
         case ADD_SPOT:
             return {
                 ...editState,
-                    // ...editState.Spots,
-                    [action.spotId]: {
-                        id: action.spotId,
-                        name: action.name,
-                        address: action.address,
-                        city: action.city,
-                        state: action.state,
-                        country: action.country,
-                        lat: action.lat,
-                        lng: action.lng,
-                        description: action.description,
-                        price: action.price,
-                        url: action.url,
-                        preview: action.preview
+                // ...editState.Spots,
+                [action.spotId]: {
+                    id: action.spotId,
+                    name: action.name,
+                    address: action.address,
+                    city: action.city,
+                    state: action.state,
+                    country: action.country,
+                    lat: action.lat,
+                    lng: action.lng,
+                    description: action.description,
+                    price: action.price,
+                    url: action.url,
+                    preview: action.preview
                 }
             }
         case DELETE_SPOT:
@@ -176,8 +200,8 @@ const spotsReducer = (state = { spot: {}, allSpots: {} }, action) => {
             editState[action.spotId] = theUpdatedSpot
             return editState
 
-    default:
-        return state;
+        default:
+            return state;
     }
 }
 
