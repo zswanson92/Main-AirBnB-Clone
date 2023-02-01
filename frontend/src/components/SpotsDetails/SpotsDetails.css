@@ -1,32 +1,10 @@
-/* .center {
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-  } */
 
-
-
-/* .test {
-    font-size: 60px;
-} */
 
 html,body{ margin:0; padding:0; height:100%; width:100%; }
 
-/* .main-details-page{
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
 
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
-} */
 
 .main-details-page{
-  /* background: red; */
   position: absolute;
   top: 0px;
   right: 0px;
@@ -37,7 +15,6 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 
 .test{
   display: flex;
-  /* align-items: center; */
   justify-content: center;
   font-size: 40px;
   margin-bottom: 10px;
@@ -45,7 +22,6 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 
 .add-city-state-country{
   display: flex;
-  /* align-items: center; */
   justify-content: center;
   font-size: 15px;
 }
@@ -60,49 +36,31 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 .spot-details-img{
   display: flex;
   justify-content: center;
-  /* height: 200px; */
 }
 
 .avg-rating{
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
+
 }
 
 .price-detail{
   display: flex;
-  /* align-items: center; */
   padding-top: 30px;
   justify-content: center;
-  /* border: 1px solid; */
-  /* border-radius: 5px; */
-  /* width: 200px; */
-  /* font-weight: bold; */
-  /* border: solid; */
 }
 
 .latitude-detail{
   display: flex;
-  /* align-items: center; */
   justify-content: center;
 }
 
 .longitude-detail{
   display: flex;
-  /* align-items: center; */
   justify-content: center;
 }
 
 .delete-button{
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* align-self: center; */
   background: linear-gradient(90deg,#e41e4e,#d60565);
-  /* width: 500px; */
-  /* position: absolute; */
-  /* left: 1000px; */
   border-radius: 5px;
   margin-right: 40px;
   height: 30px;
@@ -112,42 +70,28 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
   border: none;
 }
 
-.reviews-ul{
-  display: flex;
-  /* align-items: center; */
-  justify-content: center;
-}
+
 
 .remove-review-button{
-  margin-left: 80px;
-  margin-top: 35px;
+  margin-left: 20px;
+  margin-top: -10px;
   width: 110px;
   height: 40px;
   background: linear-gradient(90deg,#e41e4e,#d60565);
-    /* border: none; */
   border-radius: 5px;
   font-style: italic;
-  /* display: flex; */
-  position: sticky;
+  /* position: sticky; */
   color: white;
   border: none;
 }
 
 .editlocation-button{
   display: flex;
-  /* align-items: center; */
   justify-content: center;
-  /* height: 100px; */
 }
 
 .reviews-li {
-  /* display: flex;
-  flex-direction: row; */
-  position: relative;
-  left: 100px;
-  /* justify-content: left; */
-  /* align-self: left; */
-  margin: 40px;
+  padding-bottom: 4em;
   font-style: italic;
 }
 
@@ -156,10 +100,6 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
   background-color: white;
 }
 
-.fas {
-  /* position: absolute;
-  left: 1840px; */
-}
 
 .name-address-details-div {
   margin-top: 70px;
@@ -169,30 +109,33 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 }
 
 .reviews-ul-div{
-  margin-top: 20px;
+  margin-top: 1em;
+  padding-top: 1em;
   display: flex;
+  justify-content: space-between;
   border: 1px solid;
   border-bottom-color: transparent;
   border-left-color: transparent;
   border-right-color: transparent;
-  margin-right: 33px;
+
 }
 
-/* .newspot-form {
-  margin-top: 200px;
-  height: 500px;
-  width: 350px;
-  background-color: white;
-  position: absolute;
-  top: 25%;
-  right: 39%;
-  box-shadow: 0 0 10px 10px rgb(112, 105, 105);
-  border-radius: 30px;
-} */
+.reviews-ul{
+  display: flex;
+  flex-direction: column;
+  padding-left: 3em;
+}
 
-/* .host-button {
-  visibility: hide;
-} */
+.filtered-rev-map-div{
+  display: flex;
+}
+
+.reviews-p{
+  width: 10em;
+  padding-top: 1em;
+  padding-bottom: 2em;
+}
+
 
 .delete-edit-buttons-div{
   display: flex;
@@ -208,10 +151,42 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 .current-bookings-div{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
+  padding-right: 3em;
 }
 
 .calendar-selected{
   background-color: blue;
+}
+
+.under-calendar-div{
+  /* padding-right: .5em; */
+  padding-bottom: .5em;
+}
+
+.start-end-div{
+  padding-right: .5em;
+}
+
+.calendar-two-buttons-div{
+  padding-right: .5em;
+  padding-top: .2em;
+  padding-bottom: 1em;
+  display: flex;
+  gap: 1em;
+}
+
+.delete-booking-button{
+  background: linear-gradient(90deg,#e41e4e,#d60565);
+  border-radius: 5px;
+  color: white;
+  border: none;
+}
+
+.edit-booking-button{
+  background: linear-gradient(90deg,#e41e4e,#d60565);
+  border-radius: 5px;
+  color: white;
+  border: none;
 }
