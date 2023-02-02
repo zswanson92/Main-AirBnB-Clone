@@ -9,7 +9,7 @@ import './SpotsDetails.css'
 import EditSpotButton from '../EditSpot';
 import { getAllReviews, deleteReview } from '../../store/reviews';
 import CreateReviewButton from '../CreateReview';
-import CreateSpotButton from '../CreateSpot';
+// import CreateSpotButton from '../CreateSpot';
 import CreateBookingButton from '../CreateBooking/CreateBooking';
 import { getBookingsThunk, deleteBookingThunk } from '../../store/bookings';
 import Calendar from 'react-calendar';
@@ -27,12 +27,13 @@ const SpotsDetails = () => {
         // console.log("this is spotDetailsObj", state.spots.spot[76])
         return state.spots.spot[spotId]
     })
-    console.log("!!!!!!", spotDetailsObj)
+    // console.log("!!!!!!", spotDetailsObj)
 
     const reviewDetailsObj = useSelector(state => {
         // console.log("THIS IS REVIEWDETAILSOBJ", state.reviews)
-        return state.reviews
+        return state.reviews.allReviews?.Reviews
     })
+    // console.log("THIS IS REVIEWDETAILSOBJ", reviewDetailsObj)
 
     const bookingDetailsObj = useSelector(state => {
         return state.bookings.allBookings?.Bookings
@@ -42,7 +43,7 @@ const SpotsDetails = () => {
 
 
     // console.log("This is booking details object", bookingDetailsObj)
-    console.log("This is FILTERED booking details object", filteredBookingArr)
+    // console.log("This is FILTERED booking details object", filteredBookingArr)
 
 
 
@@ -57,34 +58,44 @@ const SpotsDetails = () => {
     }
 
 
-    const reviewArr = Object.values(reviewDetailsObj)
+    let reviewArr;
 
-    const filteredReviewArr = reviewArr.filter(review => review.spotId == spotId)
+    if(reviewDetailsObj){
+        reviewArr = Object.values(reviewDetailsObj)
+    }
 
 
-    const deleteASpot = (e) => {
+    let filteredReviewArr;
+
+    if(reviewArr){
+        filteredReviewArr = reviewArr.filter(review => review.spotId == spotId)
+    }
+
+
+    const deleteASpot = async (e) => {
         e.preventDefault();
-        dispatch(deleteSpot(spotId))
+        await dispatch(deleteSpot(spotId))
         return history.push('/')
     }
 
-    const deleteABooking = (e, bookingId) => {
+    const deleteABooking = async (e, bookingId) => {
         e.preventDefault();
-        dispatch(deleteBookingThunk(bookingId))
-        dispatch(getBookingsThunk(spotId))
+        await dispatch(deleteBookingThunk(bookingId))
+        await dispatch(getBookingsThunk(spotId))
     }
 
-    const deleteAReview = (e) => {
+    const deleteAReview = async (e) => {
         e.preventDefault();
-        dispatch(deleteReview(e.target.id))
-
-        dispatch(getSpotById(spotId))
+        await dispatch(deleteReview(e.target.id))
+        await dispatch(getAllReviews(spotId))
+        // await dispatch(getSpotById(spotId))
         // return history.push(`/`)
     }
 
     useEffect(() => {
         dispatch(getSpotById(spotId))
-        if (spotDetailsObj?.numReviews > 0) dispatch(getAllReviews(spotId))
+        // if (spotDetailsObj?.numReviews > 0)
+        dispatch(getAllReviews(spotId))
         dispatch(getBookingsThunk(spotId))
     }, [dispatch, spotId])
     // if something breaks I added spotId to dependency
@@ -94,33 +105,33 @@ const SpotsDetails = () => {
     }
 
 
-    let dateArr = []
-    filteredBookingArr.forEach((el) => {
-        dateArr.push(new Date(el.startDate).toDateString())
-        dateArr.push(new Date(el.endDate).toDateString())
-    })
+    // let dateArr = []
+    // filteredBookingArr.forEach((el) => {
+    //     dateArr.push(new Date(el.startDate).toDateString())
+    //     dateArr.push(new Date(el.endDate).toDateString())
+    // })
 
     // console.log("DATE ARRAY", dateArr)
 
-    const shouldDateBeSelected = (date) => {
-        // if(filteredBookingArr.includes(date))
+    // const shouldDateBeSelected = (date) => {
+    //     // if(filteredBookingArr.includes(date))
 
-        filteredBookingArr.forEach((el) => {
-            // console.log("EL.STARTDATE", el.startDate)
-            // console.log("EL.endDATE", el.endDate)
-            let abc = el.startDate
-            let xyz = el.endDate
+    //     filteredBookingArr.forEach((el) => {
+    //         // console.log("EL.STARTDATE", el.startDate)
+    //         // console.log("EL.endDATE", el.endDate)
+    //         let abc = el.startDate
+    //         let xyz = el.endDate
 
-            const newABC = new Date(abc)
-            // console.log("NEWABC", newABC.toDateString())
-            const newXYZ = new Date(xyz)
-            if (newABC.toDateString() == date || newXYZ.toDateString() == date) {
-                return true
-            }
-        })
+    //         const newABC = new Date(abc)
+    //         // console.log("NEWABC", newABC.toDateString())
+    //         const newXYZ = new Date(xyz)
+    //         if (newABC.toDateString() == date || newXYZ.toDateString() == date) {
+    //             return true
+    //         }
+    //     })
 
-        return false
-    }
+    //     return false
+    // }
 
     Date.prototype.addDays = function (days) {
         var date = new Date(this.valueOf());
@@ -177,35 +188,25 @@ const SpotsDetails = () => {
 
                 {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <EditSpotButton /> : null)}
             </div>
-
             <div className='reviews-ul-div'>
-
                 <div className='reviews-ul'>
-                <p className='reviews-p'>Reviews: </p>
-                {filteredReviewArr.map(review => (<div className='filtered-rev-map-div' key={review.id}>
+                <div>
+                <div className='reviews-p'>Reviews: </div>
+                </div>
+                {filteredReviewArr?.map(review => (<div className='filtered-rev-map-div' key={review.id}>
                     <div key={review.id} className='reviews-li'>"{review?.review}"</div>
                     {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
                 </div>))}
                 </div>
                 <div className='current-bookings-div'>
                     <Calendar
-                        // tileClassName={({ date }) => {
-                        //     {console.log("THIS IS DATE????", date.toDateString())}
-                        //     // if (shouldDateBeSelected(date.toDateString())) {
-                        //     if (dateArr.includes(date.toDateString())) {
-                        //         return 'react-calendar__tile--active';
-                        //     }
-                        //     return null;
-                        // }}
                         tileDisabled={tileDisable}
                     />
                     <div className='under-calendar-div'>Your current Bookings for this location:</div>
 
                     {filteredBookingArr?.map((booking) => {
                         return <div key={booking.id} className='current-bookings-div'>
-                            {/* {console.log(booking)} */}
                             {sessionUser?.id === booking.userId ? <div className='start-end-div'> Start {sortFunc(booking.startDate.slice(0, 10).split('-')).join('-')} - End {sortFunc(booking.endDate.slice(0, 10).split('-')).join('-')}</div> : ""}
-                            {/* {<Calendar value={[new Date(booking.startDate.slice(0, 10).split('-')), new Date(booking.endDate.slice(0, 10).split('-'))]} />} */}
                             <div className='calendar-two-buttons-div'>
                                 {sessionUser?.id === booking.userId ? <button className='delete-booking-button' onClick={(e) => deleteABooking(e, booking.id)}>Delete Booking</button> : ""}
                                 {sessionUser?.id === booking.userId ? <Link to={`/bookings/${booking.id}`}><button className='edit-booking-button'>Edit Booking</button></Link> : ""}
@@ -214,11 +215,7 @@ const SpotsDetails = () => {
                     })}
                 </div>
             </div>
-            {/* {filteredReviewArr.map(review => (<div className='filtered-rev-map-div' key={review.id}>
 
-                <div key={review.id} className='reviews-li'>"{review?.review}"</div>
-                {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
-            </div>))} */}
         </div>
     )
 }
@@ -234,3 +231,16 @@ export default SpotsDetails
                     //     }
                     //     return null;
                     // }}
+// tileClassName={({ date }) => {
+                        //     {console.log("THIS IS DATE????", date.toDateString())}
+                        //     // if (shouldDateBeSelected(date.toDateString())) {
+                        //     if (dateArr.includes(date.toDateString())) {
+                        //         return 'react-calendar__tile--active';
+                        //     }
+                        //     return null;
+                        // }}
+                        {/* {filteredReviewArr.map(review => (<div className='filtered-rev-map-div' key={review.id}>
+
+                <div key={review.id} className='reviews-li'>"{review?.review}"</div>
+                {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
+            </div>))} */}

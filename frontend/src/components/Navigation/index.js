@@ -33,11 +33,11 @@ function Navigation({ isLoaded }) {
       </>
     );
   }
-
+{/* <a href='logo.png' className='logo'></a></a> */}
   return (
     <div className='header-div'>
       <div className='home-img-div'>
-        <NavLink exact to="/" className='home-button'><a href='logo.png' className='logo'><img className='abcd' src={icon} alt="" /></a></NavLink>
+        <NavLink exact to="/" className='home-button'><img className='abcd' src={icon} alt="" /></NavLink>
       </div>
 
       <div><SearchBar /></div>

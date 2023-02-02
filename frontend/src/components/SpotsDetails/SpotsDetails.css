@@ -93,6 +93,8 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 .reviews-li {
   padding-bottom: 4em;
   font-style: italic;
+  width: 15em;
+  overflow-wrap: break-word;
 }
 
 .header{
@@ -121,9 +123,13 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 }
 
 .reviews-ul{
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 6em;
   padding-left: 3em;
+  /* width: 40em; */
 }
 
 .filtered-rev-map-div{
@@ -131,9 +137,10 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 }
 
 .reviews-p{
-  width: 10em;
-  padding-top: 1em;
-  padding-bottom: 2em;
+  /* width: 10em; */
+  padding-top: 3em;
+  padding-left: 5em;
+  /* padding-bottom: 2em; */
 }
 
 

@@ -25,6 +25,7 @@ export const getAllReviews = (spotId) => async dispatch => {
     if(response.ok){
         const review = await response.json()
         dispatch(reviewLoad(review))
+        return review
     }
 }
 
@@ -69,33 +70,52 @@ let initialState = {}
 
 const reviewsReducer = (state = initialState, action) => {
     // let newState;
-    let newState = { ...state }
+    // let newState = { ...state }
     switch(action.type){
-        case LOAD_REVIEWS:
+        case LOAD_REVIEWS:{
+            const newState = { ...state }
+            newState.allReviews = {}
             const reviews = action.reviews
+            newState.allReviews = reviews
+            return newState
+        }
+            // const reviews = action.reviews
             // console.log("THIS IS LOAD REVIEWS", reviews.Reviews[0])
             // console.log("THIS IS NEWSTATE.SPOT", newState.spot)
             // console.log(action.reviews.Reviews[0].spotId)
-            reviews.Reviews.map(review => newState[action.reviews.Reviews[action.reviews.Reviews.length - 1].id] = review)
-
-            return newState
 
 
-        case DELETE_REVIEWS:
-        // console.log("this is action", action)
-        delete newState[action.reviewId]
+            // reviews.Reviews.map(review => newState[action.reviews.Reviews[action.reviews.Reviews.length - 1].id] = review)
+
+            // return newState
+
+
+
+
+
+        case DELETE_REVIEWS:{
+            let newState = { ...state }
+            delete newState[action.reviewId]
 
         return newState
+        }
+        // console.log("this is action", action)
 
 
-        case ADD_REVIEWS:
+
+        case ADD_REVIEWS:{
+            let newState = { ...state }
+            newState[action.review.id] = action.review
+            // console.log("THIS IS newStateTwo after update", newStateTwo)
+            return newState
+        }
             // let newStateTwo = { ...state }
             // console.log("this is action", action)
             // console.log("THIS IS newStateTwo before update", newStateTwo)
             // newState[action.id] = action.review.spotId
-            newState[action.review.id] = action.review
+            // newState[action.review.id] = action.review
             // console.log("THIS IS newStateTwo after update", newStateTwo)
-            return newState
+            // return newState
 
 
 
