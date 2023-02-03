@@ -30,7 +30,7 @@ const Spots = () => {
 
     return (
         <div className='homepage'>
-             <h2>{aSpot.map((obj) => {
+             {aSpot.map((obj) => {
                 return(
                 <div key={obj.id} className='inner-homepage'>
                 <Link style={{textDecoration: 'none'}} to={`/spots/${obj.id}`}>
@@ -43,7 +43,7 @@ const Spots = () => {
                 </Link>
                 </div>
                 )
-            })}</h2>
+            })}
         </div>
     )
 }

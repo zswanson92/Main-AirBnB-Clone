@@ -32,61 +32,94 @@ function SignupFormPage({ setShowModal }) {
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  const handleEmail = event => {
+    if (!isValidEmail(event.target.value)) {
+      let err = []
+      err.push('Email is invalid');
+      setErrors(err)
+    }
+    else {
+      setErrors([]);
+    }
+
+    setEmail(event.target.value);
+  };
+
+
   return (
     <form className='signup-popout' onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-          <p className="signup-popout-bannertext">Sign up</p>
-          <p className='corny-pr-line'>Join the Ultimate ZnB family</p>
+      <p className="signup-popout-bannertext">Sign up</p>
+      <p className='corny-pr-line'>Join the Ultimate ZnB family</p>
+      <div>
         <input
           placeholder="Email"
-          className="email-input"
+          className="signup-form-input"
           type="text"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleEmail}
           required
         />
-        <input
-          placeholder="Username"
-          className="signup-username-input"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
+        {email.length > 0 && !isValidEmail(email) ? <div style={{fontSize: '15px',  marginLeft: '4em', color: 'red'}}>Not a valid email address.</div> : <div> &nbsp; </div>}
+      </div>
+      <div>
+      <input
+        placeholder="Username"
+        className="signup-form-input"
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        required
+      />
+      {username.length > 25 ? <div style={{fontSize: '15px',  marginLeft: '1em', color: 'red'}}>Username must be 25 characters or less.</div> : <div> &nbsp; </div>}
+      </div>
+      <div>
+      <input
         placeholder="First Name"
-        className="firstname-input"
+        className="signup-form-input"
         type="text"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         required
-        />
-        <input
+      />
+      {firstName.length > 30 ? <div style={{fontSize: '15px',  marginLeft: '1em', color: 'red'}}>Username must be 30 characters or less.</div> : <div> &nbsp; </div>}
+      </div>
+      <div>
+      <input
         placeholder="Last Name"
-        className="lastname-input"
+        className="signup-form-input"
         type="text"
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
         required
-        />
-        <input
-          placeholder="Password"
-          className='signup-password-input'
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <input
-          placeholder="Confirm Password"
-          className="signup-confirm-password-input"
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
+      />
+      {lastName.length > 30 ? <div style={{fontSize: '15px',  marginLeft: '1em', color: 'red'}}>Username must be 30 characters or less.</div> : <div> &nbsp; </div>}
+      </div>
+      <div>
+      <input
+        placeholder="Password"
+        className='signup-form-input'
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      <div> &nbsp; </div>
+      </div>
+      <div>
+      <input
+        placeholder="Confirm Password"
+        className="signup-form-input"
+        type="password"
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+        required
+      />
+      {confirmPassword.length && confirmPassword !== password ? <div style={{fontSize: '15px',  marginLeft: '3em', color: 'red'}}>Your passwords do not match.</div> : <div> &nbsp; </div>}
+      </div>
       <button className='signup-form-button' type="submit">Sign Up</button>
     </form>
   );

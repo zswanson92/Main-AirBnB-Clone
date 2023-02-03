@@ -21,34 +21,37 @@ li {
     border-color: transparent;
     width: 200px;
     height: 2em;
-    /* margin-left: 35px; */
     color: white;
 }
 
+.another-demo-user{
+    background: linear-gradient(90deg,#e41e4e,#d60565);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    height: 2em;
+    width: 15em;
+}
+
 .goofy-welcome{
-    /* margin-left: 90px; */
-    padding-bottom: 30px;
     font-size: 20px;
 }
 
 
 .username-input {
     border: 1px solid;
-    border-bottom-color: transparent;
     border-radius: 5px;
     height: 30px;
     width: 200px;
-    /* margin-left: 25px; */
+    padding: .3em;
 }
 
 .password-input {
     border: 1px solid;
     border-radius: 5px;
-    /* -bottom: 1em; */
     height: 30px;
     width: 200px;
-    /* display: flex; */
-    /* margin-left: 25px; */
+    padding: .3em;
 }
 
 .login-popout {
@@ -56,36 +59,13 @@ li {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 380px;
-    width: 450px;
+    padding: 2em;
+    gap: 1em;
 }
-
 
 
 .login-popout-bannertext{
-    padding-bottom: 10px;
     font-size: 20px;
-}
-
-.another-demo-user{
-    background: linear-gradient(90deg,#e41e4e,#d60565);
-    /* position: absolute;
-    right: 165px; */
-    border: none;
-    /* top: 260px; */
-    border-radius: 20px;
-    color: white;
-    height: 2em;
-    width: 15em;
-
-}
-
-.demo-user-div{
-    padding-top: 1em;
-}
-
-.login-continue-div{
-    padding-top: 2em;
 }
 
 

@@ -334,10 +334,16 @@ router.put('/:spotId', requireAuth, async (req, res) => {
 
 router.delete('/:spotId', async (req, res) => {
     const { spotId } = req.params
-    const spotToBeDeleted = await Spot.findByPk(spotId)
-    console.log("@@@@@@@@", spotToBeDeleted)
+    const spotToBeDeleted = await Spot.findByPk(+spotId)
+    // console.log("@@@@@@@@", spotToBeDeleted)
+    // console.log("!!!!!!!!!!!!!!!!", +spotId)
     const { user } = req
     const ownerId = user.toSafeObject().id
+    // sqlite3_errmsg()
+    // console.log("$$$$$$", ownerId)
+    // console.log("^^^^^^^^^^^^^^", spotToBeDeleted.ownerId)
+
+
 
     if(spotToBeDeleted){
     if(spotToBeDeleted.ownerId === ownerId){

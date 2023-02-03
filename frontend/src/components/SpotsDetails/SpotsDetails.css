@@ -5,12 +5,12 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 
 
 .main-details-page{
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  margin-left: 10px;
+  /* position: absolute; */
+  /* top: 0px; */
+  /* right: 0px; */
+  /* bottom: 0px; */
+  /* left: 0px; */
+  /* margin-left: 10px; */
 }
 
 .test{
@@ -104,7 +104,7 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 
 
 .name-address-details-div {
-  margin-top: 70px;
+  /* margin-top: 70px; */
   margin-left: 0px;
   display: flex;
   flex-direction: column;

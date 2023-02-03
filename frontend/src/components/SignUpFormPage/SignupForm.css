@@ -1,92 +1,35 @@
 .signup-popout {
-    display: flexbox;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 150px;
-    width: 450px;
-    margin-bottom: 400px;
+    padding: 2em;
+    gap: .6em;
 }
 
-.email-input {
-    border: 1px solid;
-    border-radius: 5px;
-    /* margin-bottom: 50px; */
-    height: 50px;
-    width: 400px;
-    display: flex;
-    margin-left: 25px;
-}
 
-.signup-username-input{
-    border: 1px solid;
-    border-radius: 5px;
-    /* margin-bottom: 50px; */
-    height: 50px;
-    width: 400px;
-    display: flex;
-    margin-left: 25px;
-}
-
-.firstname-input{
-    border: 1px solid;
-    border-radius: 5px;
-    /* margin-bottom: 50px; */
-    height: 50px;
-    width: 400px;
-    display: flex;
-    margin-left: 25px;
-}
-
-.lastname-input{
-    border: 1px solid;
-    border-radius: 5px;
-    /* margin-bottom: 50px; */
-    height: 50px;
-    width: 400px;
-    display: flex;
-    margin-left: 25px;
-}
-
-.signup-password-input{
-    border: 1px solid;
-    border-radius: 5px;
-    /* margin-bottom: 50px; */
-    height: 50px;
-    width: 400px;
-    display: flex;
-    margin-left: 25px;
-}
-
-.signup-confirm-password-input{
-    border: 1px solid;
-    border-radius: 5px;
-    margin-bottom: 50px;
-    height: 50px;
-    width: 400px;
-    display: flex;
-    margin-left: 25px;
+.signup-form-input{
+    height: 1em;
+    width: 20em;
+    border-radius: .3em;
+    padding: 1em;
 }
 
 .signup-form-button{
     background: linear-gradient(90deg,#e41e4e,#d60565);
     border-radius: 5px;
     border-color: transparent;
-    width: 380px;
-    height: 70px;
-    margin-left: 35px;
+    width: 8em;
+    height: 3em;
     color: white;
 }
 
 .signup-popout-bannertext{
-    margin-bottom: 20px;
-    margin-left: 190px;
     font-size: 20px;
     font-weight: bold;
 }
 
 .corny-pr-line{
-    margin-bottom: 20px;
-    margin-left: 95px;
     font-size: 20px;
     font-weight: bold;
 }

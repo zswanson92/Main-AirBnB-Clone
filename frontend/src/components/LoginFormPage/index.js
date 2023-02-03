@@ -29,11 +29,11 @@ function LoginFormPage() {
   // console.log(errors)
   return (
     <form onSubmit={handleSubmit}>
-      <ul>
+      <div>
         {/* {console.log(errors)} */}
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        {/* {errors.length > 0 ? <p> invalid credentials </p> : null} */}
-      </ul>
+        {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
+        {errors.length > 0 ? <div> invalid credentials </div> : <div>{"    "}</div>}
+      </div>
       <label>
         Username or Email
         <input

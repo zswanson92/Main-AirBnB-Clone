@@ -42,9 +42,9 @@ function LoginForm({ setShowModal }) {
       <p className="goofy-welcome">Welcome back to Ultimate ZnB</p>
       {/* <ul className="last-second-error"> */}
       {/* {console.log("this is errors", errors)} */}
-      {errors.map((error, idx) => (
-        <li className="invalid-cred" key={idx}> • {error.message}</li>
-      ))}
+      {/* {errors.map((error, idx) => (
+        <div className="invalid-cred" key={idx}> • {error.message}</div>
+      ))} */}
       {/* {errors.length > 0 ? <p>{errors[0]}</p> : null} */}
       {/* {  console.log("this is errors", errors)} */}
       {/* </ul> */}
@@ -52,6 +52,7 @@ function LoginForm({ setShowModal }) {
 
       {/* <label className="username-label">
         Username or Email */}
+
       <input
         className="username-input"
         type="text"
@@ -72,6 +73,7 @@ function LoginForm({ setShowModal }) {
         required
       />
       {/* </label> */}
+      <div>{errors.length ? <div style={{color: 'red'}}>Invalid Credentials</div> : <div> &nbsp; </div>}</div>
       <div className="login-continue-div">
       <button type="submit" className="login-continue-button">Continue</button>
       </div>
