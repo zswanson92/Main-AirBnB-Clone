@@ -59,7 +59,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
           </div>
         </div>) :
         (
-          <ul className='two-buttons'>
+          <div className='two-buttons'>
             <button className="initial-login-button" onClick={() => {
               setLogin(true)
               setShowModal(true)
@@ -68,7 +68,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
               setLogin(false)
               setShowModal(true)
             }}>Sign up</button>
-          </ul>
+          </div>
         )
       )}
     </div>

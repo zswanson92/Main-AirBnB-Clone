@@ -192,7 +192,8 @@ const spotsReducer = (state = { spot: {}, allSpots: {} }, action) => {
             // delete editState[action.spotId]
             // return editState
             let thirdNewState = { ...state }
-            delete thirdNewState[action.spotId]
+            // delete thirdNewState[action.spotId]
+            delete thirdNewState[+action.id]
             return thirdNewState
 
         case EDIT_SPOT:

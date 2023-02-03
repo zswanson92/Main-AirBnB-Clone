@@ -35,6 +35,16 @@ function CreateSpotButton() {
 
     await dispatch(spotActions.getAllSpots())
 
+    setName("")
+    setDescription("")
+    setAddress("")
+    setCity("")
+    setCountry("")
+    setState("")
+    setLat("")
+    setLng("")
+    setPrice("")
+    setUrl("")
     // dispatch(spotActions.getAllSpots())
     setShowForm(false)
   }
@@ -107,16 +117,19 @@ function CreateSpotButton() {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required />
+            {/* <label className="custom-file-upload"> */}
             <input
-              // className="url-input"
+              // className="aws-input"
               // placeholder="Preview Image Url"
               type="file"
+              // style={{ backgroundColor: 'red' }}
               // value={url}
               // onChange={(e) => setUrl(e.target.value)}
               onChange={updateFile}
-              // required
-              />
-
+              required
+            />
+            {/* Click here to upload an image.
+            </label> */}
             <textarea
               className="description-input"
               placeholder="Description"

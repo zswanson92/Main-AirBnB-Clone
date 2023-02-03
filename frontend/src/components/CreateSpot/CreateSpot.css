@@ -29,91 +29,98 @@
     right: 39%;
     box-shadow: 0 0 10px 10px rgb(112, 105, 105);
     border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-input, label {
+/* input, label {
     display:block;
 
-}
+} */
 
-input {
+/* input {
     border-radius: 3px;
     margin-left: 24px;
     box-shadow:0 0 15px 4px rgba(0, 0, 0, 0);
-    /* margin-top: 5px; */
-    /* border-bottom-color: transparent; */
+    margin-top: 5px;
+    border-bottom-color: transparent;
     border-width: 1px;
-}
+} */
 
 .location-name-input{
     width: 300px;
-    border-bottom-color: transparent;
+    /* border-bottom-color: transparent; */
     height: 30px;
-    margin-top: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
 }
 
 .address-input{
-    border-bottom-color: transparent;
-    width: 300px;
-    height: 30px;
-
-}
-
-.city-input{
-    border-bottom-color: transparent;
-    width: 300px;
-    height: 30px;
-
-}
-
-.state-input{
-    border-bottom-color: transparent;
-    width: 300px;
-    height: 30px;
-
-}
-
-.country-input{
-    border-bottom-color: transparent;
-    width: 300px;
-    height: 30px;
-
-}
-
-.latitude-input{
-    border-bottom-color: transparent;
-    width: 300px;
-    height: 30px;
-
-}
-
-.longitude-input{
-    border-bottom-color: transparent;
-    width: 300px;
-    height: 30px;
-
-}
-
-.price-input{
-    border-bottom-color: transparent;
-    width: 300px;
-    height: 30px;
-
-}
-
-.url-input{
     /* border-bottom-color: transparent; */
     width: 300px;
     height: 30px;
+    border-radius: 5px;
+}
 
+.city-input{
+    /* border-bottom-color: transparent; */
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+}
 
+.state-input{
+    /* border-bottom-color: transparent; */
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.country-input{
+    /* border-bottom-color: transparent; */
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.latitude-input{
+    /* border-bottom-color: transparent; */
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.longitude-input{
+    /* border-bottom-color: transparent; */
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.price-input{
+    /* border-bottom-color: transparent; */
+    width: 300px;
+    height: 30px;
+    margin-bottom: .8em;
+    border-radius: 5px;
+}
+
+.aws-input{
+    background: none;
+    border: none;
+}
+
+input#file-upload-button{
+    background: none;
+    border: none;
 }
 
 textarea{
     border-radius: 10px;
-    margin-left: 24px;
+    /* margin-left: 24px; */
     box-shadow:0 0 15px 4px rgba(0, 0, 0, 0);
-    margin-top: 5px;
+    margin-top: .8em;
     resize: none;
     width: 300px;
     height: 50px;
@@ -124,7 +131,7 @@ textarea{
     /* position: absolute; */
     /* left: 115px; */
     width: 300px;
-    margin-left: 24px;
+    /* margin-left: 24px; */
     border: none;
     background: linear-gradient(90deg,#e41e4e,#d60565);
     border-radius: 10px;
@@ -135,7 +142,7 @@ textarea{
 .creatlocation-button{
     background: linear-gradient(90deg,#e41e4e,#d60565);
     width: 300px;
-    margin-left: 24px;
+    /* margin-left: 24px; */
     border: none;
     border-radius: 10px;
     height: 30px;
@@ -143,3 +150,17 @@ textarea{
     margin-top: 10px;
     color: white;
 }
+
+/* input[type="file"] {
+    padding-top: 1em;
+    display: none;
+}
+
+.custom-file-upload {
+    padding-top: 1em;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+} */

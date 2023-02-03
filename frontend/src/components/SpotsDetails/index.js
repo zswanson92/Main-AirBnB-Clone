@@ -21,30 +21,20 @@ const SpotsDetails = () => {
     const { spotId } = useParams()
 
     const sessionUser = useSelector(state => state.session.user);
-    // console.log("THIS IS SESSIONUSER", sessionUser.id)
 
     const spotDetailsObj = useSelector(state => {
-        // console.log("this is spotDetailsObj", state.spots.spot[76])
         return state.spots.spot[spotId]
     })
-    // console.log("!!!!!!", spotDetailsObj)
 
     const reviewDetailsObj = useSelector(state => {
-        // console.log("THIS IS REVIEWDETAILSOBJ", state.reviews)
         return state.reviews.allReviews?.Reviews
     })
-    // console.log("THIS IS REVIEWDETAILSOBJ", reviewDetailsObj)
 
     const bookingDetailsObj = useSelector(state => {
         return state.bookings.allBookings?.Bookings
     })
 
     const filteredBookingArr = bookingDetailsObj?.filter((obj) => obj.spotId === +spotId)
-
-
-    // console.log("This is booking details object", bookingDetailsObj)
-    // console.log("This is FILTERED booking details object", filteredBookingArr)
-
 
 
     let sortFunc = (arr) => {
@@ -88,13 +78,11 @@ const SpotsDetails = () => {
         e.preventDefault();
         await dispatch(deleteReview(e.target.id))
         await dispatch(getAllReviews(spotId))
-        // await dispatch(getSpotById(spotId))
-        // return history.push(`/`)
+
     }
 
     useEffect(() => {
         dispatch(getSpotById(spotId))
-        // if (spotDetailsObj?.numReviews > 0)
         dispatch(getAllReviews(spotId))
         dispatch(getBookingsThunk(spotId))
     }, [dispatch, spotId])
@@ -104,34 +92,6 @@ const SpotsDetails = () => {
         return null
     }
 
-
-    // let dateArr = []
-    // filteredBookingArr.forEach((el) => {
-    //     dateArr.push(new Date(el.startDate).toDateString())
-    //     dateArr.push(new Date(el.endDate).toDateString())
-    // })
-
-    // console.log("DATE ARRAY", dateArr)
-
-    // const shouldDateBeSelected = (date) => {
-    //     // if(filteredBookingArr.includes(date))
-
-    //     filteredBookingArr.forEach((el) => {
-    //         // console.log("EL.STARTDATE", el.startDate)
-    //         // console.log("EL.endDATE", el.endDate)
-    //         let abc = el.startDate
-    //         let xyz = el.endDate
-
-    //         const newABC = new Date(abc)
-    //         // console.log("NEWABC", newABC.toDateString())
-    //         const newXYZ = new Date(xyz)
-    //         if (newABC.toDateString() == date || newXYZ.toDateString() == date) {
-    //             return true
-    //         }
-    //     })
-
-    //     return false
-    // }
 
     Date.prototype.addDays = function (days) {
         var date = new Date(this.valueOf());
@@ -244,3 +204,30 @@ export default SpotsDetails
                 <div key={review.id} className='reviews-li'>"{review?.review}"</div>
                 {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
             </div>))} */}
+              // let dateArr = []
+    // filteredBookingArr.forEach((el) => {
+    //     dateArr.push(new Date(el.startDate).toDateString())
+    //     dateArr.push(new Date(el.endDate).toDateString())
+    // })
+
+    // console.log("DATE ARRAY", dateArr)
+
+    // const shouldDateBeSelected = (date) => {
+    //     // if(filteredBookingArr.includes(date))
+
+    //     filteredBookingArr.forEach((el) => {
+    //         // console.log("EL.STARTDATE", el.startDate)
+    //         // console.log("EL.endDATE", el.endDate)
+    //         let abc = el.startDate
+    //         let xyz = el.endDate
+
+    //         const newABC = new Date(abc)
+    //         // console.log("NEWABC", newABC.toDateString())
+    //         const newXYZ = new Date(xyz)
+    //         if (newABC.toDateString() == date || newXYZ.toDateString() == date) {
+    //             return true
+    //         }
+    //     })
+
+    //     return false
+    // }

@@ -37,24 +37,54 @@
     padding: 1em;
 }
 
-.parent-dropdown-container{
-    position: fixed;
+.parent-dropdown-container {
+    position: absolute;
     top: 18px;
 }
 
-.random-button{
+.random-button {
     background: none;
     border: none;
 }
 
+.two-buttons {
+    position: relative;
+    right: 5em;
+    top: .5em;
+    /* left: 1790px; */
+    /* top: 50px; */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 2px rgb(209, 201, 201);
+    width: auto;
+    height: auto;
+}
 
-.the-logout-button{
-    background: linear-gradient(90deg,#e41e4e,#d60565);
+.the-logout-button {
+    background: linear-gradient(90deg, #e41e4e, #d60565);
     color: white;
     border: none;
     border-radius: 5px;
     margin-top: 1em;
     width: 5em;
+}
+
+.initial-login-button {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    /* right: 20px; */
+    /* width: 50px; */
+    /* padding-bottom: 10px; */
+    padding: 1em;
+}
+
+.initial-signup-button {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    /* right: 35px; */
+    /* width: 80px; */
 }
 
 /* .two-buttons{

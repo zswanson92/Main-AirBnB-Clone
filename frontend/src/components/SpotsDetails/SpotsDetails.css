@@ -173,11 +173,11 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 }
 
 .start-end-div{
-  padding-right: .5em;
+  padding-left: 3em;
 }
 
 .calendar-two-buttons-div{
-  padding-right: .5em;
+  padding-left: 3em;
   padding-top: .2em;
   padding-bottom: 1em;
   display: flex;
