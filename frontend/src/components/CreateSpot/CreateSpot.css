@@ -1,52 +1,26 @@
 .host-button {
-    /* position: absolute; */
-    /* left: 1680px; */
-    /* top: 15px; */
-    /* display: flex;
-    align-items: flex-end;
-    justify-content: flex-end; */
-    /* align-self: flex-end; */
     position: sticky;
     left: 1500px;
-    /* bottom: 100px; */
-    /* top: -100px; */
     background-color: white;
     padding: 0;
     border: none;
     background: none;
     font-weight: bold;
     font-size: 20px;
-    /* margin-top: 12px; */
 }
 
 .newspot-form {
-    margin-top: 200px;
-    height: 500px;
-    width: 350px;
+    height: 750px;
+    width: 450px;
     background-color: white;
-    position: absolute;
-    top: 10%;
-    right: 39%;
     box-shadow: 0 0 10px 10px rgb(112, 105, 105);
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1em;
 }
 
-/* input, label {
-    display:block;
-
-} */
-
-/* input {
-    border-radius: 3px;
-    margin-left: 24px;
-    box-shadow:0 0 15px 4px rgba(0, 0, 0, 0);
-    margin-top: 5px;
-    border-bottom-color: transparent;
-    border-width: 1px;
-} */
 
 .location-name-input{
     width: 300px;
@@ -118,7 +92,6 @@ input#file-upload-button{
 
 textarea{
     border-radius: 10px;
-    /* margin-left: 24px; */
     box-shadow:0 0 15px 4px rgba(0, 0, 0, 0);
     margin-top: .8em;
     resize: none;
@@ -128,10 +101,7 @@ textarea{
 }
 
 .discardlocation-button {
-    /* position: absolute; */
-    /* left: 115px; */
     width: 300px;
-    /* margin-left: 24px; */
     border: none;
     background: linear-gradient(90deg,#e41e4e,#d60565);
     border-radius: 10px;
@@ -142,25 +112,8 @@ textarea{
 .creatlocation-button{
     background: linear-gradient(90deg,#e41e4e,#d60565);
     width: 300px;
-    /* margin-left: 24px; */
     border: none;
     border-radius: 10px;
     height: 30px;
-    margin-bottom: 15px;
-    margin-top: 10px;
     color: white;
 }
-
-/* input[type="file"] {
-    padding-top: 1em;
-    display: none;
-}
-
-.custom-file-upload {
-    padding-top: 1em;
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 5px;
-} */

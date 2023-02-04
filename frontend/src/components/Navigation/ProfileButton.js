@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './Navigation.css';
-import CreateSpotButton from "../CreateSpot";
+// import CreateSpotButton from "../CreateSpot";
 import { Modal } from '../../context/Modal';
 // import EditSpotButton from "../EditSpot";
 import { useLocation } from 'react-router-dom'

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import * as spotActions from '../../store/spots'
 // import { Redirect, useHistory } from "react-router-dom";
 import './CreateSpot.css'
-// import { Modal } from '../../context/Modal'
+import { Modal } from '../../context/Modal'
 
 
 function CreateSpotButton() {
@@ -58,8 +58,9 @@ function CreateSpotButton() {
   return (
     <>
       {
-        showForm ?
+        showForm ? <Modal>
           <form onSubmit={createNewSpot} className="newspot-form">
+            <label>Create a AirZnB</label>
             <input
               className="location-name-input"
               placeholder="Location Name"
@@ -117,14 +118,8 @@ function CreateSpotButton() {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required />
-            {/* <label className="custom-file-upload"> */}
             <input
-              // className="aws-input"
-              // placeholder="Preview Image Url"
               type="file"
-              // style={{ backgroundColor: 'red' }}
-              // value={url}
-              // onChange={(e) => setUrl(e.target.value)}
               onChange={updateFile}
               required
             />
@@ -137,23 +132,17 @@ function CreateSpotButton() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required />
-            {/* <label> */}
-            {/* <input
-            type="text"
-            value={preview}
-            onChange={(e) => setPreview(e.target.value)}
-            required/>
-            Preview Img
-          </label> */}
+
             <button type="submit" className="creatlocation-button">Create location</button>
             <button onClick={() => setShowForm(false)} className='discardlocation-button'>Close</button>
-          </form> : (<button onClick={() => setShowForm(true)} className='host-button'> Become a Host</button>
-          )}
+          </form> </Modal> : (<button onClick={() => setShowForm(true)} className='host-button'> Become a Host</button>)}
     </>
   )
 }
 
 export default CreateSpotButton
+
+// : (<button onClick={() => setShowForm(true)} className='host-button'> Become a Host</button>)
 
 
 
