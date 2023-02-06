@@ -23,11 +23,21 @@
     /* padding-top: 1em; */
 }
 
+.logged-in-user-div{
+    height: 150px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding-top: 1em;
+    margin-top: 1em;
+}
 
 .profile-dropdown {
     display: flex;
     flex-direction: column;
-    position: relative;
+    /* position: relative; */
     /* top: 100px; */
     right: 120px;
     border-radius: 30px;
@@ -67,7 +77,8 @@
     border: none;
     border-radius: 5px;
     margin-top: 1em;
-    width: 5em;
+    width: 8em;
+    height: 2em;
 }
 
 .initial-login-button {
