@@ -1,0 +1,47 @@
+.edit-review-container-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stars-edit-review-input-div{
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+.edit-review-text-area-div{
+    padding-top: 10em;
+}
+
+.submit-edited-review-button{
+    background: linear-gradient(90deg,#e41e4e,#d60565);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    /* margin-right: 20px; */
+}
+
+.edit-review-button-div{
+    /* padding-left: 5em; */
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.stars-edit-review-input-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.falsey-review-form-body-input{
+    color: red;
+}
+
+.create-review-inputfield{
+    height: 8em;
+    padding: 1em;
+}

@@ -22,9 +22,14 @@
 .search-bar{
     width: 20em;
     padding: .5em;
-    margin-right: 1em;
+    /* margin-right: 1em; */
+    border-radius: 5px;
+    /* border: none; */
 }
 
 .queryParams{
-    margin-right: 1em;
+    /* margin-right: 1em; */
+    border-radius: 5px;
+    /* border: none; */
+
 }

@@ -1,0 +1,12 @@
+.createbooking-button{
+    background: linear-gradient(90deg,#e41e4e,#d60565);
+    border-radius: 5px;
+    height: 40px;
+    width: 130px;
+    margin-top: 30px;
+    margin-right: 70px;
+    /* position: absolute;
+    left: 1500px; */
+    color: white;
+    border: none;
+}

@@ -50,7 +50,7 @@ function CreateBookingButton (){
             required={true}/>
           <button type="submit" className="submitreview-button">Submit booking request</button>
           <button onClick={() => setReviewForm(false)} className='discardreviewform-button'>Close Form</button>
-        </form> : (<button onClick={() => setReviewForm(true)} className='createreview-button'> Create a booking</button>
+        </form> : (<button onClick={() => setReviewForm(true)} className='createbooking-button'> Create a booking</button>
         )}
         </>
       )

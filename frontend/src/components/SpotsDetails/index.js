@@ -124,7 +124,9 @@ const SpotsDetails = () => {
             {/* {sessionUser ? <CreateSpotButton /> : null} */}
             <div className='name-address-details-div'>
                 <h1 className='test'>{spotDetailsObj?.name}</h1>
-                <p className='add-city-state-country'> Average Rating: {spotDetailsObj?.avgRating} ★ · {spotDetailsObj?.address}, {spotDetailsObj?.city}, {spotDetailsObj?.state}, {spotDetailsObj?.country} · Latitude: {spotDetailsObj?.lat} Longitude: {spotDetailsObj?.lng}
+                <p className='add-city-state-country'> Average Rating: {spotDetailsObj?.avgRating} &nbsp; <IconContext.Provider value={{ color: 'gold' }} >
+                    <FaStar />
+                </IconContext.Provider> &nbsp; · &nbsp; {spotDetailsObj?.address}, {spotDetailsObj?.city}, {spotDetailsObj?.state}, {spotDetailsObj?.country}  · Latitude: {spotDetailsObj?.lat}° · Longitude: {spotDetailsObj?.lng}°
                 </p>
             </div>
             <div className='spot-details-img'>
@@ -141,8 +143,8 @@ const SpotsDetails = () => {
 
             <div className='price-detail'>Price Per Night: ${spotDetailsObj?.price}</div>
 
-            {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <CreateReviewButton /> : null)}
-            {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <CreateBookingButton /> : null)}
+            {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <div className='create-rev-book-div'><CreateReviewButton />  <CreateBookingButton /></div> : null)}
+            {/* {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <CreateBookingButton /> : null)} */}
             <div className='delete-edit-buttons-div'>
                 {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <button onClick={deleteASpot} className='delete-button'> Delete Location </button> : null)}
 
@@ -156,7 +158,7 @@ const SpotsDetails = () => {
                     {filteredReviewArr?.map(review => (<div className='filtered-rev-map-div' key={review.id}>
                         {/* {console.log("THIS IS REVIEW", review)} */}
                         <div className='reviews-li'>"{review?.review}" &nbsp; {review?.stars}
-                            <IconContext.Provider value={{ color: 'yellow' }} >
+                            <IconContext.Provider value={{ color: 'gold' }} >
                                 <FaStar />
                             </IconContext.Provider>
                         </div>
@@ -170,7 +172,8 @@ const SpotsDetails = () => {
                     <Calendar
                         tileDisabled={tileDisable}
                     />
-                    <div className='under-calendar-div'>Your current Bookings for this location:</div>
+                    {console.log("CONDY CHECK", filteredBookingArr)}
+                    {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <div className='under-calendar-div'>Your current Bookings for this location:</div> : "")}
 
                     {filteredBookingArr?.map((booking) => {
                         return <div key={booking.id} className='current-bookings-div'>

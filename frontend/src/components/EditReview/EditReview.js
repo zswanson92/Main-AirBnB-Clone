@@ -12,19 +12,20 @@ const EditReviewButton = () => {
     const dispatch = useDispatch()
     const { reviewId } = useParams()
 
-    // const currentBiz = useSelector(state => state.businessReducer.businesses[businessId])
 
-    // const revFilter = currentBiz?.reviews.filter(obj => obj.id === +reviewId)
+    const currReview = useSelector(state => state.reviews.allReviews.Reviews)
 
-    // let editValOne;
-    // let editValTwo;
+    const revFilter = currReview?.filter(obj => obj.id === +reviewId)
 
-    // const workAround = revFilter ? editValOne = revFilter[0]?.body : ""
-    // const workAroundTwo = revFilter ? editValTwo = revFilter[0]?.stars : ""
+    let editValOne;
+    let editValTwo;
+
+    const workAround = revFilter ? editValOne = revFilter[0]?.review : ""
+    const workAroundTwo = revFilter ? editValTwo = revFilter[0]?.stars : ""
 
 
-    const [review, setReview] = useState("")
-    const [stars, setStars] = useState("")
+    const [review, setReview] = useState(editValOne ? editValOne : "")
+    const [stars, setStars] = useState(editValTwo ? editValTwo : "")
     const [errors, setErrors] = useState([])
 
 
@@ -57,15 +58,9 @@ const EditReviewButton = () => {
         history.goBack()
     }
 
-
-    // const deleteCurrReview = async (e) => {
-    //     e.preventDefault();
-
-    //     await dispatch(deleteReviewThunk(reviewId))
-
-    //     return history.push(`/businesses/${businessId}`)
+    // const goBack = () => {
+    //     history.goBack()
     // }
-
 
     return (
         <div className="edit-review-container-div">
@@ -81,16 +76,17 @@ const EditReviewButton = () => {
                     <div className="edit-review-text-area-div">
                         <textarea
                             placeholder="Review"
-                            className={review?.length < 10 ? "falsey-create-review-inputfield" : "edit-review-text-area"}
+                            className="create-review-inputfield"
                             type='text'
                             name='review-body'
                             value={review}
+                            required={true}
                             onChange={(e) => setReview(e.target.value)}
                         ></textarea>
                         {review?.length < 10 ? <div className="falsey-review-form-body-input">Review must be at least 10 characters long.</div> : ""}
+                        {review?.length > 255 ? <div className="falsey-review-form-body-input">Review must be less than 255 characters long.</div> : ""}
                     </div>
                     <div className="stars-edit-review-input-div">
-                        <label className="stars-label">
                             <input
                                 type="number"
                                 min="1"
@@ -99,11 +95,12 @@ const EditReviewButton = () => {
                                 onChange={(e) => setStars(e.target.value)}
                                 required />
                             Stars (1-5)
-                        </label>
+                            {stars < 1 || stars > 5 ? <div className="falsey-review-form-body-input">Stars must be between 1 and 5.</div> : ""}
                     </div>
                 </div>
-                <div className="edit-review-button-duo">
-                    {errors.length ? "" : <button type='submit' className="submit-edited-review-button">Submit Edited Review</button>}
+                <div className="edit-review-button-div">
+                    <button disabled={errors.length > 0 ? true : false} type='submit' className="submit-edited-review-button">Submit Edited Review</button>
+                    {/* <button className="submit-edited-review-button">Close</button> */}
                 </div>
             </form>
         </div>
