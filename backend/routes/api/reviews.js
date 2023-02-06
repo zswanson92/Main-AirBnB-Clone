@@ -112,7 +112,11 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 }) // needs proper error for > 10 images
 
 router.put('/:reviewId', requireAuth, async (req, res) => {
-    const { review, stars } = req.body
+    // console.log(req)
+    let { review, stars } = req.body
+    console.log(typeof review)
+    console.log(typeof +stars)
+    stars = +stars
     const { reviewId } = req.params
     const theReview = await Review.findByPk(reviewId)
     const { user } = req

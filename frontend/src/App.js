@@ -9,6 +9,7 @@ import SpotsDetails from "./components/SpotsDetails";
 // import CreateSpotButton from "./components/CreateSpot";
 import EditBookingButton from "./components/EditBooking/EditBooking";
 import SearchResults from "./components/SearchResults/SearchResults";
+import EditReviewButton from "./components/EditReview/EditReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path='/bookings/:bookingId'>
             <EditBookingButton />
+          </Route>
+          <Route path='/reviews/:reviewId'>
+            <EditReviewButton />
           </Route>
           <Route path='/search'>
           <SearchResults />

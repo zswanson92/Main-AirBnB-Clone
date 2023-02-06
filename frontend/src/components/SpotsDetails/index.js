@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-// import { NavLink, Route, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteSpot, getSpotById } from '../../store/spots';
-// import { loadAllSpots } from '../../store/spots';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import './SpotsDetails.css'
 import EditSpotButton from '../EditSpot';
 import { getAllReviews, deleteReview } from '../../store/reviews';
 import CreateReviewButton from '../CreateReview';
-// import CreateSpotButton from '../CreateSpot';
 import CreateBookingButton from '../CreateBooking/CreateBooking';
 import { getBookingsThunk, deleteBookingThunk } from '../../store/bookings';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { FaStar } from "react-icons/fa";
+import { IconContext } from "react-icons";
+import EditReviewButton from '../EditReview/EditReview';
 
 const SpotsDetails = () => {
     const history = useHistory()
@@ -50,14 +50,14 @@ const SpotsDetails = () => {
 
     let reviewArr;
 
-    if(reviewDetailsObj){
+    if (reviewDetailsObj) {
         reviewArr = Object.values(reviewDetailsObj)
     }
 
 
     let filteredReviewArr;
 
-    if(reviewArr){
+    if (reviewArr) {
         filteredReviewArr = reviewArr.filter(review => review.spotId == spotId)
     }
 
@@ -74,9 +74,9 @@ const SpotsDetails = () => {
         await dispatch(getBookingsThunk(spotId))
     }
 
-    const deleteAReview = async (e) => {
+    const deleteAReview = async (e, reviewId) => {
         e.preventDefault();
-        await dispatch(deleteReview(e.target.id))
+        await dispatch(deleteReview(reviewId))
         await dispatch(getAllReviews(spotId))
 
     }
@@ -148,15 +148,23 @@ const SpotsDetails = () => {
 
                 {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <EditSpotButton /> : null)}
             </div>
+            <div className='reviews-p'>Reviews: </div>
             <div className='reviews-ul-div'>
+
                 <div className='reviews-ul'>
-                <div>
-                <div className='reviews-p'>Reviews: </div>
-                </div>
-                {filteredReviewArr?.map(review => (<div className='filtered-rev-map-div' key={review.id}>
-                    <div key={review.id} className='reviews-li'>"{review?.review}"</div>
-                    {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
-                </div>))}
+
+                    {filteredReviewArr?.map(review => (<div className='filtered-rev-map-div' key={review.id}>
+                        {/* {console.log("THIS IS REVIEW", review)} */}
+                        <div className='reviews-li'>"{review?.review}" &nbsp; {review?.stars}
+                            <IconContext.Provider value={{ color: 'yellow' }} >
+                                <FaStar />
+                            </IconContext.Provider>
+                        </div>
+                        <div className='review-info-div'>- {review?.User.firstName} {review?.User.lastName} {sortFunc(review?.updatedAt.slice(0, 10).split('-')).join('-')}</div>
+                        {/* <div>{sortFunc(review?.updatedAt.slice(0, 10).split('-')).join('-')}</div> */}
+                        {sessionUser && (sessionUser?.id === review?.User?.id ? <div className='remove-review-butt-div'><button key={review.id} className='remove-review-button' onClick={(e) => deleteAReview(e, review.id)}>Remove Review</button> <Link to={`/reviews/${review.id}`}><button className='remove-review-button'>Edit Review</button></Link></div> : null)}
+                        {/* {sessionUser && (sessionUser?.id === review?.User?.id ? <div className='remove-review-butt-div'><Link to={`/reviews/${review.id}`}><button>TEST</button></Link></div> : null)} */}
+                    </div>))}
                 </div>
                 <div className='current-bookings-div'>
                     <Calendar
@@ -183,23 +191,23 @@ export default SpotsDetails
 
 
 // activeStartDate={new Date(booking.startDate.slice(0, 10).split('-'))}
-   // tileClassName={({ date }) => {
-                    //     {console.log("THIS IS DATE????", date.toDateString())}
-                    //     // if (shouldDateBeSelected(date.toDateString())) {
-                    //     if (dateArr.includes(date.toDateString())) {
-                    //         return 'react-calendar__tile--active';
-                    //     }
-                    //     return null;
-                    // }}
 // tileClassName={({ date }) => {
-                        //     {console.log("THIS IS DATE????", date.toDateString())}
-                        //     // if (shouldDateBeSelected(date.toDateString())) {
-                        //     if (dateArr.includes(date.toDateString())) {
-                        //         return 'react-calendar__tile--active';
-                        //     }
-                        //     return null;
-                        // }}
-                        {/* {filteredReviewArr.map(review => (<div className='filtered-rev-map-div' key={review.id}>
+//     {console.log("THIS IS DATE????", date.toDateString())}
+//     // if (shouldDateBeSelected(date.toDateString())) {
+//     if (dateArr.includes(date.toDateString())) {
+//         return 'react-calendar__tile--active';
+//     }
+//     return null;
+// }}
+// tileClassName={({ date }) => {
+//     {console.log("THIS IS DATE????", date.toDateString())}
+//     // if (shouldDateBeSelected(date.toDateString())) {
+//     if (dateArr.includes(date.toDateString())) {
+//         return 'react-calendar__tile--active';
+//     }
+//     return null;
+// }}
+{/* {filteredReviewArr.map(review => (<div className='filtered-rev-map-div' key={review.id}>
 
                 <div key={review.id} className='reviews-li'>"{review?.review}"</div>
                 {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
