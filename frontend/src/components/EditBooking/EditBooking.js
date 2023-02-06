@@ -8,54 +8,64 @@ import * as bookingActions from '../../store/bookings'
 
 
 
-function EditBookingButton (){
-    let history = useHistory();
-    const dispatch = useDispatch();
-    const { bookingId } = useParams()
+function EditBookingButton() {
+  let history = useHistory();
+  const dispatch = useDispatch();
+  const { bookingId } = useParams()
 
-    const [startDate, setStartDate] = useState("")
-    const [endDate, setEndDate] = useState("")
+  const [startDate, setStartDate] = useState("")
+  const [endDate, setEndDate] = useState("")
 
-    // const [showReviewForm, setReviewForm] = useState(false)
+  // const [showReviewForm, setReviewForm] = useState(false)
 
-    const editBooking = async (e) => {
-        e.preventDefault();
+  const editBooking = async (e) => {
+    e.preventDefault();
 
-        const editedBooking = {
-            startDate, endDate
-        }
+    const editedBooking = {
+      startDate, endDate
+    }
 
 
-        const newBooking = await dispatch(bookingActions.editBookingThunk(bookingId, editedBooking))
-        // await dispatch(reviewActions.getAllReviews(spotId))
-        // await dispatch(spotActions.getSpotById(spotId))
-        // await dispatch(getBookingsThunk(spotId))
-        if(newBooking){
-            await history.push(`/spots/${newBooking?.spotId}`)
-        }
-        // setReviewForm(false)
-      }
+    const newBooking = await dispatch(bookingActions.editBookingThunk(bookingId, editedBooking))
+    // await dispatch(reviewActions.getAllReviews(spotId))
+    // await dispatch(spotActions.getSpotById(spotId))
+    // await dispatch(getBookingsThunk(spotId))
+    if (newBooking) {
+      await history.push(`/spots/${newBooking?.spotId}`)
+    }
+    // setReviewForm(false)
+  }
 
-    return (
-        <>
-        <form onSubmit={editBooking} className="newreview-form">
-          <label>Enter start date</label>
-            <input
+  const goBack = (e) => {
+    e.preventDefault();
+
+    history.goBack()
+  }
+
+  return (
+    <>
+      <form onSubmit={editBooking} className="edit-booking-form">
+        <div className='edit-booking-div'>
+          Enter start date:
+          <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            required={true}/>
-          <label>Enter end date</label>
+            required={true} />
+        </div>
+        <div className='edit-booking-div'>
+          Enter end date:
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-            required={true}/>
-          <button type="submit" className="submitreview-button">Submit booking edit request</button>
-          <button className='discardreviewform-button'>Close Form</button>
-        </form>
-        </>
-      )
+            required={true} />
+        </div>
+        <button type="submit" className="submitreview-button">Submit edited booking request</button>
+        <button onClick={goBack} className='discardreviewform-button'>Return to location</button>
+      </form>
+    </>
+  )
 }
 
 export default EditBookingButton

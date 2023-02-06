@@ -58,9 +58,11 @@ const EditReviewButton = () => {
         history.goBack()
     }
 
-    // const goBack = () => {
-    //     history.goBack()
-    // }
+    const goBack = (e) => {
+        e.preventDefault();
+
+        history.goBack()
+    }
 
     return (
         <div className="edit-review-container-div">
@@ -100,7 +102,7 @@ const EditReviewButton = () => {
                 </div>
                 <div className="edit-review-button-div">
                     <button disabled={errors.length > 0 ? true : false} type='submit' className="submit-edited-review-button">Submit Edited Review</button>
-                    {/* <button className="submit-edited-review-button">Close</button> */}
+                    <button onClick={goBack} className="submit-edited-review-button">Close</button>
                 </div>
             </form>
         </div>

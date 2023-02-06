@@ -33,7 +33,8 @@ function Navigation({ isLoaded }) {
       </>
     );
   }
-{/* <a href='logo.png' className='logo'></a></a> */}
+
+
   return (
     <div className='header-div'>
       <div className='home-img-div'>

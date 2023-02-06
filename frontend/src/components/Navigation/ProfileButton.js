@@ -5,7 +5,7 @@ import './Navigation.css';
 // import CreateSpotButton from "../CreateSpot";
 import { Modal } from '../../context/Modal';
 // import EditSpotButton from "../EditSpot";
-import { useLocation } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
 
 function ProfileButton({ user, setLogin, setShowModal }) {
   const dispatch = useDispatch();
@@ -34,9 +34,9 @@ function ProfileButton({ user, setLogin, setShowModal }) {
     dispatch(sessionActions.logout());
   };
 
-  const location = useLocation();
+  // const location = useLocation();
 
-  const abcde = location.pathname
+  // const abcde = location.pathname
 
 
 

@@ -1,0 +1,14 @@
+.edit-booking-form{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10em;
+}
+
+.edit-booking-div{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}

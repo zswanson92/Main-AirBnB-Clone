@@ -13,7 +13,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { FaStar } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import EditReviewButton from '../EditReview/EditReview';
+// import EditReviewButton from '../EditReview/EditReview';
 
 const SpotsDetails = () => {
     const history = useHistory()
@@ -210,11 +210,11 @@ export default SpotsDetails
 //     }
 //     return null;
 // }}
-{/* {filteredReviewArr.map(review => (<div className='filtered-rev-map-div' key={review.id}>
+/* {filteredReviewArr.map(review => (<div className='filtered-rev-map-div' key={review.id}>
 
                 <div key={review.id} className='reviews-li'>"{review?.review}"</div>
                 {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
-            </div>))} */}
+            </div>))} */
               // let dateArr = []
     // filteredBookingArr.forEach((el) => {
     //     dateArr.push(new Date(el.startDate).toDateString())

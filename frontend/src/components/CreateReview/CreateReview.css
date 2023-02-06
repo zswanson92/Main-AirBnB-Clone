@@ -16,7 +16,7 @@
     color: white;
     border: none;
     border-radius: 5px;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 }
 
 .discardreviewform-button{
@@ -27,16 +27,26 @@
 }
 
 .newreview-form{
-    padding-top: 40px;
+    padding: 2em;
     display: flex;
+    flex-direction: column;
+    gap: .5em;
+    align-items: center;
     justify-content: center;
 }
 
-.stars-label{
-    padding-top: 20px;
-    padding-right: 20px;
+.review-textarea{
+    height: 8em;
 }
 
-.review-textarea{
-    margin-right: 20px;
+.stars-div{
+    display: flex;
+    /* flex-direction: column; */
+    gap: 1em;
+}
+
+
+.create-review-ta{
+    display: flex;
+    flex-direction: column;
 }

@@ -10,3 +10,16 @@
     color: white;
     border: none;
 }
+
+.new-booking-form{
+    padding: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+.enter-date-div{
+    display: flex;
+    flex-direction: column;
+}

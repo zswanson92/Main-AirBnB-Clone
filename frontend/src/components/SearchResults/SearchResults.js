@@ -1,7 +1,7 @@
 import './SearchResults.css'
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SearchResults = () => {
     const searchObj = useSelector((state) => {
@@ -10,7 +10,7 @@ const SearchResults = () => {
 
     // console.log("THIS IS SEARCH OBJ", searchObj)
 
-    const history = useHistory()
+    // const history = useHistory()
 
     const search = Object.values(searchObj?.search?.allResults);
     // console.log("THIS IS SEARCH", search)
@@ -45,7 +45,7 @@ const SearchResults = () => {
                         return (
                             <div key={obj.id} className="spot-links">
                                 <Link className='search-map-links' to={`/spots/${obj.id}`}>
-                                <img className='search-img' src={obj.lat[0].url}/>
+                                <img className='search-img' alt='Loading...' src={obj.lat[0].url}/>
                                 <div className='search-map-name-div'>{obj.name} - ${obj.price} / night</div>
                                 <div className='search-map-name-div'>{obj.address}, {obj.city} {obj.state}</div>
                                 </Link>
