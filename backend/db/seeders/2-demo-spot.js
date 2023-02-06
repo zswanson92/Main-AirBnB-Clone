@@ -152,6 +152,138 @@ module.exports = {
         name: 'failed dev den',
         description: 'you can work at amazon and live here!',
         price: 55.12
+      },
+      {
+        ownerId: 2,
+        address: '88312 S Irvington St',
+        city: 'Boise',
+        state: 'Idaho',
+        country: 'United States',
+        lat: 29.77,
+        lng: 48.23,
+        name: 'Idaho Incubator',
+        description: 'A small apartment designed primarily as an office work space. Not much in the way of amenities outside of standard office supplies. The computers are maintained well and the internet connection is very good.',
+        price: 400
+      },
+      {
+        ownerId: 3,
+        address: '4291 E Hoagg pl',
+        city: 'Huntsville',
+        state: 'Alabama',
+        country: 'United States',
+        lat: 20.15,
+        lng: 08.88,
+        name: 'Deep South Den',
+        description: 'A great location in a great locale. A true deep south experience with ample hunting available nearby. What is lacks for in local businesses it makes up for in experience.',
+        price: 375.75
+      },
+      {
+        ownerId: 1,
+        address: '6113 SW Justice cir',
+        city: 'Salt Lake City',
+        state: 'Utah',
+        country: 'United States',
+        lat: 30.29,
+        lng: 47.22,
+        name: 'Salt Lake City High Rise',
+        description: 'Apartment on the 21st floor overlooking the entirety of Salt Lake City. Comes with a gym, hot tub, and sauna. In the middle of a lot of fun activities to be found in Salt Lake City.',
+        price: 800
+      },
+      {
+        ownerId: 2,
+        address: '1155 NE platter rd.',
+        city: 'El Paso',
+        state: 'Texas',
+        country: 'United States',
+        lat: 35.99,
+        lng: 21.08,
+        name: 'El Paso den',
+        description: 'Gorgeous Texas property at a great price, availability is high.',
+        price: 550
+      },
+      {
+        ownerId: 3,
+        address: '2290 Tarheel Cir',
+        city: 'Charlotte',
+        state: 'North Carolina',
+        country: 'United States',
+        lat: 51.82,
+        lng: 57,
+        name: 'The Tarheel House',
+        description: 'A dream location for any college basketball fan. Come enjoy the beautiful scenery that North Carolina has to offer in this custom catered villa for Tar Heel fans.',
+        price: 750
+      },
+      {
+        ownerId: 1,
+        address: '88769 Beach Ave',
+        city: 'Baltimore',
+        state: 'Maryland',
+        country: 'United States',
+        lat: 23.09,
+        lng: 87.11,
+        name: 'Crab Cabin',
+        description: 'A lovely location to relax and enjoy some gorgeous Baltimore shores. Comes equipped with nets and a small boat for those that may want to engage in crabbing to get a true Maryland experience!',
+        price: 450.50
+      },
+      {
+        ownerId: 2,
+        address: '12054 N main St',
+        city: 'Miami',
+        state: 'Florida',
+        country: 'United States',
+        lat: 65.32,
+        lng: 33.15,
+        name: 'Southshore Apartment',
+        description: "High rise apartment that overlooks a large portion of the south end of Miami's downtown. Very close access to a large number of restaraunts and night clubs.",
+        price: 1000.01
+      },
+      {
+        ownerId: 3,
+        address: '4478 SE combs Ave',
+        city: 'Minneapolis',
+        state: 'Minnesota',
+        country: 'United States',
+        lat: 22.77,
+        lng: 38.41,
+        name: 'Cozy Cabin',
+        description: 'A small cabin located on the outskirts of Minneaplos. A quiet and modest location for those lookings for peace and quiet or time away from the big city. Includes wood for fireplace.',
+        price: 330
+      },
+      {
+        ownerId: 1,
+        address: '70123 12th Street',
+        city: 'New Orleans',
+        state: 'Louisiana',
+        country: 'United States',
+        lat: 67.17,
+        lng: 95.23,
+        name: 'Creole Casa',
+        description: 'An apartment in the heart of downtown New Orleans. A location central to the good times to be found in the city, next to many restaraunts. Very limited availability around Mardi Gras.',
+        price: 800.25
+      },
+      {
+        ownerId: 2,
+        address: '6653 N 10th blvd',
+        city: 'Buffalo',
+        state: 'New York',
+        country: 'United States',
+        lat: 21.09,
+        lng: 11.06,
+        name: 'Buffalo Bungalow',
+        description: 'A subtle apartment on the outskirts of Buffalo. We get a lot of snow here and expect occupants to be able to handle it on their own. Semi-close to the football stadium if you want to catch a Bills game.',
+        price: 475
+      },
+      {
+        ownerId: 3,
+        address: '9842 Cowgraze Lane',
+        city: 'Madison',
+        state: 'Wisconsin',
+        country: 'United States',
+        lat: 47.23,
+        lng: 43.99,
+        name: 'Madison Farm',
+        description: 'Farm property with 6 acres available. No animals are homed here. No neighbors nearby, great place to enjoy some of the beautiful flat scenery that Wisconsin has to offer.',
+        price: 550
       }
 
     ], {})
@@ -168,7 +300,9 @@ module.exports = {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
       name: { [Op.in]: ['casa de banana', 'the nerd palace', 'super cool place to stay', 'the deferral dome', 'not a chill spot', 'poppin palace', 'book burning bungalow',
-      'some place in florida', 'the icky igloo', 'the chill farm', 'failed dev den']}
+      'some place in florida', 'the icky igloo', 'the chill farm', 'failed dev den', 'Idaho Incubator', 'Deep South Den',
+      'Salt Lake City High Rise', 'El Paso den', 'The Tarheel House', 'Crab Cabin', 'Southshore Apartment', 'Cozy Cabin',
+      'Creole Casa', 'Buffalo Bungalow', 'Madison Farm']}
     }, {})
   }
 };

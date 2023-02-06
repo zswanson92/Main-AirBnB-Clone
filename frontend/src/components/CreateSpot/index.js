@@ -52,24 +52,26 @@ function CreateSpotButton() {
 
   useEffect(() => {
     let err = []
-    if(name.length > 40){
+    if (name.length > 40) {
       err.push('Name is too long.')
     }
-    if(lat.length > 0 && !isValidNum(lat)){
+    if (lat.length > 0 && !isValidNum(lat)) {
       err.push('Latitude must be a number.')
     }
-    if(lng.length > 0 && !isValidNum(lng)){
+    if (lng.length > 0 && !isValidNum(lng)) {
       err.push('Longitude must be a number.')
     }
-    if(price.length > 0 && !isValidNum(price)){
+    if (price.length > 0 && !isValidNum(price)) {
       err.push('Price must be a number.')
     }
-    if(description.length > 255){
+    if (description.length > 255) {
       err.push('Description is too long.')
     }
 
     setErrors(err)
   }, [name, lat, lng, price, description])
+
+
 
 
   const updateFile = (e) => {
