@@ -166,12 +166,13 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 
 .description-div{
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   /* align-items: center; */
   font-size: 18px;
   font-weight: 100;
   padding-top: .5em;
-  width: 30em;
+  width: 50em;
+  overflow-wrap: break-word;
   /* padding-left: 30em; */
 }
 
@@ -179,6 +180,7 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 .current-bookings-div{

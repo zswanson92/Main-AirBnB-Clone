@@ -142,10 +142,10 @@ const SpotsDetails = () => {
 
             </div>
             <div className='kekw-div'>
-            <div className='top-description-div'>Description:</div>
-            <div className='description-div'> {spotDetailsObj?.description}</div>
+                <div className='top-description-div'>Description:</div>
+                <div className='description-div'> {spotDetailsObj?.description}</div>
 
-            <div className='price-detail'>Price Per Night: ${spotDetailsObj?.price}</div>
+                <div className='price-detail'>Price Per Night: ${spotDetailsObj?.price}</div>
             </div>
             {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <div className='create-rev-book-div'><CreateReviewButton />  <CreateBookingButton /></div> : null)}
             {/* {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <CreateBookingButton /> : null)} */}
