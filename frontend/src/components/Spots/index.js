@@ -33,6 +33,7 @@ const Spots = () => {
                 {aSpot.map((obj) => {
                     return (
                         <div key={obj.id} className='inner-homepage'>
+                            {console.log("!!!OBJ", obj)}
                             <Link style={{ textDecoration: 'none' }} to={`/spots/${obj.id}`}>
                                 <img
                                     className="item-image"

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as spotActions from '../../store/spots'
 // import { Redirect, useHistory } from "react-router-dom";
 import './EditSpot.css'
@@ -7,26 +7,45 @@ import { useParams } from 'react-router-dom';
 import { Modal } from '../../context/Modal'
 
 
-function EditSpotButton({ user }) {
+function EditSpotButton() {
   // const history = useHistory()
   const dispatch = useDispatch();
   const { spotId } = useParams()
 
+  const currSpot = useSelector(state => state.spots.spot[spotId])
+  console.log("currSpot", currSpot)
 
-  // const [showModal, setShowModal] = useState(false)
-  const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
-  const [address, setAddress] = useState("")
-  const [city, setCity] = useState("")
-  const [country, setCountry] = useState("")
-  const [state, setState] = useState("")
-  const [lat, setLat] = useState("")
-  const [lng, setLng] = useState("")
-  const [price, setPrice] = useState("")
+  let editValOne;
+  let editValTwo;
+  let editValThree;
+  let editValFour;
+  let editValFive;
+  let editValSix;
+  let editValSeven;
+  let editValEight;
+  let editValNine;
+
+  const editValOneSet = currSpot ? editValOne = currSpot.name : ""
+  const editValTwoSet = currSpot ? editValTwo = currSpot.description : ""
+  const editValThreeSet = currSpot ? editValThree = currSpot.address : ""
+  const editValFourSet = currSpot ? editValFour = currSpot.city : ""
+  const editValFiveSet = currSpot ? editValFive = currSpot.country : ""
+  const editValSixSet = currSpot ? editValSix = currSpot.state : ""
+  const editValSevenSet = currSpot ? editValSeven = currSpot.lat : ""
+  const editValEightSet = currSpot ? editValEight = currSpot.lng : ""
+  const editValNineSet = currSpot ? editValNine = currSpot.price : ""
+
+  const [name, setName] = useState(editValOne ? editValOne : "")
+  const [description, setDescription] = useState(editValOne ? editValOne : "")
+  const [address, setAddress] = useState(editValOne ? editValOne : "")
+  const [city, setCity] = useState(editValOne ? editValOne : "")
+  const [country, setCountry] = useState(editValOne ? editValOne : "")
+  const [state, setState] = useState(editValOne ? editValOne : "")
+  const [lat, setLat] = useState(editValOne ? editValOne : "")
+  const [lng, setLng] = useState(editValOne ? editValOne : "")
+  const [price, setPrice] = useState(editValOne ? editValOne : "")
   const [url, setUrl] = useState(null)
-  // const [preview, setPreview] = useState("")
   const [showForm, setShowForm] = useState(false)
-  // const [submit, setSubmit] = useState(true)
 
   const editCurrentSpot = async (e) => {
     e.preventDefault();
@@ -35,16 +54,12 @@ function EditSpotButton({ user }) {
       name, description, address, city, country, state, lat, lng, price, url
     }
 
-    // const aEditedSpot =
     await dispatch(spotActions.editSpot(spotId, editedSpot))
 
-    // setSubmit(false)
-    // if(aEditedSpot){
+
     await dispatch(spotActions.getSpotById(spotId))
-    // }
     setShowForm(false)
 
-    // return history.push(`/spots/${spotId}`)
   }
 
   const updateFile = (e) => {
@@ -127,6 +142,14 @@ function EditSpotButton({ user }) {
               onChange={updateFile}
               // required
             />
+            <div>(This will change the image located on the details page only.)</div>
+            {/* <div> */}
+            {/* <input
+            type="checkbox"
+            value={preview}
+            onClick={(e) => setPreview(!preview)}
+            /> */}
+            {/* make this image preview image?</div> */}
             {/* Click here to upload an image.
             </label> */}
 

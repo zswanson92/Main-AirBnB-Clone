@@ -179,10 +179,10 @@ router.post('/:spotId/images', singleMulterUpload("url"), async (req, res) => {
     const { spotId } = req.params
     const theSpot = await Spot.findByPk(spotId)
     // const { user } = req
-    console.log("THIS IS REQ.FILE", req.file)
-    console.log("THIS IS REQ", req)
+    // console.log("THIS IS REQ.FILE", req.file)
+    // console.log("THIS IS REQ", req)
     const url = await singlePublicFileUpload(req.file);
-    console.log("THIS IS MAYBE URL", url)
+    // console.log("THIS IS MAYBE URL", url)
 
         if(theSpot){
             const image = await SpotImage.create({

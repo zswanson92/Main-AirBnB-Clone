@@ -147,9 +147,10 @@ export const editSpot = (spotId, payload) => async dispatch => {
             const formData = new FormData();
 
             formData.append("url", url);
+            // formData.append("preview", preview);
 
             const imageRes = await csrfFetch(`/api/spots/${editedSpot.id}/images`, {
-                method: 'PUT',
+                method: 'POST',
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -163,6 +164,7 @@ export const editSpot = (spotId, payload) => async dispatch => {
                 const editedImage = await imageRes.json()
                 editedSpot.url = editedImage.url
                 formData.append("url", url)
+                // formData.append("preview", preview);
                 dispatch(edit(editedSpot))
                 return editedSpot
             }

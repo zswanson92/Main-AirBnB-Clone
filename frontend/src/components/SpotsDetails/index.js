@@ -134,7 +134,7 @@ const SpotsDetails = () => {
             <div className='spot-details-img'>
                 <img
 
-                    src={spotDetailsObj?.SpotImages ? `${spotDetailsObj?.SpotImages[0].url}` : null}
+                    src={spotDetailsObj?.SpotImages ? `${spotDetailsObj?.SpotImages[spotDetailsObj?.SpotImages.length - 1].url}` : null}
 
                     alt=''
                     className='actual-details-image'
