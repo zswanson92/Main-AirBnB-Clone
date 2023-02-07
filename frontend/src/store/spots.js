@@ -131,7 +131,7 @@ export const deleteSpot = (spotId) => async dispatch => {
 }
 
 export const editSpot = (spotId, payload) => async dispatch => {
-    const { address, city, state, country, lat, lng, name, description, price } = payload
+    const { address, city, state, country, lat, lng, name, description, price, url } = payload
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: {
@@ -140,7 +140,36 @@ export const editSpot = (spotId, payload) => async dispatch => {
         body: JSON.stringify({ address, city, state, country, lat, lng, name, description, price })
     })
 
-    if (response.ok) {
+    if(url){
+        if (response.ok) {
+            const editedSpot = await response.json()
+
+            const formData = new FormData();
+
+            formData.append("url", url);
+
+            const imageRes = await csrfFetch(`/api/spots/${editedSpot.id}/images`, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                // body: JSON.stringify({ url, preview })
+                body: formData
+            })
+
+
+            // console.log("this is edited spot from thunk", editedSpot)
+            if(imageRes.ok){
+                const editedImage = await imageRes.json()
+                editedSpot.url = editedImage.url
+                formData.append("url", url)
+                dispatch(edit(editedSpot))
+                return editedSpot
+            }
+        }
+    }
+
+    else if (response.ok) {
         const editedSpot = await response.json()
         // console.log("this is edited spot from thunk", editedSpot)
         dispatch(edit(editedSpot))

@@ -29,3 +29,11 @@
     height: 60px;
     width: 90px;
 }
+
+.editspot-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    gap: 1em;
+}

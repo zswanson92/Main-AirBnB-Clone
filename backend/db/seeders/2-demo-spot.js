@@ -172,7 +172,7 @@ module.exports = {
         state: 'Alabama',
         country: 'United States',
         lat: 20.15,
-        lng: 08.88,
+        lng: 18.88,
         name: 'Deep South Den',
         description: 'A great location in a great locale. A true deep south experience with ample hunting available nearby. What is lacks for in local businesses it makes up for in experience.',
         price: 375.75

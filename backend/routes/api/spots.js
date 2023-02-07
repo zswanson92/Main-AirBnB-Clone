@@ -595,11 +595,17 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
 })
 
 // get all bookings for a spot based on the spot's id
-router.get('/:spotId/bookings', requireAuth, async (req, res) =>{
+router.get('/:spotId/bookings', async (req, res) =>{
     const { spotId } = req.params
     const theSpot = await Spot.findByPk(spotId)
     const { user } = req
-    const userId = user.toSafeObject().id
+    console.log(user)
+
+    let userId;
+
+    if(user){
+        userId = user.toSafeObject().id
+    }
 
 
     if(theSpot){

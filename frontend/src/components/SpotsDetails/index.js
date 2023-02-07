@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { deleteSpot, getSpotById } from '../../store/spots';
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { useParams, useHistory, Link, NavLink } from 'react-router-dom';
 import './SpotsDetails.css'
 import EditSpotButton from '../EditSpot';
 import { getAllReviews, deleteReview } from '../../store/reviews';
@@ -14,6 +14,7 @@ import 'react-calendar/dist/Calendar.css';
 import { FaStar } from "react-icons/fa";
 import { IconContext } from "react-icons";
 // import EditReviewButton from '../EditReview/EditReview';
+import logotwo from '../../assets/githublogo.png'
 
 const SpotsDetails = () => {
     const history = useHistory()
@@ -107,12 +108,13 @@ const SpotsDetails = () => {
         }
 
         for (let bookId in bookingDetailsObj) {
-            const start = new Date(bookingDetailsObj[bookId].startDate)
+            let start = new Date(bookingDetailsObj[bookId].startDate)
             let end = new Date(bookingDetailsObj[bookId].endDate)
             end = end.addDays(1)
+            // start = start.addDays(1)
             date = new Date(date)
 
-            if (date > start && date < end) {
+            if (date >= start && date < end) {
                 return true
             }
         }
@@ -139,10 +141,12 @@ const SpotsDetails = () => {
                 />
 
             </div>
-            <div className='description-div'>Description: {spotDetailsObj?.description}</div>
+            <div className='kekw-div'>
+            <div className='top-description-div'>Description:</div>
+            <div className='description-div'> {spotDetailsObj?.description}</div>
 
             <div className='price-detail'>Price Per Night: ${spotDetailsObj?.price}</div>
-
+            </div>
             {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <div className='create-rev-book-div'><CreateReviewButton />  <CreateBookingButton /></div> : null)}
             {/* {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <CreateBookingButton /> : null)} */}
             <div className='delete-edit-buttons-div'>
@@ -172,7 +176,6 @@ const SpotsDetails = () => {
                     <Calendar
                         tileDisabled={tileDisable}
                     />
-                    {console.log("CONDY CHECK", filteredBookingArr)}
                     {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <div className='under-calendar-div'>Your current Bookings for this location:</div> : "")}
 
                     {filteredBookingArr?.map((booking) => {
@@ -186,7 +189,11 @@ const SpotsDetails = () => {
                     })}
                 </div>
             </div>
-
+            <footer className='cred-footer'>
+                <div className='foot-div'>© 2022 UltimateZnB Corp
+                    <div className='foot-name-div'><a href='https://github.com/zswanson92'>Zack Swanson</a></div>
+                    <a href='https://github.com/zswanson92'> <img src={logotwo} alt='Logo' className='splash-logo-img'></img></a></div>
+            </footer>
         </div>
     )
 }

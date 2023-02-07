@@ -159,12 +159,26 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
   justify-content: center;
 }
 
+.top-description-div{
+  font-weight: bold;
+  font-size: 22px;
+}
+
 .description-div{
   display: flex;
-  justify-content: center;
-  font-size: 22px;
+  /* justify-content: center; */
+  /* align-items: center; */
+  font-size: 18px;
+  font-weight: 100;
   padding-top: .5em;
-  /* width: 50em; */
+  width: 30em;
+  /* padding-left: 30em; */
+}
+
+.kekw-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .current-bookings-div{
@@ -206,4 +220,28 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
   border-radius: 5px;
   color: white;
   border: none;
+}
+
+.cred-footer{
+  padding-top: 15em;
+  width: 100%;
+  /* background-color: gray; */
+}
+
+.splash-logo-img{
+  object-fit: contain;
+  height: 2em;
+  width: 50px;
+}
+
+.foot-div{
+  display: flex;
+  /* gap: 5em; */
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(177, 171, 171);
+}
+
+.foot-name-div{
+  padding-left: 98em;
 }

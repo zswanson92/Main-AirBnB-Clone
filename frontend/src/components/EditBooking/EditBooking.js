@@ -1,6 +1,6 @@
 import './EditBooking.css'
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from 'react-router-dom'
 import * as bookingActions from '../../store/bookings'
 // import * as spotActions from '../../store/spots'
@@ -13,8 +13,20 @@ function EditBookingButton() {
   const dispatch = useDispatch();
   const { bookingId } = useParams()
 
-  const [startDate, setStartDate] = useState("")
-  const [endDate, setEndDate] = useState("")
+  const currBooking = useSelector(state => state.bookings?.allBookings.Bookings)
+  // console.log("CURR BOOKING", currBooking)
+
+  const bookingFilter = currBooking?.filter(obj => obj.id === +bookingId)
+
+  let editValOne;
+  let editValTwo;
+
+  const workAround = bookingFilter ? editValOne = bookingFilter[0]?.startDate : ""
+  const workAroundTwo = bookingFilter ? editValTwo = bookingFilter[0]?.endDate : ""
+
+
+  const [startDate, setStartDate] = useState(editValOne ? editValOne.slice(0, 10) : "")
+  const [endDate, setEndDate] = useState(editValTwo ? editValTwo.slice(0, 10) : "")
 
   // const [showReviewForm, setReviewForm] = useState(false)
 
@@ -25,15 +37,9 @@ function EditBookingButton() {
       startDate, endDate
     }
 
+    await dispatch(bookingActions.editBookingThunk(bookingId, editedBooking))
 
-    const newBooking = await dispatch(bookingActions.editBookingThunk(bookingId, editedBooking))
-    // await dispatch(reviewActions.getAllReviews(spotId))
-    // await dispatch(spotActions.getSpotById(spotId))
-    // await dispatch(getBookingsThunk(spotId))
-    if (newBooking) {
-      await history.push(`/spots/${newBooking?.spotId}`)
-    }
-    // setReviewForm(false)
+    history.goBack()
   }
 
   const goBack = (e) => {
