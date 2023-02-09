@@ -37,3 +37,11 @@
 .search-img{
     border-radius: 20px;
 }
+
+.no-results-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8em;
+    font-size: 30px;
+}

@@ -18,17 +18,16 @@ const SearchResults = () => {
     if (search.length === 0) {
         return (
             <>
-                <h2>
-                    <div>
-                        <div>
+                {/* <h2> */}
+                    <div className='no-results-div'>
+                        <div style={{ paddingBottom: '2em' }}>
                             <h1>No Results Found</h1>
                         </div>
                         <div>
-                            <h2>Please Check Your Search </h2>
-                            <h2> and Try Again</h2>
+                            <h2>Please Check Your Search and try again.</h2>
                         </div>
                     </div>
-                </h2>
+                {/* </h2> */}
             </>
         );
     }

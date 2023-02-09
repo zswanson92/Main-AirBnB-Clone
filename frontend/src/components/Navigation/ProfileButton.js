@@ -42,41 +42,52 @@ function ProfileButton({ user, setLogin, setShowModal }) {
 
   return (
     <>
-      <div className="parent-dropdown-container">
-        {/* {user && (abcde === '/' ? <CreateSpotButton /> : null)} */}
-        <div className="test-bars-div">
-          <button onClick={openMenu} className='random-button'>
-            <i className="fas fa-bars fa-2x" />
-          </button>
-        </div>
-      </div>
+      {user ?
+        <div className="parent-dropdown-container">
+          <div className="test-bars-div">
+            <button onClick={openMenu} className='random-button'>
+              <i className="fas fa-bars fa-2x" />
+            </button>
+          </div>
+        </div> :
+        <div className="is-this-thediv">
+        <button className="initial-login-button" onClick={() => {
+          setLogin(true)
+          setShowModal(true)
+        }}>Log in</button>
+        <button className="initial-signup-button" onClick={() => {
+          setLogin(false)
+          setShowModal(true)
+        }}>Sign up</button>
+      </div>}
 
-      <div>
-        {showMenu && (user ?
-          <Modal>
-            <div className="logged-in-user-div">
-              <div>Username: {user.username}</div>
-              <div>User email: {user.email}</div>
-              <button className="the-logout-button" onClick={logout}>Log Out</button>
-            </div>
-          </Modal>
-          :
-          <Modal>
-            <button className="initial-login-button" onClick={() => {
-              setLogin(true)
-              setShowModal(true)
-            }}>Log in</button>
-            <button className="initial-signup-button" onClick={() => {
-              setLogin(false)
-              setShowModal(true)
-            }}>Sign up</button>
-          </Modal>)}
-      </div>
+      {(showMenu && user) && (
+        <div className="user-dropdown">
+          <div>Username: {user.username}</div>
+          <div>User email: {user.email}</div>
+          <button className="the-logout-button" onClick={logout}>Log Out</button>
+        </div>
+        )}
     </>
   );
 }
 
 export default ProfileButton;
+
+
+
+
+{/* <div className="is-this-thediv">
+          <button className="initial-login-button" onClick={() => {
+            setLogin(true)
+            setShowModal(true)
+          }}>Log in</button>
+          <button className="initial-signup-button" onClick={() => {
+            setLogin(false)
+            setShowModal(true)
+          }}>Sign up</button>
+        </div>) */}
+
 
 //   {/* {user ? <EditSpotButton /> : null} */}
     //   {showMenu && (user ?

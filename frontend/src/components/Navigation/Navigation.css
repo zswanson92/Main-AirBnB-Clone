@@ -1,6 +1,6 @@
 .header-div {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     /* gap: 20em; */
     align-items: center;
     /* padding-top: .5em; */
@@ -46,6 +46,10 @@
     width: auto;
     height: auto;
     padding: 1em;
+}
+
+.is-this-thediv{
+
 }
 
 .parent-dropdown-container {
@@ -111,10 +115,41 @@
     border-radius: 30px;
 }
 
-.initial-signup-button:hover,
-.initial-signup-button:focus {
+.initial-signup-button:hover {
     box-shadow: inset 0 0 0 2em var(--hover);
 }
+
+.random-button:hover,
+.random-button:focus{
+    box-shadow: inset 0 0 0 2em var(--hover);
+    background-color: rgb(168, 160, 160);
+}
+
+/* .test-bars-div:hover,
+.test-bars-div:focus{
+    box-shadow: inset 0 0 0 2em var(--hover);
+} */
+
+
+
+.user-dropdown{
+    position: absolute;
+    top: 50px;
+    right: 30px;
+    /* height: 50px; */
+    border: solid 1px black;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5em;
+}
+
+/* .user-dropdown{
+    position: fixed;
+} */
 
 /* .two-buttons{
     position: fixed;

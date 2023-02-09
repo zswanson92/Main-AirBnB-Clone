@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
+// import LoginForm from "../LoginFormModal"
 
 function SignupFormPage({ setShowModal }) {
   const dispatch = useDispatch();
@@ -48,6 +49,47 @@ function SignupFormPage({ setShowModal }) {
 
     setEmail(event.target.value);
   };
+
+  function makeid(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}
+
+  function emailSet(){
+    return setEmail(makeid(8) + "@test.com")
+  }
+
+  function usernameSet(){
+    return setUsername(makeid(8))
+  }
+
+  function firstnameSet(){
+    return setFirstName(makeid(8))
+  }
+
+  function lastnameSet(){
+    return setLastName(makeid(8))
+  }
+
+  function passwordSet(){
+    return setPassword("password")
+  }
+
+  function comboSet(){
+    emailSet()
+    usernameSet()
+    firstnameSet()
+    lastnameSet()
+    passwordSet()
+    setConfirmPassword("password")
+  }
 
 
   return (
@@ -121,6 +163,7 @@ function SignupFormPage({ setShowModal }) {
       {confirmPassword.length && confirmPassword !== password ? <div style={{fontSize: '15px',  marginLeft: '3em', color: 'red'}}>Your passwords do not match.</div> : <div> &nbsp; </div>}
       </div>
       <button className='signup-form-button' type="submit">Sign Up</button>
+      <button className='signup-form-button' onClick={comboSet}>Log in as demo user</button>
     </form>
   );
 }

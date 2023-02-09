@@ -43,7 +43,7 @@ function Navigation({ isLoaded }) {
 
       <div><SearchBar /></div>
 
-      <div>{sessionUser ? <CreateSpotButton /> : ""}</div>
+      <div className='createspot-button-div'>{sessionUser ? <CreateSpotButton /> : ""}</div>
 
       <div>
         {isLoaded && (<ProfileButton user={sessionUser}
