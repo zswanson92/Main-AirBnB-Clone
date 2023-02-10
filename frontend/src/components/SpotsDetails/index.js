@@ -14,7 +14,7 @@ import 'react-calendar/dist/Calendar.css';
 import { FaStar } from "react-icons/fa";
 import { IconContext } from "react-icons";
 // import EditReviewButton from '../EditReview/EditReview';
-import logotwo from '../../assets/githublogo.png'
+// import logotwo from '../../assets/githublogo.png'
 
 const SpotsDetails = () => {
     const history = useHistory()
@@ -61,6 +61,8 @@ const SpotsDetails = () => {
     if (reviewArr) {
         filteredReviewArr = reviewArr.filter(review => review.spotId == spotId)
     }
+
+    console.log("ARR?", filteredReviewArr)
 
 
     const deleteASpot = async (e) => {
@@ -126,7 +128,7 @@ const SpotsDetails = () => {
             {/* {sessionUser ? <CreateSpotButton /> : null} */}
             <div className='name-address-details-div'>
                 <h1 className='test'>{spotDetailsObj?.name}</h1>
-                <p className='add-city-state-country'> Average Rating: {spotDetailsObj?.avgRating} &nbsp; <IconContext.Provider value={{ color: 'gold' }} >
+                <p className='add-city-state-country'> Average Rating: {spotDetailsObj?.avgRating} &nbsp; <IconContext.Provider value={{ color: 'black' }} >
                     <FaStar />
                 </IconContext.Provider> &nbsp; · &nbsp; {spotDetailsObj?.address}, {spotDetailsObj?.city}, {spotDetailsObj?.state}, {spotDetailsObj?.country}  · Latitude: {spotDetailsObj?.lat}° · Longitude: {spotDetailsObj?.lng}°
                 </p>
@@ -142,12 +144,27 @@ const SpotsDetails = () => {
 
             </div>
             <div className='kekw-div'>
+                <div className='sub-kek-div'>
                 <div className='top-description-div'>Description:</div>
                 <div className='description-div'> {spotDetailsObj?.description}</div>
-
-                <div className='price-detail'>Price Per Night: ${spotDetailsObj?.price}</div>
+                </div>
+                {/* <div className='price-detail'>Price Per Night: ${spotDetailsObj?.price}</div> */}
+                <div className='bnb-clone-create'>
+                <div className='price-per-night-div'>${spotDetailsObj?.price} Night</div>
+                <div> &nbsp; <IconContext.Provider value={{ color: 'black' }} >
+                    <FaStar />
+                </IconContext.Provider> {spotDetailsObj?.avgRating} · {filteredReviewArr?.length} reviews</div>
+                <CreateBookingButton />
             </div>
-            {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <div className='create-rev-book-div'><CreateReviewButton />  <CreateBookingButton /></div> : null)}
+            </div>
+            {/* {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <div className='create-rev-book-div'><CreateReviewButton />  <CreateBookingButton /></div> : null)} */}
+            {/* <div className='bnb-clone-create'>
+                <div>${spotDetailsObj?.price} Night</div>
+                <div> &nbsp; <IconContext.Provider value={{ color: 'black' }} >
+                    <FaStar />
+                </IconContext.Provider> {spotDetailsObj?.avgRating} · {filteredReviewArr?.length} reviews</div>
+                <CreateBookingButton />
+            </div> */}
             {/* {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <CreateBookingButton /> : null)} */}
             <div className='delete-edit-buttons-div'>
                 {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <button onClick={deleteASpot} className='delete-button'> Delete Location </button> : null)}
@@ -161,12 +178,12 @@ const SpotsDetails = () => {
 
                     {filteredReviewArr?.map(review => (<div className='filtered-rev-map-div' key={review.id}>
                         {/* {console.log("THIS IS REVIEW", review)} */}
-                        <div className='reviews-li'>"{review?.review}" &nbsp; {review?.stars}
-                            <IconContext.Provider value={{ color: 'gold' }} >
+                        <div className='reviews-li'>"{review?.review}" &nbsp; · &nbsp; {review?.stars} &nbsp;
+                            <IconContext.Provider value={{ color: 'black' }} >
                                 <FaStar />
                             </IconContext.Provider>
                         </div>
-                        <div className='review-info-div'>- {review?.User.firstName} {review?.User.lastName} {sortFunc(review?.updatedAt.slice(0, 10).split('-')).join('-')}</div>
+                        <div className='review-info-div'>{review?.User.firstName} {review?.User.lastName} · {sortFunc(review?.updatedAt.slice(0, 10).split('-')).join('-')}</div>
                         {/* <div>{sortFunc(review?.updatedAt.slice(0, 10).split('-')).join('-')}</div> */}
                         {sessionUser && (sessionUser?.id === review?.User?.id ? <div className='remove-review-butt-div'><button key={review.id} className='remove-review-button' onClick={(e) => deleteAReview(e, review.id)}>Remove Review</button> <Link to={`/reviews/${review.id}`}><button className='remove-review-button'>Edit Review</button></Link></div> : null)}
                         {/* {sessionUser && (sessionUser?.id === review?.User?.id ? <div className='remove-review-butt-div'><Link to={`/reviews/${review.id}`}><button>TEST</button></Link></div> : null)} */}
@@ -179,7 +196,7 @@ const SpotsDetails = () => {
                     {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <div className='under-calendar-div'>Your current Bookings for this location:</div> : "")}
 
                     {filteredBookingArr?.map((booking) => {
-                        return <div key={booking.id} className='current-bookings-div'>
+                        return <div key={booking.id} className='mapped-bookings-div'>
                             {sessionUser?.id === booking.userId ? <div className='start-end-div'> Start {sortFunc(booking.startDate.slice(0, 10).split('-')).join('-')} - End {sortFunc(booking.endDate.slice(0, 10).split('-')).join('-')}</div> : ""}
                             <div className='calendar-two-buttons-div'>
                                 {sessionUser?.id === booking.userId ? <button className='delete-booking-button' onClick={(e) => deleteABooking(e, booking.id)}>Delete Booking</button> : ""}
@@ -191,8 +208,8 @@ const SpotsDetails = () => {
             </div>
             <footer className='cred-footer'>
                 <div className='foot-div'>© 2022 UltimateZnB Corp
-                    <div className='foot-name-div'><a href='https://github.com/zswanson92'>Zack Swanson</a></div>
-                    <a href='https://github.com/zswanson92'> <img src={logotwo} alt='Logo' className='splash-logo-img'></img></a></div>
+                    <div className='foot-name-div'><a className='zack-anchor' href='https://github.com/zswanson92'>Zack Swanson</a></div>
+                    <a href='https://github.com/zswanson92'> <img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></a></div>
             </footer>
         </div>
     )

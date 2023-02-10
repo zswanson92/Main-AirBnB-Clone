@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import './Spots.css'
 import { FaStar } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import logotwo from '../../assets/githublogo.png'
+// import logotwo from '../../assets/githublogo.png'
 
 const Spots = () => {
     const dispatch = useDispatch()
@@ -51,8 +51,8 @@ const Spots = () => {
             </div>
             <footer className='cred-footer'>
                 <div className='foot-div'>© 2022 UltimateZnB Corp
-                    <div className='foot-name-div'><a href='https://github.com/zswanson92'>Zack Swanson</a></div>
-                    <a href='https://github.com/zswanson92'> <img src={logotwo} alt='Logo' className='splash-logo-img'></img></a></div>
+                    <div className='foot-name-div'><a className='zack-anchor' href='https://github.com/zswanson92'>Zack Swanson</a></div>
+                    <a href='https://github.com/zswanson92'> <img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></a></div>
             </footer>
         </>
     )

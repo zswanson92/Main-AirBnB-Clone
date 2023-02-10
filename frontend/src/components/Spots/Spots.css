@@ -12,6 +12,14 @@
     border-radius: 30px;
 }
 
+.zack-anchor{
+    text-decoration: none;
+}
+
+.zack-anchor:hover{
+    text-decoration: underline;
+}
+
 img {
     width: 290px;
     height: 260px;

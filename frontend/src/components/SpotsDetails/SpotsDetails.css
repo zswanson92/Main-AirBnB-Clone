@@ -30,6 +30,7 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
   height: 500px;
   width: 800px;
   image-resolution: from-image;
+  padding-top: 2em;
 }
 
 
@@ -86,8 +87,8 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 }
 
 .remove-review-butt-div{
-  padding-right: 2.5em;
-  padding-top: .5em;
+  /* padding-right: 2.5em; */
+  padding-top: 1em;
 }
 
 .editlocation-button{
@@ -116,6 +117,7 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 .create-rev-book-div{
   display: flex;
   justify-content: space-between;
+  /* gap: 10em; */
 }
 
 .name-address-details-div {
@@ -135,9 +137,9 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 .reviews-ul{
 
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   column-gap: 6em;
-  padding-left: 3em;
+  padding-left: 20em;
 }
 
 .filtered-rev-map-div{
@@ -148,11 +150,31 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 }
 
 .reviews-p{
-  padding-top: 3em;
-  padding-left: 5em;
+  padding-top: 2em;
+  padding-left: 15.2em;
+  font-size: 22px;
   /* padding-bottom: 2em; */
 }
 
+.bnb-clone-create{
+  border: 1px solid gray;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 19em;
+  margin-left: 7.5em;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-bottom: 2em;
+  padding: 1em;
+}
+
+.sub-kek-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 14em;
+}
 
 .delete-edit-buttons-div{
   display: flex;
@@ -162,6 +184,11 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 .top-description-div{
   font-weight: bold;
   font-size: 22px;
+  padding-bottom: .5em;
+}
+
+.price-per-night-div{
+  padding-bottom: 1em;
 }
 
 .description-div{
@@ -178,12 +205,21 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 
 .kekw-div{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-
+  /* flex-direction: column; */
+  /* align-items: center; */
+  padding-top: 3em;
+  border-bottom: 1px solid black;
 }
 
 .current-bookings-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 20em;
+  /* justify-content: center; */
+}
+
+.mapped-bookings-div{
   display: flex;
   flex-direction: column;
   align-items: center;

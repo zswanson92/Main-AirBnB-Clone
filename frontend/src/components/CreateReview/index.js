@@ -44,6 +44,8 @@ function CreateReviewButton() {
 
     // dispatch(spotActions.getAllSpots())
     setReviewForm(false)
+    setReview("")
+    setStars(1)
   }
 
   return (
