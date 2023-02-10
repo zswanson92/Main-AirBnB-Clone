@@ -1,7 +1,7 @@
 .header-div {
     display: flex;
-    justify-content: space-evenly;
-    /* gap: 20em; */
+    /* justify-content: space-evenly; */
+    gap: 12em;
     align-items: center;
     /* padding-top: .5em; */
     position: relative;
@@ -10,6 +10,10 @@
     padding-bottom: 2em;
 }
 
+.searchbar-div{
+    /* padding-left: 5em; */
+    margin-left: 10em;
+}
 
 .home-button {
     display: flex;
@@ -21,6 +25,7 @@
     object-fit: contain;
     height: 60px;
     /* padding-top: 1em; */
+    /* margin-left: 5em; */
 }
 
 .logged-in-user-div{
@@ -91,7 +96,7 @@
     font: inherit;
     line-height: 1;
     margin: 0.5em;
-    padding: 1em 2em;
+    padding: .5em;
     --color: #e41e4e;
     --hover: #e41e4e;
     border-radius: 30px;
@@ -108,8 +113,9 @@
     border: none;
     font: inherit;
     line-height: 1;
-    margin: 0.5em;
-    padding: 1em 2em;
+    /* margin: 0.5em; */
+    margin-left: 2em;
+    padding: .5em;
     --color: #e41e4e;
     --hover: #e41e4e;
     border-radius: 30px;

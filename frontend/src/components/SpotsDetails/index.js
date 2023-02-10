@@ -36,7 +36,10 @@ const SpotsDetails = () => {
     })
 
     const filteredBookingArr = bookingDetailsObj?.filter((obj) => obj.spotId === +spotId)
+    // console.log("!!!", filteredBookingArr)
 
+    const currUserBookings = filteredBookingArr?.filter((obj) => obj.userId === sessionUser.id)
+    console.log("@@@@@@", currUserBookings)
 
     let sortFunc = (arr) => {
         let newArr = []
@@ -62,7 +65,7 @@ const SpotsDetails = () => {
         filteredReviewArr = reviewArr.filter(review => review.spotId == spotId)
     }
 
-    console.log("ARR?", filteredReviewArr)
+    // console.log("ARR?", filteredReviewArr)
 
 
     const deleteASpot = async (e) => {
@@ -143,6 +146,11 @@ const SpotsDetails = () => {
                 />
 
             </div>
+            <div className='delete-edit-buttons-div'>
+                {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <button onClick={deleteASpot} className='delete-button'> Delete Location </button> : null)}
+
+                {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <EditSpotButton /> : null)}
+            </div>
             <div className='kekw-div'>
                 <div className='sub-kek-div'>
                 <div className='top-description-div'>Description:</div>
@@ -166,11 +174,7 @@ const SpotsDetails = () => {
                 <CreateBookingButton />
             </div> */}
             {/* {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <CreateBookingButton /> : null)} */}
-            <div className='delete-edit-buttons-div'>
-                {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <button onClick={deleteASpot} className='delete-button'> Delete Location </button> : null)}
 
-                {sessionUser && (sessionUser.id === spotDetailsObj?.Owner.id ? <EditSpotButton /> : null)}
-            </div>
             <div className='reviews-p'>Reviews: </div>
             <div className='reviews-ul-div'>
 
@@ -193,7 +197,7 @@ const SpotsDetails = () => {
                     <Calendar
                         tileDisabled={tileDisable}
                     />
-                    {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <div className='under-calendar-div'>Your current Bookings for this location:</div> : "")}
+                    {sessionUser && ((sessionUser.id !== spotDetailsObj?.Owner.id && currUserBookings?.length > 0) ? <div className='under-calendar-div'>Your current Bookings for this location:</div> : "")}
 
                     {filteredBookingArr?.map((booking) => {
                         return <div key={booking.id} className='mapped-bookings-div'>

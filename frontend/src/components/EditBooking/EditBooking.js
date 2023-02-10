@@ -14,7 +14,7 @@ function EditBookingButton() {
   const { bookingId } = useParams()
 
   const currBooking = useSelector(state => state.bookings?.allBookings.Bookings)
-  console.log("CURR BOOKING", currBooking)
+  // console.log("CURR BOOKING", currBooking)
 
   const bookingFilter = currBooking?.filter(obj => obj.id === +bookingId)
 
@@ -62,13 +62,13 @@ function EditBookingButton() {
   const editDateCheck = (date) => {
 
     let abc = currBooking.filter((el) => {
-      console.log("THIS IS DATE!!!", date)
-      console.log("THIS IS EL!!!", el.startDate.slice(0, 10))
+      // console.log("THIS IS DATE!!!", date)
+      // console.log("THIS IS EL!!!", el.startDate.slice(0, 10))
 
       return date === el.startDate.slice(0, 10) || (date > el.startDate.slice(0, 10) && date < el.endDate.slice(0 ,10)) || (date === el.endDate.slice(0, 10))
 
     })
-    console.log("ABC", abc)
+    // console.log("ABC", abc)
     if(abc.length > 0){
       return true
     }

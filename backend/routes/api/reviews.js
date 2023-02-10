@@ -114,8 +114,8 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 router.put('/:reviewId', requireAuth, async (req, res) => {
     // console.log(req)
     let { review, stars } = req.body
-    console.log(typeof review)
-    console.log(typeof +stars)
+    // console.log(typeof review)
+    // console.log(typeof +stars)
     stars = +stars
     const { reviewId } = req.params
     const theReview = await Review.findByPk(reviewId)

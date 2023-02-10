@@ -89,7 +89,8 @@ function CreateSpotButton() {
       {
         showForm ? <Modal>
           <form onSubmit={createNewSpot} className="newspot-form">
-            <label style={{ paddingTop: '.5em', paddingBottom: '.5em' }}>Create a AirZnB</label>
+          <button className="x-button" onClick={() => setShowForm(false)}>x</button>
+            <label style={{ paddingBottom: '.5em' }}>Create a AirZnB </label>
             <div>
               <input
                 className="create-spot-input"

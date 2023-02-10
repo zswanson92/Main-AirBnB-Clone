@@ -41,7 +41,7 @@ function Navigation({ isLoaded }) {
         <NavLink exact to="/" className='home-button'><img className='abcd' src={icon} alt="" /></NavLink>
       </div>
 
-      <div><SearchBar /></div>
+      <div className='searchbar-div'><SearchBar /></div>
 
       <div className='createspot-button-div'>{sessionUser ? <CreateSpotButton /> : ""}</div>
 

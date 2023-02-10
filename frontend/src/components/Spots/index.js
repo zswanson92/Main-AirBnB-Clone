@@ -33,13 +33,12 @@ const Spots = () => {
                 {aSpot.map((obj) => {
                     return (
                         <div key={obj.id} className='inner-homepage'>
-                            {console.log("!!!OBJ", obj)}
                             <Link style={{ textDecoration: 'none' }} to={`/spots/${obj.id}`}>
                                 <img
                                     className="item-image"
                                     alt={obj.previewImage}
                                     src={`${obj.previewImage}`} />
-                                <p className='topline-text'>{obj.name} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <IconContext.Provider value={{ color: 'gold' }} >
+                                <p className='topline-text'>{obj.name} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <IconContext.Provider value={{ color: 'black' }} >
                                     <FaStar />
                                 </IconContext.Provider> &nbsp; {obj.avgRating} </p>
                                 <p className='bottomline-text'>${obj.price} / night</p>

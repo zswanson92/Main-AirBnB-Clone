@@ -13,7 +13,7 @@ function EditSpotButton() {
   const { spotId } = useParams()
 
   const currSpot = useSelector(state => state.spots.spot[spotId])
-  console.log("currSpot", currSpot)
+  // console.log("currSpot", currSpot)
 
   let editValOne;
   let editValTwo;

@@ -50,7 +50,7 @@ function CreateBookingButton() {
 
   const dateCheck = (date) => {
 
-    let abc = currBooking.filter((el) => {
+    let abc = currBooking?.filter((el) => {
       // console.log("THIS IS DATE!!!", date)
       // console.log("THIS IS EL!!!", el.startDate.slice(0, 10))
 
@@ -64,9 +64,9 @@ function CreateBookingButton() {
     return false
   }
 
-  console.log("START DATE", startDate)
-  console.log("END DATE", endDate)
-  console.log("DIFF", endDate - startDate)
+  // console.log("START DATE", startDate)
+  // console.log("END DATE", endDate)
+  // console.log("DIFF", endDate - startDate)
 
 
   return (
