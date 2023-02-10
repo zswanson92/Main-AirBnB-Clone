@@ -106,13 +106,13 @@ module.exports = {
       {
         spotId: 15,
         userId: 1,
-        review: 'The plumbing just stopped working and I could not get a hold of the host. I had to go get a Motel after making a long trip down here. Stay far away from this spot.',
+        review: 'The plumbing just stopped working and I could not get a hold of the host. I had to go get a Motel after making a long trip down here.',
         stars: 1
       },
       {
         spotId: 16,
         userId: 2,
-        review: 'Really enjoyed the centrality of this location, there was so much to do. The temperature control was my favorite aspect of staying here. It felt really responsive and as a naturally cold person being able to blast the heat was much appreciated.',
+        review: 'Really enjoyed the centrality of this location, there was so much to do.',
         stars: 4
       },
       {
@@ -124,13 +124,13 @@ module.exports = {
       {
         spotId: 18,
         userId: 1,
-        review: 'We arrived to dirty dishes. Jankly made beds. Half the light bulbs did not work? The only redeemable value this property had was its view, which was beautiful, but I would be very cautious about staying here.',
+        review: 'We arrived to dirty dishes. Jankly made beds. Half the light bulbs did not work?.',
         stars: 2
       },
       {
         spotId: 19,
         userId: 2,
-        review: 'The decor was really nice, but the lack of amenities was kind of a let down. There were some thing around to do but none of them were particularly interesting or fun. I enjoyed the quiet that could be find while staying in. Not sure if I would come back.',
+        review: 'The decor was really nice, but the lack of amenities was kind of a let down. There were some thing around to do but none of them were particularly interesting or fun.',
         stars: 3
       },
       {
@@ -148,7 +148,7 @@ module.exports = {
       {
         spotId: 22,
         userId: 2,
-        review: 'Only reason this did not get 5 stars from me was the bed was horrible, I had to sleep on the coach to spare my back. But really enjoyed the hot tub and the neighborhood cats who were SUPER friendly! Would certainly recommend, especially if you like hard beds.',
+        review: 'Only reason this did not get 5 stars from me was the bed was horrible, I had to sleep on the coach to spare my back. But really enjoyed the hot tub and the neighborhood cats who were SUPER friendly!',
         stars: 4
       }
     ], {})
