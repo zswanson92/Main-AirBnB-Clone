@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom'
 import * as bookingActions from '../../store/bookings'
 import * as spotActions from '../../store/spots'
 import { getBookingsThunk } from '../../store/bookings';
-import { Modal } from '../../context/Modal'
+// import { Modal } from '../../context/Modal'
+import LoginForm from '../LoginFormModal/LoginForm';
 
 
 function CreateBookingButton() {
@@ -14,7 +15,9 @@ function CreateBookingButton() {
 
   const currBooking = useSelector(state => state.bookings?.allBookings?.Bookings)
 
-  console.log("CURR BOOKING", currBooking)
+  // console.log("CURR BOOKING", currBooking)
+
+  const sessionUser = useSelector(state => state.session.user);
 
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
@@ -22,10 +25,16 @@ function CreateBookingButton() {
 
   const [showReviewForm, setReviewForm] = useState(false)
 
+  const spotDetailsObj = useSelector(state => {
+    return state.spots.spot[spotId]
+  })
+
+  // console.log("create bookings spot details", spotDetailsObj)
+
 
   useEffect(() => {
     let err = []
-    if(dateCheck(startDate) || dateCheck(endDate)){
+    if (dateCheck(startDate) || dateCheck(endDate)) {
       err.push("This date range is already booked. Please choose a different one.")
     }
 
@@ -34,6 +43,15 @@ function CreateBookingButton() {
 
   const createNewBooking = async (e) => {
     e.preventDefault();
+
+    if (!sessionUser) {
+      return setErrors(['Must be logged in to make a booking.'])
+    }
+    if (sessionUser?.id === spotDetailsObj?.ownerId) {
+      return setErrors(['You cannot create a booking for a location you own.'])
+    }
+
+
 
     const createdBooking = {
       startDate, endDate, spotId
@@ -54,11 +72,11 @@ function CreateBookingButton() {
       // console.log("THIS IS DATE!!!", date)
       // console.log("THIS IS EL!!!", el.startDate.slice(0, 10))
 
-      return date === el.startDate.slice(0, 10) || (date > el.startDate.slice(0, 10) && date < el.endDate.slice(0 ,10)) || (date === el.endDate.slice(0, 10))
+      return date === el.startDate.slice(0, 10) || (date > el.startDate.slice(0, 10) && date < el.endDate.slice(0, 10)) || (date === el.endDate.slice(0, 10))
 
     })
-    // console.log("ABC", abc)
-    if(abc.length > 0){
+    console.log("ABC", abc)
+    if (abc.length > 0) {
       return true
     }
     return false
@@ -75,8 +93,8 @@ function CreateBookingButton() {
       {
         // showReviewForm ? <Modal>
 
-          <form onSubmit={createNewBooking} className="new-booking-form">
-            <div className='test-div-create-book'>
+        <form onSubmit={createNewBooking} className="new-booking-form">
+          <div className='test-div-create-book'>
             <div className='enter-date-div'>
               CHECK-IN
               <input
@@ -95,11 +113,18 @@ function CreateBookingButton() {
                 onChange={(e) => setEndDate(e.target.value)}
                 required={true} />
             </div>
+          </div>
+          {(dateCheck(startDate) || dateCheck(endDate)) ? <div>This date range is already booked. Please choose a different one.</div> : <div> &nbsp; </div>}
+          <button disabled={(dateCheck(startDate) || dateCheck(endDate)) ? true : false} type="submit" className="submitbooking-button">Reserve</button>
+          {/* <button onClick={() => setReviewForm(false)} className='discardreviewform-button'>Close Form</button> */}
+          {errors.length > 0 && (
+            <div className="createbooking-errors-div">
+              {errors.map((error, idx) => (
+                <div key={idx}>{error}</div>
+              ))}
             </div>
-            {errors.length > 0 ? <div>This date range is already booked. Please choose a different one.</div> : <div> &nbsp; </div>}
-            <button disabled={(dateCheck(startDate) || dateCheck(endDate)) ? true : false} type="submit" className="submitbooking-button">Reserve</button>
-            {/* <button onClick={() => setReviewForm(false)} className='discardreviewform-button'>Close Form</button> */}
-          </form>
+          )}
+        </form>
 
       }
     </>
@@ -109,4 +134,10 @@ function CreateBookingButton() {
 export default CreateBookingButton
 
 
-{/* </Modal> : "" */}
+{/* </Modal> : "" */ }
+
+// {errors.length > 0 && (
+//   <div className="signup-errors-div">
+//     <div>Must be logged in to make a booking.</div>
+//   </div>
+// )}

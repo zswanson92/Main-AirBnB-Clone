@@ -276,11 +276,15 @@ html,body{ margin:0; padding:0; height:100%; width:100%; }
 .foot-div{
   display: flex;
   /* gap: 5em; */
-  justify-content: space-between;
+  /* justify-content: space-evenly; */
   align-items: center;
   background-color: rgb(177, 171, 171);
 }
 
 .foot-name-div{
-  padding-left: 98em;
+  padding-left: 95em;
+}
+
+.corp-div-holder{
+  padding-left: 2em;
 }

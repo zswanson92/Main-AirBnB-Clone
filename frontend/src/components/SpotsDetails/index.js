@@ -38,8 +38,23 @@ const SpotsDetails = () => {
     const filteredBookingArr = bookingDetailsObj?.filter((obj) => obj.spotId === +spotId)
     // console.log("!!!", filteredBookingArr)
 
-    const currUserBookings = filteredBookingArr?.filter((obj) => obj.userId === sessionUser.id)
+    const currUserBookings = filteredBookingArr?.filter((obj) => obj.userId === sessionUser?.id)
     console.log("@@@@@@", currUserBookings)
+
+    const testCurrBooking = currUserBookings.sort((a, b) => {
+        let keyA = new Date(a.startDate)
+        let keyB = new Date(b.startDate)
+        if(keyA < keyB) return -1
+        if(keyA > keyB) return 1
+        return 0
+    })
+    // console.log("SORTED ARR?", currUserBookings.sort((a, b) => {
+    //     let keyA = new Date(a.startDate)
+    //     let keyB = new Date(b.startDate)
+    //     if(keyA < keyB) return -1
+    //     if(keyA > keyB) return 1
+    //     return 0
+    // }))
 
     let sortFunc = (arr) => {
         let newArr = []
@@ -65,7 +80,7 @@ const SpotsDetails = () => {
         filteredReviewArr = reviewArr.filter(review => review.spotId == spotId)
     }
 
-    // console.log("ARR?", filteredReviewArr)
+    // console.log("FILTEREDARR?", filteredReviewArr)
 
 
     const deleteASpot = async (e) => {
@@ -199,7 +214,7 @@ const SpotsDetails = () => {
                     />
                     {sessionUser && ((sessionUser.id !== spotDetailsObj?.Owner.id && currUserBookings?.length > 0) ? <div className='under-calendar-div'>Your current Bookings for this location:</div> : "")}
 
-                    {filteredBookingArr?.map((booking) => {
+                    {testCurrBooking?.map((booking) => {
                         return <div key={booking.id} className='mapped-bookings-div'>
                             {sessionUser?.id === booking.userId ? <div className='start-end-div'> Start {sortFunc(booking.startDate.slice(0, 10).split('-')).join('-')} - End {sortFunc(booking.endDate.slice(0, 10).split('-')).join('-')}</div> : ""}
                             <div className='calendar-two-buttons-div'>
@@ -211,7 +226,8 @@ const SpotsDetails = () => {
                 </div>
             </div>
             <footer className='cred-footer'>
-                <div className='foot-div'>© 2022 UltimateZnB Corp
+                <div className='foot-div'>
+                    <div className='corp-div-holder'>© 2022 UltimateZnB Corp</div>
                     <div className='foot-name-div'><a className='zack-anchor' href='https://github.com/zswanson92'>Zack Swanson</a></div>
                     <a href='https://github.com/zswanson92'> <img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></a></div>
             </footer>

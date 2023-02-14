@@ -27,6 +27,7 @@
     /* width: 9em; */
     padding: 1em;
     font-size: 10px;
+    gap: .5em;
 }
 
 .test-div-create-book{
@@ -45,4 +46,11 @@
     border-radius: 5px;
     height: 3em;
     width: 15em;
+}
+
+.createbooking-errors-div{
+    color: red;
+    padding-top: 1em;
+    padding-left: .5em;
+
 }
