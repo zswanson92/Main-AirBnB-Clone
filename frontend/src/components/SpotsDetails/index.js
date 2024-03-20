@@ -36,15 +36,15 @@ const SpotsDetails = () => {
 
     const filteredBookingArr = bookingDetailsObj?.filter((obj) => obj.spotId === +spotId)
 
-    const currUserBookings = filteredBookingArr?.filter((obj) => obj.userId === sessionUser?.id)
+    // const currUserBookings = filteredBookingArr?.filter((obj) => obj.userId === sessionUser?.id)
 
-    const testCurrBooking = currUserBookings?.sort((a, b) => {
-        let keyA = new Date(a.startDate)
-        let keyB = new Date(b.startDate)
-        if(keyA < keyB) return -1
-        if(keyA > keyB) return 1
-        return 0
-    })
+    // const testCurrBooking = currUserBookings?.sort((a, b) => {
+    //     let keyA = new Date(a.startDate)
+    //     let keyB = new Date(b.startDate)
+    //     if(keyA < keyB) return -1
+    //     if(keyA > keyB) return 1
+    //     return 0
+    // })
 
 
     let sortFunc = (arr) => {
