@@ -189,9 +189,8 @@ const SpotsDetails = () => {
                     <Calendar
                         tileDisabled={tileDisable}
                     />
-                    {sessionUser && ((sessionUser.id !== spotDetailsObj?.Owner.id && currUserBookings?.length > 0) ? <div className='under-calendar-div'>Your current Bookings for this location:</div> : "")}
 
-                    {testCurrBooking?.map((booking) => {
+                    {/* {testCurrBooking?.map((booking) => {
                         return <div key={booking.id} className='mapped-bookings-div'>
                             {sessionUser?.id === booking.userId ? <div className='start-end-div'> Start {sortFunc(booking.startDate.slice(0, 10).split('-')).join('-')} - End {sortFunc(booking.endDate.slice(0, 10).split('-')).join('-')}</div> : ""}
                             <div className='calendar-two-buttons-div'>
@@ -199,7 +198,7 @@ const SpotsDetails = () => {
                                 {sessionUser?.id === booking.userId ? <Link to={`/bookings/${booking.id}`}><button className='edit-booking-button'>Edit Booking</button></Link> : ""}
                             </div>
                         </div>
-                    })}
+                    })} */}
                 </div>
             </div>
             <footer className='cred-footer'>
@@ -212,3 +211,4 @@ const SpotsDetails = () => {
     )
 }
 export default SpotsDetails
+// {sessionUser && ((sessionUser.id !== spotDetailsObj?.Owner.id && currUserBookings?.length > 0) ? <div className='under-calendar-div'>Your current Bookings for this location:</div> : "")}
