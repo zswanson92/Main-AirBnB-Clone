@@ -13,8 +13,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { FaStar } from "react-icons/fa";
 import { IconContext } from "react-icons";
-// import EditReviewButton from '../EditReview/EditReview';
-// import logotwo from '../../assets/githublogo.png'
+
 
 const SpotsDetails = () => {
     const history = useHistory()
@@ -36,10 +35,8 @@ const SpotsDetails = () => {
     })
 
     const filteredBookingArr = bookingDetailsObj?.filter((obj) => obj.spotId === +spotId)
-    // console.log("!!!", filteredBookingArr)
 
     const currUserBookings = filteredBookingArr?.filter((obj) => obj.userId === sessionUser?.id)
-    console.log("@@@@@@", currUserBookings)
 
     const testCurrBooking = currUserBookings.sort((a, b) => {
         let keyA = new Date(a.startDate)
@@ -48,13 +45,7 @@ const SpotsDetails = () => {
         if(keyA > keyB) return 1
         return 0
     })
-    // console.log("SORTED ARR?", currUserBookings.sort((a, b) => {
-    //     let keyA = new Date(a.startDate)
-    //     let keyB = new Date(b.startDate)
-    //     if(keyA < keyB) return -1
-    //     if(keyA > keyB) return 1
-    //     return 0
-    // }))
+
 
     let sortFunc = (arr) => {
         let newArr = []
@@ -65,7 +56,6 @@ const SpotsDetails = () => {
 
         return newArr
     }
-
 
     let reviewArr;
 
@@ -79,9 +69,6 @@ const SpotsDetails = () => {
     if (reviewArr) {
         filteredReviewArr = reviewArr.filter(review => review.spotId == spotId)
     }
-
-    // console.log("FILTEREDARR?", filteredReviewArr)
-
 
     const deleteASpot = async (e) => {
         e.preventDefault();
@@ -180,16 +167,6 @@ const SpotsDetails = () => {
                 <CreateBookingButton />
             </div>
             </div>
-            {/* {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <div className='create-rev-book-div'><CreateReviewButton />  <CreateBookingButton /></div> : null)} */}
-            {/* <div className='bnb-clone-create'>
-                <div>${spotDetailsObj?.price} Night</div>
-                <div> &nbsp; <IconContext.Provider value={{ color: 'black' }} >
-                    <FaStar />
-                </IconContext.Provider> {spotDetailsObj?.avgRating} · {filteredReviewArr?.length} reviews</div>
-                <CreateBookingButton />
-            </div> */}
-            {/* {sessionUser && (sessionUser.id !== spotDetailsObj?.Owner.id ? <CreateBookingButton /> : null)} */}
-
             <div className='reviews-p'>Reviews: </div>
             <div className='reviews-ul-div'>
 
@@ -235,54 +212,3 @@ const SpotsDetails = () => {
     )
 }
 export default SpotsDetails
-
-
-// activeStartDate={new Date(booking.startDate.slice(0, 10).split('-'))}
-// tileClassName={({ date }) => {
-//     {console.log("THIS IS DATE????", date.toDateString())}
-//     // if (shouldDateBeSelected(date.toDateString())) {
-//     if (dateArr.includes(date.toDateString())) {
-//         return 'react-calendar__tile--active';
-//     }
-//     return null;
-// }}
-// tileClassName={({ date }) => {
-//     {console.log("THIS IS DATE????", date.toDateString())}
-//     // if (shouldDateBeSelected(date.toDateString())) {
-//     if (dateArr.includes(date.toDateString())) {
-//         return 'react-calendar__tile--active';
-//     }
-//     return null;
-// }}
-/* {filteredReviewArr.map(review => (<div className='filtered-rev-map-div' key={review.id}>
-
-                <div key={review.id} className='reviews-li'>"{review?.review}"</div>
-                {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
-            </div>))} */
-              // let dateArr = []
-    // filteredBookingArr.forEach((el) => {
-    //     dateArr.push(new Date(el.startDate).toDateString())
-    //     dateArr.push(new Date(el.endDate).toDateString())
-    // })
-
-    // console.log("DATE ARRAY", dateArr)
-
-    // const shouldDateBeSelected = (date) => {
-    //     // if(filteredBookingArr.includes(date))
-
-    //     filteredBookingArr.forEach((el) => {
-    //         // console.log("EL.STARTDATE", el.startDate)
-    //         // console.log("EL.endDATE", el.endDate)
-    //         let abc = el.startDate
-    //         let xyz = el.endDate
-
-    //         const newABC = new Date(abc)
-    //         // console.log("NEWABC", newABC.toDateString())
-    //         const newXYZ = new Date(xyz)
-    //         if (newABC.toDateString() == date || newXYZ.toDateString() == date) {
-    //             return true
-    //         }
-    //     })
-
-    //     return false
-    // }
