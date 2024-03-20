@@ -92,7 +92,7 @@ const SpotsDetails = () => {
     useEffect(() => {
         dispatch(getSpotById(spotId))
         dispatch(getAllReviews(spotId))
-        dispatch(getBookingsThunk(spotId))
+        // dispatch(getBookingsThunk(spotId))
     }, [dispatch, spotId])
     // if something breaks I added spotId to dependency
 
@@ -164,7 +164,7 @@ const SpotsDetails = () => {
                 <div> &nbsp; <IconContext.Provider value={{ color: 'black' }} >
                     <FaStar />
                 </IconContext.Provider> {spotDetailsObj?.avgRating} · {filteredReviewArr?.length} reviews</div>
-                <CreateBookingButton />
+                {/* <CreateBookingButton /> */}
             </div>
             </div>
             <div className='reviews-p'>Reviews: </div>
