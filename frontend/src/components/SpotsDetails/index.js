@@ -30,11 +30,11 @@ const SpotsDetails = () => {
         return state.reviews.allReviews?.Reviews
     })
 
-    const bookingDetailsObj = useSelector(state => {
-        return state.bookings.allBookings?.Bookings
-    })
+    // const bookingDetailsObj = useSelector(state => {
+    //     return state.bookings.allBookings?.Bookings
+    // })
 
-    const filteredBookingArr = bookingDetailsObj?.filter((obj) => obj.spotId === +spotId)
+    // const filteredBookingArr = bookingDetailsObj?.filter((obj) => obj.spotId === +spotId)
 
     // const currUserBookings = filteredBookingArr?.filter((obj) => obj.userId === sessionUser?.id)
 
@@ -76,11 +76,11 @@ const SpotsDetails = () => {
         return history.push('/')
     }
 
-    const deleteABooking = async (e, bookingId) => {
-        e.preventDefault();
-        await dispatch(deleteBookingThunk(bookingId))
-        await dispatch(getBookingsThunk(spotId))
-    }
+    // const deleteABooking = async (e, bookingId) => {
+    //     e.preventDefault();
+    //     await dispatch(deleteBookingThunk(bookingId))
+    //     await dispatch(getBookingsThunk(spotId))
+    // }
 
     const deleteAReview = async (e, reviewId) => {
         e.preventDefault();
@@ -101,32 +101,32 @@ const SpotsDetails = () => {
     }
 
 
-    Date.prototype.addDays = function (days) {
-        var date = new Date(this.valueOf());
-        date.setDate(date.getDate() + days);
-        return date;
-    }
+    // Date.prototype.addDays = function (days) {
+    //     var date = new Date(this.valueOf());
+    //     date.setDate(date.getDate() + days);
+    //     return date;
+    // }
 
 
-    const tileDisable = ({ activeStartDate, date, view }) => {
-        const today = new Date()
-        if (date.toDateString() === today.toDateString()) {
-            return true
-        }
+    // const tileDisable = ({ activeStartDate, date, view }) => {
+    //     const today = new Date()
+    //     if (date.toDateString() === today.toDateString()) {
+    //         return true
+    //     }
 
-        for (let bookId in bookingDetailsObj) {
-            let start = new Date(bookingDetailsObj[bookId].startDate)
-            let end = new Date(bookingDetailsObj[bookId].endDate)
-            end = end.addDays(1)
-            // start = start.addDays(1)
-            date = new Date(date)
+    //     for (let bookId in bookingDetailsObj) {
+    //         let start = new Date(bookingDetailsObj[bookId].startDate)
+    //         let end = new Date(bookingDetailsObj[bookId].endDate)
+    //         end = end.addDays(1)
+    //         // start = start.addDays(1)
+    //         date = new Date(date)
 
-            if (date >= start && date < end) {
-                return true
-            }
-        }
-        return false
-    }
+    //         if (date >= start && date < end) {
+    //             return true
+    //         }
+    //     }
+    //     return false
+    // }
 
     return (
         <div className='main-details-page'>
@@ -185,10 +185,10 @@ const SpotsDetails = () => {
                         {/* {sessionUser && (sessionUser?.id === review?.User?.id ? <div className='remove-review-butt-div'><Link to={`/reviews/${review.id}`}><button>TEST</button></Link></div> : null)} */}
                     </div>))}
                 </div>
-                <div className='current-bookings-div'>
+                {/* <div className='current-bookings-div'>
                     <Calendar
-                        tileDisabled={tileDisable}
-                    />
+                        tileDisabled={tileDisable} */}
+                    {/* /> */}
 
                     {/* {testCurrBooking?.map((booking) => {
                         return <div key={booking.id} className='mapped-bookings-div'>
@@ -199,7 +199,7 @@ const SpotsDetails = () => {
                             </div>
                         </div>
                     })} */}
-                </div>
+                {/* </div> */}
             </div>
             <footer className='cred-footer'>
                 <div className='foot-div'>
