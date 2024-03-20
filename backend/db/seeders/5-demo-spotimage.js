@@ -76,7 +76,7 @@ module.exports = {
       },
       {
         spotId: 12,
-        url: 'https://www.brickunderground.com/sites/default/files/styles/blog_primary_image/public/blog/images/022719_boisemain.jpg',
+        url: 'https://media12.s-nbcnews.com/i/mpx/2704722219/2023_12/1703784063324_now_daily_a_griffin_idaho_house_231228_1920x1080-ej1ibz.jpg',
         preview: true
       },
       {
