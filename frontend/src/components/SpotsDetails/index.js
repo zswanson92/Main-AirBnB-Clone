@@ -6,11 +6,11 @@ import { useParams, useHistory, Link, NavLink } from 'react-router-dom';
 import './SpotsDetails.css'
 import EditSpotButton from '../EditSpot';
 import { getAllReviews, deleteReview } from '../../store/reviews';
-import CreateReviewButton from '../CreateReview';
-import CreateBookingButton from '../CreateBooking/CreateBooking';
-import { getBookingsThunk, deleteBookingThunk } from '../../store/bookings';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+// import CreateReviewButton from '../CreateReview';
+// import CreateBookingButton from '../CreateBooking/CreateBooking';
+// import { getBookingsThunk, deleteBookingThunk } from '../../store/bookings';
+// import Calendar from 'react-calendar';
+// import 'react-calendar/dist/Calendar.css';
 import { FaStar } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
